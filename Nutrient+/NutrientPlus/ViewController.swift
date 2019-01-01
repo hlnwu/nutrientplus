@@ -5,6 +5,7 @@
 //  Created by Robert Sato on 10/11/19.
 //  Copyright © 2019 Robert Sato. All rights reserved.
 //
+// image retrieval tutorial: https:// www.youtube.com/watch?v=bF9cEcte0-E&t=623s
 
 import UIKit
 import CoreData
@@ -22,17 +23,20 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
-    var height: Float=0.0
-    var weight: Float=0.0
+    var height: Float = 0.0
+    var weight: Float = 0.0
     var calories = "2000"
     var birthdate : Date = Date()
     var tester :String="did not change"
     var gender : String = ""
     var user=[User]()
     var length : NSInteger = 0
+
+    
+    // variable for displaying image; used in viewDidLoad()
+    @IBOutlet weak var recFoodImg: UIImageView!
     
     // for transfering data
-    @IBOutlet weak var transferDataLabel: UILabel!
     
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
@@ -51,8 +55,45 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // grab an image from the Internet
+        let URLString: String = "https://images-na.ssl-images-amazon.com/images/I/91iX-arSDcL._SL1500_.jpg"
+        let recFoodURL = URL(string: URLString)
+        // create session that opens browser in background
+        let createWebSession = URLSession.shared.dataTask(with: recFoodURL!) { (data, response, error) in
+            if (error != nil) {
+                print("ERROR")
+            // saving file to local storage
+            } else {
+                var directory: String?
+                let availablePaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                
+                // found a place to save file
+                // saving file to given directory path
+                if availablePaths.count > 0 {
+                    directory = availablePaths[0]
+                    // splits URL by '/' and save all strings in an array
+                    let fileNameArray = URLString.components(separatedBy: "/")
+                    // find the size of the array
+                    let fileNameArraySize = fileNameArray.count
+                    // the string after last '/' will be the file name
+                    let fileName = fileNameArray[fileNameArraySize - 1]
+                    let savePath = directory! + fileName
+                    // step where file is saved
+                    FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
+                    // loading in data from saved path
+                    DispatchQueue.main.async {
+                        self.recFoodImg.image = UIImage(named: savePath)
+                    }
+                }
+            }
+        }
+        
+        createWebSession.resume()
+        
+        // Do any additional setup after loading the view.
+        
         print("***in ViewController.swift***")
-        transferDataLabel.text = calories
+
         tableView.delegate = self
         tableView.dataSource = self
         if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
@@ -78,7 +119,7 @@ class ViewController: UIViewController {
             gender=user[length].sex ?? "male"
             //birthdate=user[length].birthday!
         }catch{}
-        
+
         let recommendations1 = recommend1()
         print("Recommendations1:")
         print(recommendations1)
