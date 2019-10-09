@@ -1,0 +1,81 @@
+Release Plan
+Product: Nutrient+
+Team Name: Nutrient+ Team
+Release Name: Nutrient+ 1.0; Date: December 1st, 2019
+Revision: 1.0; Date: October 8th, 2019
+
+
+
+
+High Level Goals
+
+* Remember a user's personal health information.
+* Track a user's daily nutritional intake.
+* Suggest food based on user's daily nutritional intake (but with the limitation of the user's current food stores).
+* Remind user of daily intake progress.
+* Customize a user's daily intake preferences.
+* Create a meal plan based on dietary restrictions.
+* Calculate recommended daily calorie intake if not given by user
+* Scan food barcode
+
+
+
+
+User Stories For Release
+
+
+User Stories
+* As a user, I want to create and update a user profile so the app can tailor the intake information to my needs.
+* As a user, I want to keep track of my current daily intake so that I know what nutrients I still need for the day.
+* As a user, I want to be able to visualize my daily intake progress so that I can practice healthier eating habits.
+* As a user, I want food to be recommended to me so that I know how to best complete my daily intake goals.
+* As a user, I want to input my current food stores so that the app knows what foods are available to me.
+* As a user, I want to be notified if I haven't met my nutrient goals so that I am reminded to complete them.
+* As a user, I want to adjust the predetermined daily nutrient goals so that I can create my own goals.                                
+* As a user, I want food recommended to me that adheres to my dietary restrictions so that I do not have to worry about what I cannot eat.
+* As a user, I want to be able to input my daily nutrient intake by scanning the food's barcode rather than inputting the information by hand.
+
+
+
+
+Sprint 1
+* As a user, I want to create and update a user profile so the app can tailor the intake information to my needs.
+* As a user, I want to keep track of my current daily intake so that I know what nutrients I still need for the day.
+* As a user, I want to be able to visualize my daily intake progress so that I can practice healthier eating habits.
+
+
+
+
+
+
+Sprint 2
+
+
+* As a user, I want to input my current food stores so that the app knows what foods are available to me.
+* As a user, I want to adjust the predetermined daily nutrient goals so that I can create my own goals.
+* As a user, I want food to be recommended to me so that I know how to best complete my daily intake goals.
+
+
+
+
+
+
+Sprint 3
+* As a user, I want food recommended to me that adheres to my dietary restrictions so that I do not have to worry about what I cannot eat.
+* As a user, I want to be notified if I haven't met my nutrient goals so that I am reminded to complete them.
+
+
+
+
+
+
+Sprint 4
+* As a user, I want to be able to input my daily nutrient intake by scanning the food's barcode rather than inputting the information by hand.
+
+
+Product Backlog
+* User input unique foods/recipes
+
+
+Project Presentation
+* https://docs.google.com/presentation/d/1DayvCMoek6de88SuYOzZKPE7CTrDNQoGthPS9whmDAA/edit?usp=sharing
