@@ -3,4 +3,4 @@ An app that provides its user with the optimal food choices to reach daily nutri
 
 Directions for developers:
 - open the Nutrient+ folder
-- open the .xcodeproj with Xcode 10.3
+- open the .xcodeproj with Xcode 11.1
