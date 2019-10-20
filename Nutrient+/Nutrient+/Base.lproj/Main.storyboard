@@ -18,34 +18,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxq-My-2pk">
+                                <rect key="frame" x="147" y="72" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgz-50-OfN">
-                                <rect key="frame" x="154.5" y="557" width="66" height="30"/>
+                                <rect key="frame" x="154" y="629" width="66" height="30"/>
                                 <state key="normal" title="Add Food"/>
                                 <connections>
                                     <segue destination="9Lc-mL-kBB" kind="show" identifier="" id="h2A-UY-GeF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxq-My-2pk">
-                                <rect key="frame" x="147.5" y="144" width="80" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="igg-E6-BLz">
+                                <rect key="frame" x="0.0" y="93" width="375" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NutritionCards" rowHeight="80" id="f2q-fJ-6TO" customClass="NutritionCards" customModule="Nutrient_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f2q-fJ-6TO" id="QS0-AM-m6i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="46X-K5-tqq">
+                                                    <rect key="frame" x="8" y="31" width="359" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="8" id="NDZ-g6-xLw"/>
+                                                    </constraints>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfL-nA-oNV">
+                                                    <rect key="frame" x="8" y="2" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="46X-K5-tqq" firstAttribute="leading" secondItem="QS0-AM-m6i" secondAttribute="leading" constant="8" id="EcQ-QQ-6C4"/>
+                                                <constraint firstItem="cfL-nA-oNV" firstAttribute="leading" secondItem="QS0-AM-m6i" secondAttribute="leading" constant="8" id="Oel-Sg-xft"/>
+                                                <constraint firstAttribute="trailing" secondItem="46X-K5-tqq" secondAttribute="trailing" constant="8" id="q10-vH-lFe"/>
+                                                <constraint firstItem="46X-K5-tqq" firstAttribute="top" secondItem="cfL-nA-oNV" secondAttribute="bottom" constant="4" id="w7U-du-9SE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nutritionProgressView" destination="46X-K5-tqq" id="Dts-nR-tOc"/>
+                                            <outlet property="nutritionTitleLabel" destination="cfL-nA-oNV" id="EDV-KR-w0g"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Lxq-My-2pk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="147" id="0lM-Lz-dhu"/>
+                            <constraint firstItem="bgz-50-OfN" firstAttribute="top" secondItem="igg-E6-BLz" secondAttribute="bottom" id="2aQ-RQ-5ku"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bgz-50-OfN" secondAttribute="trailing" constant="155" id="2q0-If-PaO"/>
+                            <constraint firstItem="bgz-50-OfN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="154" id="3ha-wI-iy4"/>
                             <constraint firstItem="bgz-50-OfN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Xg-LP-COi"/>
-                            <constraint firstItem="Lxq-My-2pk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="J38-pd-YdZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bgz-50-OfN" secondAttribute="bottom" constant="80" id="kGh-cz-zCo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bgz-50-OfN" secondAttribute="bottom" constant="8" id="80t-xr-dGD"/>
+                            <constraint firstItem="igg-E6-BLz" firstAttribute="top" secondItem="Lxq-My-2pk" secondAttribute="bottom" id="IQo-d6-rIc"/>
+                            <constraint firstItem="igg-E6-BLz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J5P-jv-PP2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lxq-My-2pk" secondAttribute="trailing" constant="148" id="Smv-24-sce"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="igg-E6-BLz" secondAttribute="trailing" id="geL-BM-LdS"/>
                             <constraint firstItem="Lxq-My-2pk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uX2-cM-P1V"/>
+                            <constraint firstItem="Lxq-My-2pk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="xns-fY-hgx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="qjw-Mg-87g"/>
+                    <connections>
+                        <outlet property="tableView" destination="igg-E6-BLz" id="4GJ-Sc-O3b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="572" y="14"/>
+            <point key="canvasLocation" x="572" y="13.943028485757123"/>
         </scene>
         <!--Destination View Controller-->
         <scene sceneID="cPe-lW-3Ub">
@@ -125,7 +174,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzO-gD-hLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111.2" y="13.943028485757123"/>
+            <point key="canvasLocation" x="-953" y="14"/>
         </scene>
     </scenes>
 </document>
