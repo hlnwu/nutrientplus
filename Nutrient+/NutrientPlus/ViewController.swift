@@ -24,12 +24,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
     
-
+    // for transferingdata
+    var dataTransfer = ""
+    @IBOutlet weak var transferDataLabel: UILabel!
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        transferDataLabel.text = dataTransfer
         tableView.delegate = self
         tableView.dataSource = self
         
