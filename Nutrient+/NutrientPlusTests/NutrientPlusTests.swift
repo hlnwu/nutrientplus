@@ -1,15 +1,15 @@
 //
-//  Nutrient_Tests.swift
-//  Nutrient+Tests
+//  NutrientPlusTests.swift
+//  NutrientPlusTests
 //
-//  Created by Robert Sato on 10/11/19.
-//  Copyright © 2019 Robert Sato. All rights reserved.
+//  Created by hoo on 10/21/19.
+//  Copyright © 2019 hoo. All rights reserved.
 //
 
 import XCTest
-@testable import Nutrient_
+@testable import NutrientPlus
 
-class Nutrient_Tests: XCTestCase {
+class NutrientPlusTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

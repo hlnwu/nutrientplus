@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		87501F5C235FDE4100BDE456 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87501F5B235FDE4100BDE456 /* Startup.swift */; };
+		8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727939235E1D6500609D79 /* AppDelegate.swift */; };
+		8772793C235E1D6500609D79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772793B235E1D6500609D79 /* SceneDelegate.swift */; };
+		8772793F235E1D6500609D79 /* NutrientPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8772793D235E1D6500609D79 /* NutrientPlus.xcdatamodeld */; };
+		87727943235E1D6800609D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87727942235E1D6800609D79 /* Assets.xcassets */; };
+		87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87727945235E1D6800609D79 /* Preview Assets.xcassets */; };
+		87727949235E1D6800609D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727947235E1D6800609D79 /* LaunchScreen.storyboard */; };
+		87727954235E1D6800609D79 /* NutrientPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727953235E1D6800609D79 /* NutrientPlusTests.swift */; };
+		8772795F235E1D6800609D79 /* NutrientPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772795E235E1D6800609D79 /* NutrientPlusUITests.swift */; };
+		8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772796E235E26E600609D79 /* DestinationViewController.swift */; };
+		87727971235E275300609D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727970235E275300609D79 /* Main.storyboard */; };
+		87727973235E277900609D79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727972235E277900609D79 /* ViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		87727950235E1D6800609D79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8772792E235E1D6500609D79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87727935235E1D6500609D79;
+			remoteInfo = NutrientPlus;
+		};
+		8772795B235E1D6800609D79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8772792E235E1D6500609D79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87727935235E1D6500609D79;
+			remoteInfo = NutrientPlus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		87501F5B235FDE4100BDE456 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Startup.swift; path = ../Startup.swift; sourceTree = "<group>"; };
+		87727936235E1D6500609D79 /* NutrientPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutrientPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		87727939235E1D6500609D79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8772793B235E1D6500609D79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8772793E235E1D6500609D79 /* NutrientPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NutrientPlus.xcdatamodel; sourceTree = "<group>"; };
+		87727942235E1D6800609D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		87727945235E1D6800609D79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		87727948235E1D6800609D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8772794A235E1D6800609D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8772794F235E1D6800609D79 /* NutrientPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutrientPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		87727953235E1D6800609D79 /* NutrientPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientPlusTests.swift; sourceTree = "<group>"; };
+		87727955235E1D6800609D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8772795A235E1D6800609D79 /* NutrientPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutrientPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8772795E235E1D6800609D79 /* NutrientPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientPlusUITests.swift; sourceTree = "<group>"; };
+		87727960235E1D6800609D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8772796E235E26E600609D79 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
+		87727970235E275300609D79 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		87727972235E277900609D79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87727933235E1D6500609D79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8772794C235E1D6800609D79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87727957235E1D6800609D79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8772792D235E1D6500609D79 = {
+			isa = PBXGroup;
+			children = (
+				87727938235E1D6500609D79 /* NutrientPlus */,
+				87727952235E1D6800609D79 /* NutrientPlusTests */,
+				8772795D235E1D6800609D79 /* NutrientPlusUITests */,
+				87727937235E1D6500609D79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		87727937235E1D6500609D79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87727936235E1D6500609D79 /* NutrientPlus.app */,
+				8772794F235E1D6800609D79 /* NutrientPlusTests.xctest */,
+				8772795A235E1D6800609D79 /* NutrientPlusUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87727938235E1D6500609D79 /* NutrientPlus */ = {
+			isa = PBXGroup;
+			children = (
+				87501F5B235FDE4100BDE456 /* Startup.swift */,
+				87727939235E1D6500609D79 /* AppDelegate.swift */,
+				8772793B235E1D6500609D79 /* SceneDelegate.swift */,
+				87727970235E275300609D79 /* Main.storyboard */,
+				87727942235E1D6800609D79 /* Assets.xcassets */,
+				87727947235E1D6800609D79 /* LaunchScreen.storyboard */,
+				87727972235E277900609D79 /* ViewController.swift */,
+				8772794A235E1D6800609D79 /* Info.plist */,
+				8772796E235E26E600609D79 /* DestinationViewController.swift */,
+				8772793D235E1D6500609D79 /* NutrientPlus.xcdatamodeld */,
+				87727944235E1D6800609D79 /* Preview Content */,
+			);
+			path = NutrientPlus;
+			sourceTree = "<group>";
+		};
+		87727944235E1D6800609D79 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				87727945235E1D6800609D79 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		87727952235E1D6800609D79 /* NutrientPlusTests */ = {
+			isa = PBXGroup;
+			children = (
+				87727953235E1D6800609D79 /* NutrientPlusTests.swift */,
+				87727955235E1D6800609D79 /* Info.plist */,
+			);
+			path = NutrientPlusTests;
+			sourceTree = "<group>";
+		};
+		8772795D235E1D6800609D79 /* NutrientPlusUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8772795E235E1D6800609D79 /* NutrientPlusUITests.swift */,
+				87727960235E1D6800609D79 /* Info.plist */,
+			);
+			path = NutrientPlusUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87727935235E1D6500609D79 /* NutrientPlus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87727963235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlus" */;
+			buildPhases = (
+				87727932235E1D6500609D79 /* Sources */,
+				87727933235E1D6500609D79 /* Frameworks */,
+				87727934235E1D6500609D79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NutrientPlus;
+			productName = NutrientPlus;
+			productReference = 87727936235E1D6500609D79 /* NutrientPlus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8772794E235E1D6800609D79 /* NutrientPlusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87727966235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlusTests" */;
+			buildPhases = (
+				8772794B235E1D6800609D79 /* Sources */,
+				8772794C235E1D6800609D79 /* Frameworks */,
+				8772794D235E1D6800609D79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87727951235E1D6800609D79 /* PBXTargetDependency */,
+			);
+			name = NutrientPlusTests;
+			productName = NutrientPlusTests;
+			productReference = 8772794F235E1D6800609D79 /* NutrientPlusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		87727959235E1D6800609D79 /* NutrientPlusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87727969235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlusUITests" */;
+			buildPhases = (
+				87727956235E1D6800609D79 /* Sources */,
+				87727957235E1D6800609D79 /* Frameworks */,
+				87727958235E1D6800609D79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8772795C235E1D6800609D79 /* PBXTargetDependency */,
+			);
+			name = NutrientPlusUITests;
+			productName = NutrientPlusUITests;
+			productReference = 8772795A235E1D6800609D79 /* NutrientPlusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8772792E235E1D6500609D79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = hoo;
+				TargetAttributes = {
+					87727935235E1D6500609D79 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8772794E235E1D6800609D79 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 87727935235E1D6500609D79;
+					};
+					87727959235E1D6800609D79 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 87727935235E1D6500609D79;
+					};
+				};
+			};
+			buildConfigurationList = 87727931235E1D6500609D79 /* Build configuration list for PBXProject "NutrientPlus" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8772792D235E1D6500609D79;
+			productRefGroup = 87727937235E1D6500609D79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87727935235E1D6500609D79 /* NutrientPlus */,
+				8772794E235E1D6800609D79 /* NutrientPlusTests */,
+				87727959235E1D6800609D79 /* NutrientPlusUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87727934235E1D6500609D79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87727949235E1D6800609D79 /* LaunchScreen.storyboard in Resources */,
+				87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */,
+				87727943235E1D6800609D79 /* Assets.xcassets in Resources */,
+				87727971235E275300609D79 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8772794D235E1D6800609D79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87727958235E1D6800609D79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87727932235E1D6500609D79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */,
+				87501F5C235FDE4100BDE456 /* Startup.swift in Sources */,
+				8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */,
+				8772793F235E1D6500609D79 /* NutrientPlus.xcdatamodeld in Sources */,
+				87727973235E277900609D79 /* ViewController.swift in Sources */,
+				8772793C235E1D6500609D79 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8772794B235E1D6800609D79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87727954235E1D6800609D79 /* NutrientPlusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87727956235E1D6800609D79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8772795F235E1D6800609D79 /* NutrientPlusUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		87727951235E1D6800609D79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87727935235E1D6500609D79 /* NutrientPlus */;
+			targetProxy = 87727950235E1D6800609D79 /* PBXContainerItemProxy */;
+		};
+		8772795C235E1D6800609D79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87727935235E1D6500609D79 /* NutrientPlus */;
+			targetProxy = 8772795B235E1D6800609D79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		87727947235E1D6800609D79 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87727948235E1D6800609D79 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		87727961235E1D6900609D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		87727962235E1D6900609D79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		87727964235E1D6900609D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"NutrientPlus/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NutrientPlus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87727965235E1D6900609D79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"NutrientPlus/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NutrientPlus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		87727967235E1D6900609D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NutrientPlusTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutrientPlus.app/NutrientPlus";
+			};
+			name = Debug;
+		};
+		87727968235E1D6900609D79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NutrientPlusTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutrientPlus.app/NutrientPlus";
+			};
+			name = Release;
+		};
+		8772796A235E1D6900609D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NutrientPlusUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NutrientPlus;
+			};
+			name = Debug;
+		};
+		8772796B235E1D6900609D79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NutrientPlusUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cse115.NutrientPlusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NutrientPlus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87727931235E1D6500609D79 /* Build configuration list for PBXProject "NutrientPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87727961235E1D6900609D79 /* Debug */,
+				87727962235E1D6900609D79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87727963235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87727964235E1D6900609D79 /* Debug */,
+				87727965235E1D6900609D79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87727966235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87727967235E1D6900609D79 /* Debug */,
+				87727968235E1D6900609D79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87727969235E1D6900609D79 /* Build configuration list for PBXNativeTarget "NutrientPlusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8772796A235E1D6900609D79 /* Debug */,
+				8772796B235E1D6900609D79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8772793D235E1D6500609D79 /* NutrientPlus.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8772793E235E1D6500609D79 /* NutrientPlus.xcdatamodel */,
+			);
+			currentVersion = 8772793E235E1D6500609D79 /* NutrientPlus.xcdatamodel */;
+			path = NutrientPlus.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8772792E235E1D6500609D79 /* Project object */;
+}
