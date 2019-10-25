@@ -69,13 +69,24 @@ class Startup: UIViewController {
     
     @IBAction func storeVar(_ sender: Any) {
         // storing user input into local data temporarily
-        // once Core Data is added, I'll put these into the CD DB
-        let defaults = UserDefaults.standard
-        defaults.set(heightField.text, forKey: defaultsKeys.heightKey)
-        defaults.set(weightField.text, forKey: defaultsKeys.weightKey)
-        defaults.set(bodyFatField.text, forKey: defaultsKeys.bodyFatKey)
-    
-        defaults.synchronize()
+//        let defaults = UserDefaults.standard
+//        defaults.set(heightField.text, forKey: defaultsKeys.heightKey)
+//        defaults.set(weightField.text, forKey: defaultsKeys.weightKey)
+//        defaults.set(bodyFatField.text, forKey: defaultsKeys.bodyFatKey)
+//
+//        defaults.synchronize()
+        
+        // storing data into Core Data
+        if heightField.text!.count != 0 && weightField.text!.count != 0
+            && bodyFatField.text!.count != 0 {
+            let user = User(context: PersistenceService.context)
+            user.height = Int16(heightField.text!)!
+            user.weight = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            user.bodyFat = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            
+            PersistenceService.saveContext()
+        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
