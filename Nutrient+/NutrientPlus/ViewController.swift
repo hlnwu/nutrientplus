@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     var cards: [Card] = []
     
     // for transfering data
-    var calories = ""
+    var calories = "2000"
     @IBOutlet weak var transferDataLabel: UILabel!
     
     //for initializing nutrients
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         //create a dictionary of nutrient name to value
         var nutrients = [String: Float]()
         //initial settings
-        nutrients["Energy"] = 500
+        nutrients["Energy"] = (calories as NSString).floatValue
         nutrients["Protein"] = 200
         nutrients["Carbs"] = 20
         nutrients["Fat"] = 200
@@ -63,6 +63,7 @@ class ViewController: UIViewController {
         for item in macros {
             print("\(item): \(nutrients[item] ?? 0)")
             //set the card to a macro, look up the value in nutrients dictionary, give random color
+            //this is not the right calculation for progress
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrients["Energy"] ?? 2000), color: .random())
             tempCards.append(card)
         }
