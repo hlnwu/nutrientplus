@@ -23,17 +23,29 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
+    var height : Float=0.0
+    var weight :Float=0.0
+    var calories = 0
+    var tester :String="did not change"
+    var gender : String = ""
     
 
-
+    @IBOutlet weak var test: UILabel!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        test.text=tester
         cards = populate()
+        print("height is equal to ----------> ", height)
+        print("weight is equal to ----------> ", weight)
+         print("gender is equal to ----------> ", gender)
+        let ans=calculate(weight: weight, gender: gender)
+        print(ans)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -78,6 +90,19 @@ class ViewController: UIViewController {
         tempCards.append(card19)
         
         return tempCards
+    }
+    
+}
+func calculate(weight : Float,gender : String  )->NSInteger{
+    if(gender=="Female"){
+        let ans=0.9*weight*24
+        let intAns:Int = Int(ans)
+        return intAns
+    }
+    else{
+        let ans=1*weight*24
+        let intAns:Int = Int(ans)
+        return intAns
     }
     
 }
