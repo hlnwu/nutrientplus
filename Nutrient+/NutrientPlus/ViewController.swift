@@ -24,25 +24,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
     
-    // for transferingdata
-    var dataTransfer = ""
+    // for transfering data
+    var calories = ".1"
     @IBOutlet weak var transferDataLabel: UILabel!
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transferDataLabel.text = dataTransfer
+        transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
-        
         cards = populate()
         // Do any additional setup after loading the view.
     }
-
+    
     func populate() -> [Card] {
         var tempCards: [Card] = []
-        let card1 =     Card(nutritionLabel: "Calories",        progressPercent: 0.100, color: .random())
+        // changed .100 to calories/100
+        let card1 =     Card(nutritionLabel: "Calories",        progressPercent: (calories as NSString).floatValue, color: .random())
         let card2 =     Card(nutritionLabel: "Saturated Fat",   progressPercent: 0.200, color: .random())
         let card4 =     Card(nutritionLabel: "Cholestrol",      progressPercent: 0.350, color: .random())
         let card5 =     Card(nutritionLabel: "Sodium",          progressPercent: 0.550, color: .random())
