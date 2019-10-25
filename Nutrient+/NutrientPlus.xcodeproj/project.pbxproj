@@ -19,6 +19,9 @@
 		8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772796E235E26E600609D79 /* DestinationViewController.swift */; };
 		87727971235E275300609D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727970235E275300609D79 /* Main.storyboard */; };
 		87727973235E277900609D79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727972235E277900609D79 /* ViewController.swift */; };
+		87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87AB5870236254DE00F7659E /* NutrientPlus.xcdatamodeld */; };
+		87AB58762362588900F7659E /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB58742362588900F7659E /* User+CoreDataClass.swift */; };
+		87AB58772362588900F7659E /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB58752362588900F7659E /* User+CoreDataProperties.swift */; };
 		B7F4926F23626253002DF7F6 /* EditInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F4926E23626252002DF7F6 /* EditInfoVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,10 @@
 		8772796E235E26E600609D79 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
 		87727970235E275300609D79 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		87727972235E277900609D79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		87AB5871236254DE00F7659E /* Nutrient_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nutrient_.xcdatamodel; sourceTree = "<group>"; };
+		87AB5872236254DE00F7659E /* NutrientPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NutrientPlus.xcdatamodel; sourceTree = "<group>"; };
+		87AB58742362588900F7659E /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		87AB58752362588900F7659E /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B7F4926E23626252002DF7F6 /* EditInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +291,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */,
+				87501F5C235FDE4100BDE456 /* Startup.swift in Sources */,
+				87AB58772362588900F7659E /* User+CoreDataProperties.swift in Sources */,
 				B7F4926F23626253002DF7F6 /* EditInfoVC.swift in Sources */,
 				8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */,
 				8772793F235E1D6500609D79 /* NutrientPlus.xcdatamodeld in Sources */,
