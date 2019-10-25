@@ -27,6 +27,6 @@ class EditInfoVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ViewController
-        vc.dataTransfer = self.calorieValue
+        vc.calories = self.calorieValue
     }
 }

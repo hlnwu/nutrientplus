@@ -22,9 +22,7 @@ class ViewControllerTemp: UIViewController {
     @IBOutlet weak var heightField: UITextField!
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var bodyFatField: UITextField!
-    
-    @IBOutlet weak var textView: UITextView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
