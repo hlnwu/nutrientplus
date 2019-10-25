@@ -13,11 +13,10 @@ struct Card {
     var progressPercent : Float
     var color : UIColor
 }
-			
+
 class NutritionCards: UITableViewCell {
     @IBOutlet weak var nutritionProgressView: UIProgressView!
     @IBOutlet weak var nutritionTitleLabel: UILabel!
-    
 }
 
 class ViewController: UIViewController {	
@@ -29,13 +28,24 @@ class ViewController: UIViewController {
     var tester :String="did not change"
     var gender : String = ""
     
-
-    @IBOutlet weak var test: UILabel!
+    // for transfering data
+    var calories = "2000"
+    @IBOutlet weak var transferDataLabel: UILabel!
+    
+    //for initializing nutrients
+    let macros = ["Energy", "Protein", "Carbs", "Fat"]
+    let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
+                     "B12", "Folate", "Vitamin A", "Vitamin C",
+                     "Vitamin D", "Vitamin E", "Vitamin K"]
+    let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
+                    "Manganese", "Phosphorus", "Potassium",
+                    "Selenium", "Sodium", "Zinc"]
+    var nutrients = [String: Float]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
         test.text=tester
@@ -48,48 +58,45 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     func populate() -> [Card] {
-        var tempCards: [Card] = []
-        let card1 =     Card(nutritionLabel: "Calories",        progressPercent: 0.100, color: .random())
-        let card2 =     Card(nutritionLabel: "Saturated Fat",   progressPercent: 0.200, color: .random())
-        let card4 =     Card(nutritionLabel: "Cholestrol",      progressPercent: 0.350, color: .random())
-        let card5 =     Card(nutritionLabel: "Sodium",          progressPercent: 0.550, color: .random())
-        let card6 =     Card(nutritionLabel: "Dietary Fiber",   progressPercent: 0.750, color: .random())
-        let card7 =     Card(nutritionLabel: "Sugar",           progressPercent: 0.600, color: .random())
-        let card8 =     Card(nutritionLabel: "Protein",         progressPercent: 0.250, color: .random())
-        let card9 =     Card(nutritionLabel: "Vitamin A",       progressPercent: 0.900, color: .random())
-        let card10 =    Card(nutritionLabel: "Vitamin B",       progressPercent: 1.000, color: .random())
-        let card11 =    Card(nutritionLabel: "Vitamin C",       progressPercent: 0.400, color: .random())
-        let card12 =    Card(nutritionLabel: "Vitamin D",       progressPercent: 0.300, color: .random())
-        let card13 =    Card(nutritionLabel: "Potassium",       progressPercent: 0.850, color: .random())
-        let card14 =    Card(nutritionLabel: "Thiamin",         progressPercent: 0.600, color: .random())
-        let card15 =    Card(nutritionLabel: "Phosphorus",      progressPercent: 0.200, color: .random())
-        let card16 =    Card(nutritionLabel: "Magnesium",       progressPercent: 0.150, color: .random())
-        let card17 =    Card(nutritionLabel: "Copper",          progressPercent: 0.050, color: .random())
-        let card18 =    Card(nutritionLabel: "Calcium",         progressPercent: 0.950, color: .random())
-        let card19 =    Card(nutritionLabel: "Iron",            progressPercent: 0.100, color: .random())
         
-        tempCards.append(card1)
-        tempCards.append(card2)
-        tempCards.append(card4)
-        tempCards.append(card5)
-        tempCards.append(card6)
-        tempCards.append(card7)
-        tempCards.append(card8)
-        tempCards.append(card9)
-        tempCards.append(card10)
-        tempCards.append(card11)
-        tempCards.append(card12)
-        tempCards.append(card13)
-        tempCards.append(card14)
-        tempCards.append(card15)
-        tempCards.append(card16)
-        tempCards.append(card17)
-        tempCards.append(card18)
-        tempCards.append(card19)
+        //create an array of Card
+        var tempCards: [Card] = []
+        //create a dictionary of nutrient name to value
+        var nutrients = [String: Float]()
+        //initial settings
+        nutrients["Energy"] = (calories as NSString).floatValue
+        nutrients["Protein"] = 200
+        nutrients["Carbs"] = 20
+        nutrients["Fat"] = 200
+        
+        var card: Card
+        print("Macros")
+        for item in macros {
+            print("\(item): \(nutrients[item] ?? 0)")
+            //set the card to a macro, look up the value in nutrients dictionary, give random color
+            //this is not the right calculation for progress
+            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrients["Energy"] ?? 2000), color: .random())
+            tempCards.append(card)
+        }
+        print("Vitamins")
+        for item in vitamins {
+            print("\(item): \(nutrients[item] ?? 0)")
+            //set the card to a vitamin, look up the value in nutrients dictionary, give random color
+            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            tempCards.append(card)
+        }
+        print("Minerals")
+        for item in minerals {
+            print("\(item): \(nutrients[item] ?? 0)")
+            //set the card to a mineral, look up the value in nutrients dictionary, give random color
+            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            tempCards.append(card)
+        }
         
         return tempCards
+        
     }
     
 }
@@ -115,7 +122,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutritionCards", for: indexPath) as! NutritionCards
-        let card = cards[indexPath.row]
+let card = cards[indexPath.row]
         cell.nutritionTitleLabel?.text = card.nutritionLabel
         cell.nutritionProgressView?.progress = card.progressPercent
         cell.nutritionProgressView?.progressTintColor = card.color
