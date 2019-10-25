@@ -24,12 +24,11 @@ class ViewController: UIViewController {
     var cards: [Card] = []
     var height : Float=0.0
     var weight :Float=0.0
-    var calories = 0
+    var calories = "2000"
     var tester :String="did not change"
     var gender : String = ""
     
     // for transfering data
-    var calories = "2000"
     @IBOutlet weak var transferDataLabel: UILabel!
     
     //for initializing nutrients
