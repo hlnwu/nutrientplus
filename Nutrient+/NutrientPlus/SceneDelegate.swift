@@ -48,7 +48,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        
+        // startup page displays once
+        func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
+
+            if !UserDefaults.standard.bool(forKey: "didSee") {
+                 UserDefaults.standard.set(true, forKey: "didSee")
+
+                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                 let viewController = storyboard.instantiateViewController(withIdentifier: "Startup")
+                 self.window?.rootViewController = viewController
+                 self.window?.makeKeyAndVisible()
+            }
+
+            return true
+        }
+        
+        PersistenceService.saveContext()
     }
 
 
