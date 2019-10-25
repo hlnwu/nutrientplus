@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return true
         }
         
-        PersistenceService.saveContext()
+        //PersistenceService.saveContext()
     }
 
 

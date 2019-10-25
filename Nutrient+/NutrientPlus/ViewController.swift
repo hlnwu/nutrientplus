@@ -24,13 +24,12 @@ class ViewController: UIViewController {
     var cards: [Card] = []
     var height : Float=0.0
     var weight :Float=0.0
-    var calories = 0
+    var calories = ""
     var tester :String="did not change"
     var gender : String = ""
     
     // for transfering data
-    var calories = "2000"
-    @IBOutlet weak var transferDataLabel: UILabel!
+    //var calories = "2000"
     
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
@@ -45,10 +44,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
-        test.text=tester
+        //test.text=tester
         cards = populate()
         print("height is equal to ----------> ", height)
         print("weight is equal to ----------> ", weight)
