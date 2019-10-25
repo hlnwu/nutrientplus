@@ -27,6 +27,23 @@ class Startup: UIViewController {
     @IBOutlet weak var bodyFatField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
     
+    @IBOutlet weak var Gender: UISegmentedControl!
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let Destvc = segue.destination as! ViewController
+        
+        
+        let myFloat = (heightField.text! as NSString).floatValue
+        let weightFloat = (weightField.text! as NSString).floatValue
+        Destvc.height=myFloat
+        Destvc.weight=weightFloat
+        Destvc.tester="changed"
+        let title = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
+        Destvc.gender=title!
+        
+        
+        
+    
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

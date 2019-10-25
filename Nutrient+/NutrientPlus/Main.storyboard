@@ -152,6 +152,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qjw-Mg-87g"/>
                     <connections>
+                        <outlet property="Gender" destination="GGL-hc-DKr" id="zL7-J5-6au"/>
                         <outlet property="birthdayField" destination="RBp-3K-BU3" id="9aX-bz-Mvm"/>
                         <outlet property="bodyFatField" destination="ZqC-UT-9Cj" id="mqF-Uq-QyP"/>
                         <outlet property="heightField" destination="Kjc-Xt-VOr" id="QNA-7Y-rge"/>
@@ -193,6 +194,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LtK-dT-p6w"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FnA-Zu-FKW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmF-Gv-lBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,6 +222,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BrL-TC-MKs"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fVY-GI-eiS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hg-jc-oZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,6 +313,13 @@
                                     <segue destination="bHw-wI-xDL" kind="show" id="1UJ-gu-O7f"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8u-WC-wMl">
+                                <rect key="frame" x="264" y="29" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -331,6 +341,7 @@
                     <navigationItem key="navigationItem" id="kmb-at-aR2"/>
                     <connections>
                         <outlet property="tableView" destination="YYa-BN-fVj" id="AjN-6R-GYL"/>
+                        <outlet property="test" destination="E8u-WC-wMl" id="kD9-cD-nxH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2t-gb-hqA" sceneMemberID="firstResponder"/>
