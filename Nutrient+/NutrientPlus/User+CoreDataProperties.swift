@@ -20,5 +20,6 @@ extension User {
     @NSManaged public var height: Int16
     @NSManaged public var weight: NSDecimalNumber?
     @NSManaged public var bodyFat: NSDecimalNumber?
-
+    @NSManaged public var sex: String?
+    @NSManaged public var birthday: Date?
 }

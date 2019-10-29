@@ -14,11 +14,11 @@
 import Foundation
 import UIKit
 
-struct defaultsKeys {
-    static let heightKey = ""
-    static let weightKey = ""
-    static let bodyFatKey = ""
-}
+//struct defaultsKeys {
+//    static let heightKey = ""
+//    static let weightKey = ""
+//    static let bodyFatKey = ""
+//}
 
 class Startup: UIViewController {
     
@@ -26,24 +26,26 @@ class Startup: UIViewController {
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var bodyFatField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
-    
     @IBOutlet weak var Gender: UISegmentedControl!
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let Destvc = segue.destination as! ViewController
-        
-        
-        let myFloat = (heightField.text! as NSString).floatValue
-        let weightFloat = (weightField.text! as NSString).floatValue
-        Destvc.height=myFloat
-        Destvc.weight=weightFloat
-        Destvc.tester="changed"
-        let title = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
-        Destvc.gender=title!
-        
-        
-        
+    @IBOutlet weak var heightUnit: UISegmentedControl!
+    @IBOutlet weak var weightUnit: UISegmentedControl!
     
-    }
+    var birthdate: Date!
+    
+    // transfering data between storyboards
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let Destvc = segue.destination as! ViewController
+//
+//
+//        let myFloat = (heightField.text! as NSString).floatValue
+//        let weightFloat = (weightField.text! as NSString).floatValue
+//        Destvc.height=myFloat
+//        Destvc.weight=weightFloat
+//        Destvc.tester="changed"
+//        let title = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
+//        Destvc.gender=title!
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,6 +66,9 @@ class Startup: UIViewController {
         // show changed date in text field
         birthdayField.inputView = datePicker
         
+        // store birthday to save in Core Data later
+        birthdate = datePicker.date
+        
         // Do any additional setup after loading the view, typically from a nib
     }
     
@@ -76,15 +81,44 @@ class Startup: UIViewController {
 //
 //        defaults.synchronize()
         
-        // storing data into Core Data
+        // storing data into Core Data only when fields aren't empty
         if heightField.text!.count != 0 && weightField.text!.count != 0
-            && bodyFatField.text!.count != 0 {
+            && bodyFatField.text!.count != 0 && birthdate != nil {
+            // creating a user instance
             let user = User(context: PersistenceService.context)
-            user.height = Int16(heightField.text!)!
-            user.weight = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            
+            // calculating height and storing it in centimeters
+            let rawHeight = Int16(heightField.text!)!
+            let heightUnitString = heightUnit.titleForSegment(at: heightUnit.selectedSegmentIndex)
+            if heightUnitString == "in" {
+                user.height = Int16(Double(rawHeight) * 2.54)
+            } else {
+                user.height = rawHeight
+            }
+                
+            // calculating weight and storing it in kg
+            let rawWeight = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            let weightUnitString = weightUnit.titleForSegment(at: weightUnit.selectedSegmentIndex)
+            if weightUnitString == "lbs" {
+                let divisor = NSDecimalNumber(0.453592)
+                user.weight = rawWeight!.dividing(by: divisor)
+            } else {
+                user.weight = rawWeight
+            }
+
             user.bodyFat = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            user.sex = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
+            user.birthday = birthdate
             
             PersistenceService.saveContext()
+            
+            performSegue(withIdentifier: "fieldsComplete", sender: self)
+        // alerts user if fields aren't all filled out
+        } else {
+            let emptyAlertController = UIAlertController(title:"Detected one or more empty fields", message: "Please fill in all the fields.", preferredStyle: .alert)
+            emptyAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
+            present(emptyAlertController, animated: true)
+            
         }
         
     }

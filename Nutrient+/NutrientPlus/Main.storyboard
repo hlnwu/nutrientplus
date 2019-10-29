@@ -38,7 +38,6 @@
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="storeVar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g3p-Xb-OV8"/>
-                                    <segue destination="Rym-Pa-Msl" kind="show" id="u1V-Hb-vrz"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-ny-0wf">
@@ -156,13 +155,16 @@
                         <outlet property="birthdayField" destination="RBp-3K-BU3" id="9aX-bz-Mvm"/>
                         <outlet property="bodyFatField" destination="ZqC-UT-9Cj" id="mqF-Uq-QyP"/>
                         <outlet property="heightField" destination="Kjc-Xt-VOr" id="QNA-7Y-rge"/>
+                        <outlet property="heightUnit" destination="xR2-gp-vmF" id="pt4-YM-8h9"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="2Ws-xL-VVE"/>
                         <outlet property="weightField" destination="Wky-JY-SAQ" id="lYw-Mn-Syq"/>
+                        <outlet property="weightUnit" destination="cC2-pn-7rU" id="POg-to-4AG"/>
+                        <segue destination="Rym-Pa-Msl" kind="show" identifier="fieldsComplete" id="huS-EC-w29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="156" y="19"/>
+            <point key="canvasLocation" x="145" y="13"/>
         </scene>
         <!--Destination View Controller-->
         <scene sceneID="cPe-lW-3Ub">
@@ -260,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmF-Gv-lBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1856.8" y="13.943028485757123"/>
+            <point key="canvasLocation" x="1845" y="13"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="b4E-59-L5F">
@@ -431,6 +433,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vb5-Ch-hwf"/>
+        <segue reference="huS-EC-w29"/>
     </inferredMetricsTieBreakers>
 </document>
