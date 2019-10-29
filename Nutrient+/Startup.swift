@@ -101,7 +101,7 @@ class Startup: UIViewController {
             let weightUnitString = weightUnit.titleForSegment(at: weightUnit.selectedSegmentIndex)
             if weightUnitString == "lbs" {
                 let divisor = NSDecimalNumber(0.453592)
-                user.weight = rawWeight!.dividing(by: divisor)
+                user.weight = rawWeight?.dividing(by: divisor)
             } else {
                 user.weight = rawWeight
             }
