@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C9A5236C00A300FB8110 /* APIStructs.swift */; };
 		87501F5C235FDE4100BDE456 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87501F5B235FDE4100BDE456 /* Startup.swift */; };
 		8750C72D236276150098B855 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750C72C236276150098B855 /* PersistenceService.swift */; };
 		8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727939235E1D6500609D79 /* AppDelegate.swift */; };
-		8772793C235E1D6500609D79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772793B235E1D6500609D79 /* SceneDelegate.swift */; };
 		87727943235E1D6800609D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87727942235E1D6800609D79 /* Assets.xcassets */; };
 		87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87727945235E1D6800609D79 /* Preview Assets.xcassets */; };
 		87727949235E1D6800609D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727947235E1D6800609D79 /* LaunchScreen.storyboard */; };
@@ -43,11 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		71E7C9A5236C00A300FB8110 /* APIStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStructs.swift; sourceTree = "<group>"; };
 		87501F5B235FDE4100BDE456 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Startup.swift; path = ../Startup.swift; sourceTree = "<group>"; };
 		8750C72C236276150098B855 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		87727936235E1D6500609D79 /* NutrientPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutrientPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87727939235E1D6500609D79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8772793B235E1D6500609D79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		87727942235E1D6800609D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87727945235E1D6800609D79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87727948235E1D6800609D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				87727939235E1D6500609D79 /* AppDelegate.swift */,
-				8772793B235E1D6500609D79 /* SceneDelegate.swift */,
 				8750C72C236276150098B855 /* PersistenceService.swift */,
 				87727970235E275300609D79 /* Main.storyboard */,
 				87AB5870236254DE00F7659E /* NutrientPlus.xcdatamodeld */,
@@ -130,6 +129,7 @@
 				B7F4926E23626252002DF7F6 /* EditInfoVC.swift */,
 				8772794A235E1D6800609D79 /* Info.plist */,
 				8772796E235E26E600609D79 /* DestinationViewController.swift */,
+				71E7C9A5236C00A300FB8110 /* APIStructs.swift */,
 				87727944235E1D6800609D79 /* Preview Content */,
 			);
 			path = NutrientPlus;
@@ -298,9 +298,9 @@
 				87AB58772362588900F7659E /* User+CoreDataProperties.swift in Sources */,
 				B7F4926F23626253002DF7F6 /* EditInfoVC.swift in Sources */,
 				8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */,
+				71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */,
 				87727973235E277900609D79 /* ViewController.swift in Sources */,
 				87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */,
-				8772793C235E1D6500609D79 /* SceneDelegate.swift in Sources */,
 				8750C72D236276150098B855 /* PersistenceService.swift in Sources */,
 				87AB58762362588900F7659E /* User+CoreDataClass.swift in Sources */,
 			);
@@ -473,6 +473,7 @@
 				DEVELOPMENT_TEAM = 4338YB2QBF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NutrientPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,6 +496,7 @@
 				DEVELOPMENT_TEAM = 4338YB2QBF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NutrientPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -514,7 +516,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NutrientPlusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,7 +537,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NutrientPlusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -555,6 +557,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NutrientPlusUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,6 +577,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NutrientPlusUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
