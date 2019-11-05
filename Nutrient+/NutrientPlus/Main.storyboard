@@ -160,7 +160,7 @@
                         <outlet property="view" destination="8bC-Xf-vdC" id="2Ws-xL-VVE"/>
                         <outlet property="weightField" destination="Wky-JY-SAQ" id="lYw-Mn-Syq"/>
                         <outlet property="weightUnit" destination="cC2-pn-7rU" id="POg-to-4AG"/>
-                        <segue destination="Pf0-Lc-RAO" kind="show" identifier="fieldsComplete" animates="NO" id="yMC-IC-zfO"/>
+                        <segue destination="Pf0-Lc-RAO" kind="presentation" identifier="fieldsComplete" modalPresentationStyle="fullScreen" id="yMC-IC-zfO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

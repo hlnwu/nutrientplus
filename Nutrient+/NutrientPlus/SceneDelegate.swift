@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // startup page displays once
-        print(UserDefaults.standard.bool(forKey: "userInfoExists"))
+        //print(UserDefaults.standard.bool(forKey: "userInfoExists"))
         if !UserDefaults.standard.bool(forKey: "userInfoExists") {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "Startup")
@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // uncomment line 32 to see startup page again
         // you know you love the startup page and its unskippable features
         // don't deny it
-        // UserDefaults.standard.removeObject(forKey: "userInfoExists"
+        //UserDefaults.standard.removeObject(forKey: "userInfoExists")
         
         //print("scene")
         
