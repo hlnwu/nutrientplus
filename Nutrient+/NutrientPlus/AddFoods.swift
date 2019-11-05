@@ -1,5 +1,5 @@
 //
-//  DestinationViewController.swift
+//  AddFoods.swift
 //  Nutrient+
 //
 //  Created by Robert Sato on 10/11/19.
@@ -16,7 +16,7 @@ class FoodCards : UITableViewCell {
     @IBOutlet weak var brandLabel: UILabel!
 }
 
-class DestinationViewController: UIViewController {
+class AddFoods: UIViewController {
     @IBOutlet weak var foodTableView: UITableView!
     @IBOutlet weak var editText: UITextField!
     
@@ -30,7 +30,6 @@ class DestinationViewController: UIViewController {
         foodTableView.delegate = self
         foodTableView.dataSource = self
     }
-    
 
     
     @IBAction func enterButton(_ sender: UIButton) {
@@ -115,7 +114,7 @@ class DestinationViewController: UIViewController {
 }
 
 
-extension DestinationViewController: UITableViewDataSource, UITableViewDelegate{
+extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodCards.count
     }
