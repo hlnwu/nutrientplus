@@ -22,11 +22,11 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
-    var height : Float=0.0
-    var weight :Float=0.0
+    var height: Float=0.0
+    var weight: Float=0.0
     var calories = "2000"
-    var tester :String="did not change"
-    var gender : String = ""
+    var tester: String="did not change"
+    var gender: String = ""
     
     // for transfering data
     @IBOutlet weak var transferDataLabel: UILabel!
@@ -48,11 +48,11 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         cards = populate()
-        print("height is equal to ----------> ", height)
-        print("weight is equal to ----------> ", weight)
-         print("gender is equal to ----------> ", gender)
-        let ans=calculate(weight: weight, gender: gender)
-        print(ans)
+//        print("height is equal to ----------> ", height)
+//        print("weight is equal to ----------> ", weight)
+//        print("gender is equal to ----------> ", gender)
+//        let ans=calculate(weight: weight, gender: gender)
+//        print(ans)
         
         // Do any additional setup after loading the view.
     }
@@ -70,24 +70,24 @@ class ViewController: UIViewController {
         nutrients["Fat"] = 200
         
         var card: Card
-        print("Macros")
+        // print("Macros")
         for item in macros {
-            print("\(item): \(nutrients[item] ?? 0)")
+            //print("\(item): \(nutrients[item] ?? 0)")
             //set the card to a macro, look up the value in nutrients dictionary, give random color
             //this is not the right calculation for progress
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrients["Energy"] ?? 2000), color: .random())
             tempCards.append(card)
         }
-        print("Vitamins")
+        // print("Vitamins")
         for item in vitamins {
-            print("\(item): \(nutrients[item] ?? 0)")
+            // print("\(item): \(nutrients[item] ?? 0)")
             //set the card to a vitamin, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
             tempCards.append(card)
         }
-        print("Minerals")
+        //print("Minerals")
         for item in minerals {
-            print("\(item): \(nutrients[item] ?? 0)")
+            // print("\(item): \(nutrients[item] ?? 0)")
             //set the card to a mineral, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
             tempCards.append(card)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87057A0D23690B7300EDD916 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87057A0C23690B7300EDD916 /* UserInfo.swift */; };
 		87501F5C235FDE4100BDE456 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87501F5B235FDE4100BDE456 /* Startup.swift */; };
 		8750C72D236276150098B855 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750C72C236276150098B855 /* PersistenceService.swift */; };
 		8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727939235E1D6500609D79 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87057A0C23690B7300EDD916 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		87501F5B235FDE4100BDE456 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Startup.swift; path = ../Startup.swift; sourceTree = "<group>"; };
 		8750C72C236276150098B855 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		87727936235E1D6500609D79 /* NutrientPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutrientPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				87AB5870236254DE00F7659E /* NutrientPlus.xcdatamodeld */,
 				87AB58742362588900F7659E /* User+CoreDataClass.swift */,
 				87AB58752362588900F7659E /* User+CoreDataProperties.swift */,
+				87057A0C23690B7300EDD916 /* UserInfo.swift */,
 				87501F5B235FDE4100BDE456 /* Startup.swift */,
 				87727942235E1D6800609D79 /* Assets.xcassets */,
 				87727947235E1D6800609D79 /* LaunchScreen.storyboard */,
@@ -302,6 +305,7 @@
 				87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */,
 				8772793C235E1D6500609D79 /* SceneDelegate.swift in Sources */,
 				8750C72D236276150098B855 /* PersistenceService.swift in Sources */,
+				87057A0D23690B7300EDD916 /* UserInfo.swift in Sources */,
 				87AB58762362588900F7659E /* User+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

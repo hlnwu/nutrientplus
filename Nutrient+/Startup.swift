@@ -110,6 +110,9 @@ class Startup: UIViewController {
             user.sex = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
             user.birthday = birthdate
             
+            // sets userInfoExists to true so startup page doesn't display again
+            UserDefaults.standard.set(true, forKey: "userInfoExists")
+            
             PersistenceService.saveContext()
             
             performSegue(withIdentifier: "fieldsComplete", sender: self)
