@@ -9,7 +9,10 @@
 import Foundation
 
 //---------------------------------------Foods-------------------------------------
+//Structure for json from doing getFoods
 
+//The commented-out parameters in these structures are possible to be retrieved.
+//But we have found no use for them (as of now).
 struct FoodDescription: Decodable{
     //let foodSearchCriteria: Criteria
     //let totalHits: Int
@@ -45,6 +48,7 @@ struct foodInfo{
 }
 
 //---------------------------------Nutrients----------------------------------------
+//structure for json when doing getNutrients
 
 struct NutrientDescription : Decodable{
     let foodClass: String

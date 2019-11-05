@@ -23,7 +23,7 @@ class AddFoods: UIViewController {
     var userInput : String = ""
     var foodCards: [foodInfo] = []
     var nutrientCards: [nutrientInfo] = []
-    let dispatchGroup = DispatchGroup()
+    let dispatchGroup = DispatchGroup() //Works sort of like a semaphore
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,49 @@ class AddFoods: UIViewController {
     }
 
     
-    @IBAction func enterButton(_ sender: UIButton) {
+    @IBAction func enterButton(_ sender: UIButton) { //When user presses enter, do POST request with user input
         userInput = String(editText.text!) //unwraps text
         getFoods(userInput: userInput)
         displayFoods()
     }
     
-    func getNutrients(foodID: Int) -> (Void){
+    func getFoods(userInput: String) -> (Void){ //POST request to retrieve json of foods following APIStructs structure.
+        dispatchGroup.enter() //mutex.lock
+        foodCards = [] //Makes sure tableView is clear
+        
+        //The following are the specifications for the POST request.
+        let parameters = ["generalSearchInput":userInput]
+        guard let urlPost = URL(string: "https://api.nal.usda.gov/fdc/v1/search?api_key=LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L") else{ return }
+        var request = URLRequest(url : urlPost)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            return }
+        request.httpBody = httpBody
+        
+        //The following is the URLSession or background service in which the API call happens.
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in //Do API call with specified request, and get data else fail.
+            guard let data = data else { return }
+            
+            do {
+                //JSONDecoder "translates" the data to follow the APIStructs structure, and sets this to foodDescription.
+                let foodDescription = try JSONDecoder().decode(FoodDescription.self, from: data)
+                
+                //Loop through the "foods" array, and retrieve, store, and save as a card: the foodname, brandname, and foodID.
+                for items in (foodDescription.foods){
+                    let card = foodInfo(foodName: items.description, brandName: items.brandOwner ?? "N/A", foodID: items.fdcId)
+                    self.foodCards.append(card)
+                    
+                }
+                self.dispatchGroup.leave() //mutex.unlock
+            } catch let jsonErr {
+                print ("Error Serializing Json: ", jsonErr)
+            }
+        }.resume()
+    }
+    
+    func getNutrients(foodID: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
         dispatchGroup.enter()
         nutrientCards = []
         let foodIDString = String(foodID)
@@ -61,42 +97,11 @@ class AddFoods: UIViewController {
             } catch let jsonErr {
                 print ("Error Serializing Json: ", jsonErr)
             }
-        }.resume()
-    }
-    
-    func getFoods(userInput: String) -> (Void){
-        dispatchGroup.enter()
-        foodCards = []
-        
-        let parameters = ["generalSearchInput":userInput]
-        guard let urlPost = URL(string: "https://api.nal.usda.gov/fdc/v1/search?api_key=LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L") else{ return }
-        var request = URLRequest(url : urlPost)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-            return }
-        request.httpBody = httpBody
-        
-        let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) in
-            guard let data = data else { return }
-            
-            do {
-                let foodDescription = try JSONDecoder().decode(FoodDescription.self, from: data)
-                for items in (foodDescription.foods){
-                    let card = foodInfo(foodName: items.description, brandName: items.brandOwner ?? "N/A", foodID: items.fdcId)
-                    self.foodCards.append(card)
-                    
-                }
-                self.dispatchGroup.leave()
-            } catch let jsonErr {
-                print ("Error Serializing Json: ", jsonErr)
-            }
-        }.resume()
+            }.resume()
     }
     
     func printNutrients(){
-        dispatchGroup.notify(queue: .main){
+        dispatchGroup.notify(queue: .main){ //BLOCK until mutex is freed.
             for i in self.nutrientCards{
                 print (i.amount, i.unitName, i.nutrientName)
             }
@@ -108,18 +113,19 @@ class AddFoods: UIViewController {
             for i in self.foodCards{
                 print (i.foodName, i.brandName)
             }
-            self.foodTableView.reloadData()
+            self.foodTableView.reloadData() //Update tablview
         }
     }
 }
 
-
+//Extension functions to make tableView recycle cells.
 extension AddFoods: UITableViewDataSource, UITableViewDelegate{
+    //Number of rows in tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodCards.count
     }
     
-
+    //The following function iterates the tableView and sets each cell.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = foodTableView.dequeueReusableCell(withIdentifier: "FoodCards", for: indexPath) as! FoodCards
         let card = foodCards[indexPath.row]
@@ -128,10 +134,11 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
+    //The following function checks if a cell has been tapped.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = foodCards[indexPath.row]
-        let foodID = card.foodID
-        getNutrients(foodID: foodID)
+        let card = foodCards[indexPath.row] //Retrieve card of cell that was tapped.
+        let foodID = card.foodID            //Get the foodID of the tapped cell.
+        getNutrients(foodID: foodID)        //Do GET Request with the foodID to get nutrients
         printNutrients()
     }
 }
