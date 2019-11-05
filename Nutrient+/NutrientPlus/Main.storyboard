@@ -334,6 +334,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="nutritionProgressView" destination="Fnr-YX-lov" id="C8h-9v-Fbi"/>
                                             <outlet property="nutritionTitleLabel" destination="qIs-SJ-RvZ" id="YLq-nj-czx"/>
                                         </connections>
                                     </tableViewCell>
@@ -383,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2t-gb-hqA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056.8" y="13.943028485757123"/>
+            <point key="canvasLocation" x="1056.5217391304348" y="13.392857142857142"/>
         </scene>
         <!--Edit InfoVC-->
         <scene sceneID="ZWB-jJ-pWB">
@@ -393,46 +394,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Info Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUT-cL-sZ8">
-                                <rect key="frame" x="76" y="20" width="222" height="126"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Info Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUT-cL-sZ8">
+                                <rect key="frame" x="154.5" y="20" width="105.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Update Calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-ZB-ng0">
-                                <rect key="frame" x="141" y="404" width="132" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fip-HN-bjn">
-                                <rect key="frame" x="144" y="395" width="86" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fip-HN-bjn">
+                                <rect key="frame" x="188.5" y="727" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="done:" destination="bHw-wI-xDL" eventType="touchUpInside" id="qir-SZ-WIb"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Update Calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-ZB-ng0">
+                                <rect key="frame" x="141" y="48" width="132" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-ek-EBJ">
+                                <rect key="frame" x="0.0" y="174" width="414" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NutrientTargetCell" id="Vcq-hR-rPN" userLabel="NutrientTargetCell" customClass="NutrientTargetCell" customModule="NutrientPlus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vcq-hR-rPN" id="xNR-IZ-MaX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sLf-rs-ouK">
+                                                    <rect key="frame" x="302" y="5" width="100" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="op2-1g-feW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAP-NO-Is9">
+                                                    <rect key="frame" x="12" y="12" width="278" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="eNb-I0-ebl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sLf-rs-ouK" secondAttribute="trailing" constant="12" id="BBq-w4-dbp"/>
+                                                <constraint firstItem="vAP-NO-Is9" firstAttribute="leading" secondItem="xNR-IZ-MaX" secondAttribute="leading" constant="12" id="FAF-Wr-goN"/>
+                                                <constraint firstItem="sLf-rs-ouK" firstAttribute="leading" secondItem="vAP-NO-Is9" secondAttribute="trailing" constant="12" id="V0A-jp-NoV"/>
+                                                <constraint firstItem="vAP-NO-Is9" firstAttribute="centerY" secondItem="xNR-IZ-MaX" secondAttribute="centerY" id="bqj-n3-DXO"/>
+                                                <constraint firstItem="sLf-rs-ouK" firstAttribute="centerY" secondItem="xNR-IZ-MaX" secondAttribute="centerY" id="hqd-Ik-Kfr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="NewNutrientValue" destination="sLf-rs-ouK" id="sbk-v7-1l5"/>
+                                            <outlet property="NutrientName" destination="vAP-NO-Is9" id="7dR-wB-xkO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bHw-wI-xDL" id="cSS-RE-Ybn"/>
+                                    <outlet property="delegate" destination="bHw-wI-xDL" id="Tdd-Io-Kk2"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="rNw-bf-0Le"/>
-                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="centerY" secondItem="u1Y-sQ-ma1" secondAttribute="centerY" id="rfW-IO-aTK"/>
+                            <constraint firstItem="qUT-cL-sZ8" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="Agx-PL-3NO"/>
+                            <constraint firstItem="5tF-ek-EBJ" firstAttribute="leading" secondItem="tN0-LW-7Oc" secondAttribute="leading" id="Gnx-kP-bO3"/>
+                            <constraint firstItem="Fip-HN-bjn" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="IjG-ep-gy2"/>
+                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="top" secondItem="qUT-cL-sZ8" secondAttribute="bottom" constant="7.5" id="Ru6-9q-c6J"/>
+                            <constraint firstItem="tN0-LW-7Oc" firstAttribute="bottom" secondItem="Fip-HN-bjn" secondAttribute="bottom" constant="51" id="UcG-xm-den"/>
+                            <constraint firstAttribute="bottom" secondItem="5tF-ek-EBJ" secondAttribute="bottom" id="VgR-pS-ped"/>
+                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="fue-8B-VLp"/>
+                            <constraint firstItem="qUT-cL-sZ8" firstAttribute="top" secondItem="tN0-LW-7Oc" secondAttribute="top" constant="20" id="id0-KP-qGe"/>
+                            <constraint firstItem="tN0-LW-7Oc" firstAttribute="trailing" secondItem="5tF-ek-EBJ" secondAttribute="trailing" id="kU2-Pr-3OG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tN0-LW-7Oc"/>
                     </view>
                     <navigationItem key="navigationItem" id="cgM-Eq-MZN"/>
                     <connections>
+                        <outlet property="tableView" destination="5tF-ek-EBJ" id="Ogz-GI-LgH"/>
                         <outlet property="updatedCalories" destination="gCb-ZB-ng0" id="jlT-x3-V2g"/>
                         <segue destination="Rym-Pa-Msl" kind="show" identifier="editToMain" id="Vb5-Ch-hwf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7Y-6O-dxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053.5999999999999" y="-725.48725637181417"/>
+            <point key="canvasLocation" x="1050.7246376811595" y="-725.89285714285711"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="huS-EC-w29"/>
+        <segue reference="Vb5-Ch-hwf"/>
     </inferredMetricsTieBreakers>
 </document>

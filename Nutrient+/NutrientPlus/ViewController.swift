@@ -39,7 +39,11 @@ class ViewController: UIViewController {
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
+    //nutrients stores daily nutritional data
     var nutrients = [String: Float]()
+    //nutrientTargets stores the daily targets
+    var nutrientTargets = [String: Float]()
+    var targetsEdited = false
     
 
     override func viewDidLoad() {
@@ -47,54 +51,105 @@ class ViewController: UIViewController {
         transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
+        if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
+            print("Reseting nutrients and creating targets;targetsEdited = false")
+            //reset nutrient progress and create the target goals
+            resetNutrients()
+            createTargets()
+        }
         cards = populate()
         print("height is equal to ----------> ", height)
         print("weight is equal to ----------> ", weight)
-         print("gender is equal to ----------> ", gender)
+        print("gender is equal to ----------> ", gender)
         let ans=calculate(weight: weight, gender: gender)
         print(ans)
         
-        // Do any additional setup after loading the view.
+        //print("Printing targets in ViewController.swift")
+        //printTargets()
+    }
+    
+    func resetNutrients() {
+        for item in macros {
+            nutrients[item] = 0
+        }
+        for item in vitamins {
+            nutrients[item] = 0
+        }
+        for item in minerals {
+            nutrients[item] = 0
+        }
+    }
+    
+    func createTargets() {
+        for item in macros {
+            nutrientTargets[item] = 200
+        }
+        for item in vitamins {
+            nutrientTargets[item] = 10
+        }
+        for item in minerals {
+            nutrientTargets[item] = 5
+        }
+    }
+    
+    func printTargets() {
+        print("Macros")
+        for item in macros {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
+        print("Vitamins")
+        for item in vitamins {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
+        print("Minerals")
+        for item in minerals {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
     }
     
     func populate() -> [Card] {
         
         //create an array of Card
         var tempCards: [Card] = []
-        //create a dictionary of nutrient name to value
-        var nutrients = [String: Float]()
-        //initial settings
-        nutrients["Energy"] = (calories as NSString).floatValue
-        nutrients["Protein"] = 200
-        nutrients["Carbs"] = 20
-        nutrients["Fat"] = 200
+        
         
         var card: Card
-        print("Macros")
+        print("Populate: Macros")
         for item in macros {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a macro, look up the value in nutrients dictionary, give random color
             //this is not the right calculation for progress
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrients["Energy"] ?? 2000), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrientTargets["Energy"] ?? 2000), color: .random())
             tempCards.append(card)
         }
-        print("Vitamins")
+        print("Populate: Vitamins")
         for item in vitamins {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a vitamin, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 10)), color: .random())
             tempCards.append(card)
         }
-        print("Minerals")
+        print("Populate: Minerals")
         for item in minerals {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a mineral, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 5)), color: .random())
             tempCards.append(card)
         }
-        
         return tempCards
-        
+    }
+    
+    //for sending data over segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is EditInfoVC
+        {
+            let vc = segue.destination as? EditInfoVC
+            vc?.nutrientTargets = self.nutrientTargets
+        }
     }
     
 }
