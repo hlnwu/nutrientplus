@@ -89,6 +89,7 @@ class Startup: UIViewController {
             
             // calculating height and storing it in centimeters
             let rawHeight = Int16(heightField.text!)!
+            print("height is",rawHeight)
             let heightUnitString = heightUnit.titleForSegment(at: heightUnit.selectedSegmentIndex)
             if heightUnitString == "in" {
                 user.height = Int16(Double(rawHeight) * 2.54)
@@ -97,13 +98,18 @@ class Startup: UIViewController {
             }
                 
             // calculating weight and storing it in kg
-            let rawWeight = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            let formatter = NumberFormatter()
+            formatter.generatesDecimalNumbers = true
+            let rawWeight = formatter.number(from: weightField.text!) as? NSDecimalNumber ?? 0
+            //print("weight is: ", rawWeight)
             let weightUnitString = weightUnit.titleForSegment(at: weightUnit.selectedSegmentIndex)
             if weightUnitString == "lbs" {
                 let divisor = NSDecimalNumber(0.453592)
-                user.weight = rawWeight?.dividing(by: divisor)
+                user.weight = rawWeight.dividing(by: divisor)
+                print("weight is : ",user.weight!)
             } else {
                 user.weight = rawWeight
+                print("weight is dnv : ",user.weight!)
             }
 
             user.bodyFat = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
