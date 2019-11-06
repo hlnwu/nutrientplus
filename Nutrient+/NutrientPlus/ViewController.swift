@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 struct Card {
     var nutritionLabel : String
     var progressPercent : Float
@@ -25,8 +25,11 @@ class ViewController: UIViewController {
     var height: Float=0.0
     var weight: Float=0.0
     var calories = "2000"
-    var tester: String="did not change"
-    var gender: String = ""
+    var birthdate : Date = Date()
+    var tester :String="did not change"
+    var gender : String = ""
+    var user=[User]()
+    var length : NSInteger = 0
     
     // for transfering data
     @IBOutlet weak var transferDataLabel: UILabel!
@@ -58,7 +61,19 @@ class ViewController: UIViewController {
             createTargets()
         }
         cards = populate()
-
+       
+        let test: NSFetchRequest<User>  = User.fetchRequest()
+        do{
+            let  user=try PersistenceService.context.fetch(test)
+            self.user=user
+            length=user.count-1
+            print(length);
+            //print(user[length].weight!);
+            weight=user[length].weight?.floatValue ?? 0
+            height=Float(user[length].height);
+            gender=user[length].sex!
+            birthdate=user[length].birthday!
+        }catch{}
         
         //print("Printing targets in ViewController.swift")
         //printTargets()
@@ -149,18 +164,40 @@ class ViewController: UIViewController {
     }
     
 }
-func calculate(weight : Float,gender : String  )->NSInteger{
+func calculate(weight : Float,gender : String,length : NSInteger  )->Dictionary<String,Float>{
+    var dictionary: [String:Float]=[:]
+    print(gender)
     if(gender=="Female"){
+        
         let ans=0.9*weight*24
         let intAns:Int = Int(ans)
-        return intAns
+        let ans1=Float(intAns)
+        dictionary["Energy"] = ans1
+        
+        
+        
     }
     else{
         let ans=1*weight*24
         let intAns:Int = Int(ans)
-        return intAns
+               let ans1=Float(intAns)
+               dictionary["Energy"] = ans1
+        
+        
     }
+    let proteinIntake : Float = 0.8*weight
+    dictionary["protein"] = proteinIntake
+    let carbs : Float = 0.55*(dictionary["Energy"] ?? 0.0)
+    dictionary["carbs"] = carbs
+    dictionary["fats"] = 0.275*(dictionary["Energy"] ?? 0.0)
+
+           
+          
     
+    
+    
+    
+    return dictionary
 }
 
 
