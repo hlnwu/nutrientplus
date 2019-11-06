@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 struct Card {
     var nutritionLabel : String
     var progressPercent : Float
@@ -22,11 +22,14 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
-    var height : Float=0.0
-    var weight :Float=0.0
+    var height: Float=0.0
+    var weight: Float=0.0
     var calories = "2000"
+    var birthdate : Date = Date()
     var tester :String="did not change"
     var gender : String = ""
+    var user=[User]()
+    var length : NSInteger = 0
     
     // for transfering data
     @IBOutlet weak var transferDataLabel: UILabel!
@@ -39,76 +42,161 @@ class ViewController: UIViewController {
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
+    //nutrients stores daily nutritional data
     var nutrients = [String: Float]()
+    //nutrientTargets stores the daily targets
+    var nutrientTargets = [String: Float]()
+    var targetsEdited = false
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
+            print("Reseting nutrients and creating targets;targetsEdited = false")
+            //reset nutrient progress and create the target goals
+            resetNutrients()
+            createTargets()
+        }
         cards = populate()
-        print("height is equal to ----------> ", height)
-        print("weight is equal to ----------> ", weight)
-         print("gender is equal to ----------> ", gender)
-        let ans=calculate(weight: weight, gender: gender)
-        print(ans)
+       
+        let test: NSFetchRequest<User>  = User.fetchRequest()
+        do{
+            let  user=try PersistenceService.context.fetch(test)
+            self.user=user
+            length=user.count-1
+            print(length);
+            //print(user[length].weight!);
+            weight=user[length].weight?.floatValue ?? 0
+            height=Float(user[length].height);
+            gender=user[length].sex!
+            birthdate=user[length].birthday!
+        }catch{}
         
-        // Do any additional setup after loading the view.
+        //print("Printing targets in ViewController.swift")
+        //printTargets()
+    }
+    
+    func resetNutrients() {
+        for item in macros {
+            nutrients[item] = 0
+        }
+        for item in vitamins {
+            nutrients[item] = 0
+        }
+        for item in minerals {
+            nutrients[item] = 0
+        }
+    }
+    
+    func createTargets() {
+        for item in macros {
+            nutrientTargets[item] = 200
+        }
+        for item in vitamins {
+            nutrientTargets[item] = 10
+        }
+        for item in minerals {
+            nutrientTargets[item] = 5
+        }
+    }
+    
+    func printTargets() {
+        print("Macros")
+        for item in macros {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
+        print("Vitamins")
+        for item in vitamins {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
+        print("Minerals")
+        for item in minerals {
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
+        }
     }
     
     func populate() -> [Card] {
         
         //create an array of Card
         var tempCards: [Card] = []
-        //create a dictionary of nutrient name to value
-        var nutrients = [String: Float]()
-        //initial settings
-        nutrients["Energy"] = (calories as NSString).floatValue
-        nutrients["Protein"] = 200
-        nutrients["Carbs"] = 20
-        nutrients["Fat"] = 200
+        
         
         var card: Card
-        print("Macros")
+        print("Populate: Macros")
         for item in macros {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a macro, look up the value in nutrients dictionary, give random color
             //this is not the right calculation for progress
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrients["Energy"] ?? 2000), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrientTargets["Energy"] ?? 2000), color: .random())
             tempCards.append(card)
         }
-        print("Vitamins")
+        print("Populate: Vitamins")
         for item in vitamins {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a vitamin, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 10)), color: .random())
             tempCards.append(card)
         }
-        print("Minerals")
+        print("Populate: Minerals")
         for item in minerals {
-            print("\(item): \(nutrients[item] ?? 0)")
+            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a mineral, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? Float(arc4random()) / Float(UINT32_MAX)), color: .random())
+            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 5)), color: .random())
             tempCards.append(card)
         }
-        
         return tempCards
-        
+    }
+    
+    //for sending data over segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is EditInfoVC
+        {
+            let vc = segue.destination as? EditInfoVC
+            vc?.nutrientTargets = self.nutrientTargets
+        }
     }
     
 }
-func calculate(weight : Float,gender : String  )->NSInteger{
+func calculate(weight : Float,gender : String,length : NSInteger  )->Dictionary<String,Float>{
+    var dictionary: [String:Float]=[:]
+    print(gender)
     if(gender=="Female"){
+        
         let ans=0.9*weight*24
         let intAns:Int = Int(ans)
-        return intAns
+        let ans1=Float(intAns)
+        dictionary["Energy"] = ans1
+        
+        
+        
     }
     else{
         let ans=1*weight*24
         let intAns:Int = Int(ans)
-        return intAns
+               let ans1=Float(intAns)
+               dictionary["Energy"] = ans1
+        
+        
     }
+    let proteinIntake : Float = 0.8*weight
+    dictionary["protein"] = proteinIntake
+    let carbs : Float = 0.55*(dictionary["Energy"] ?? 0.0)
+    dictionary["carbs"] = carbs
+    dictionary["fats"] = 0.275*(dictionary["Energy"] ?? 0.0)
+
+           
+          
     
+    
+    
+    
+    return dictionary
 }
 
 
