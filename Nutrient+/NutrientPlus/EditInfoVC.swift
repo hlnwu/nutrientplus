@@ -123,6 +123,7 @@ extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutrientTargetCell") as! NutrientTargetCell
         let tempTarget = targetCards[indexPath.row]
         cell.NutrientName?.text = tempTarget.nutritionLabel
+        cell.configure(text: "", placeholder: "Enter some text!")
         return cell
     }
 }
