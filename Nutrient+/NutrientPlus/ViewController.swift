@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     var gender: String = ""
     
     // for transfering data
-    @IBOutlet weak var transferDataLabel: UILabel!
     
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
@@ -44,7 +43,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
         cards = populate()
