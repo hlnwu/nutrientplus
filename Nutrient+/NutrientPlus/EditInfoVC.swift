@@ -5,7 +5,7 @@
 //  Created by Robert Sato on 10/22/19.
 //  Copyright © 2019 hoo. All rights reserved.
 //
-//  Modified: 11/4/19
+//  Modified: 11/5/19
 
 import Foundation
 import UIKit
@@ -13,6 +13,14 @@ import UIKit
 class NutrientTargetCell: UITableViewCell {
     @IBOutlet weak var NutrientName: UILabel!
     @IBOutlet weak var NewNutrientValue: UITextField!
+    
+    public func configure(text: String?, placeholder: String) {
+        NewNutrientValue.text = text
+        NewNutrientValue.placeholder = placeholder
+        NewNutrientValue.accessibilityValue = text
+        NewNutrientValue.accessibilityLabel = placeholder
+        
+    }
 }
 
 struct TargetCard {
@@ -115,8 +123,6 @@ extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutrientTargetCell") as! NutrientTargetCell
         let tempTarget = targetCards[indexPath.row]
         cell.NutrientName?.text = tempTarget.nutritionLabel
-        //adding random code for changing nutrientTargets values
-        nutrientTargets[tempTarget.nutritionLabel] = 
         return cell
     }
 }
