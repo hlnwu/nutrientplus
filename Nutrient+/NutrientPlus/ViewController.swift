@@ -22,11 +22,11 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
-    var height : Float=0.0
-    var weight :Float=0.0
+    var height: Float=0.0
+    var weight: Float=0.0
     var calories = "2000"
-    var tester :String="did not change"
-    var gender : String = ""
+    var tester: String="did not change"
+    var gender: String = ""
     
     // for transfering data
     @IBOutlet weak var transferDataLabel: UILabel!
@@ -58,11 +58,7 @@ class ViewController: UIViewController {
             createTargets()
         }
         cards = populate()
-        print("height is equal to ----------> ", height)
-        print("weight is equal to ----------> ", weight)
-        print("gender is equal to ----------> ", gender)
-        let ans=calculate(weight: weight, gender: gender)
-        print(ans)
+
         
         //print("Printing targets in ViewController.swift")
         //printTargets()
