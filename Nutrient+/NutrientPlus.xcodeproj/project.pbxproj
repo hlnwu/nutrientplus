@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C9A5236C00A300FB8110 /* APIStructs.swift */; };
+		71FAE66F236C9BBD00A2F286 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FAE66E236C9BBD00A2F286 /* APIRequest.swift */; };
 		87501F5C235FDE4100BDE456 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87501F5B235FDE4100BDE456 /* Startup.swift */; };
 		8750C72D236276150098B855 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750C72C236276150098B855 /* PersistenceService.swift */; };
 		8772793A235E1D6500609D79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727939235E1D6500609D79 /* AppDelegate.swift */; };
@@ -16,7 +17,7 @@
 		87727949235E1D6800609D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727947235E1D6800609D79 /* LaunchScreen.storyboard */; };
 		87727954235E1D6800609D79 /* NutrientPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727953235E1D6800609D79 /* NutrientPlusTests.swift */; };
 		8772795F235E1D6800609D79 /* NutrientPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772795E235E1D6800609D79 /* NutrientPlusUITests.swift */; };
-		8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772796E235E26E600609D79 /* DestinationViewController.swift */; };
+		8772796F235E26E600609D79 /* AddFoods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772796E235E26E600609D79 /* AddFoods.swift */; };
 		87727971235E275300609D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87727970235E275300609D79 /* Main.storyboard */; };
 		87727973235E277900609D79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87727972235E277900609D79 /* ViewController.swift */; };
 		87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87AB5870236254DE00F7659E /* NutrientPlus.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		71E7C9A5236C00A300FB8110 /* APIStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStructs.swift; sourceTree = "<group>"; };
+		71FAE66E236C9BBD00A2F286 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		87501F5B235FDE4100BDE456 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Startup.swift; path = ../Startup.swift; sourceTree = "<group>"; };
 		8750C72C236276150098B855 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		87727936235E1D6500609D79 /* NutrientPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutrientPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +60,7 @@
 		8772795A235E1D6800609D79 /* NutrientPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutrientPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772795E235E1D6800609D79 /* NutrientPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientPlusUITests.swift; sourceTree = "<group>"; };
 		87727960235E1D6800609D79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8772796E235E26E600609D79 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
+		8772796E235E26E600609D79 /* AddFoods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoods.swift; sourceTree = "<group>"; };
 		87727970235E275300609D79 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		87727972235E277900609D79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		87AB5871236254DE00F7659E /* Nutrient_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nutrient_.xcdatamodel; sourceTree = "<group>"; };
@@ -128,7 +130,8 @@
 				87727972235E277900609D79 /* ViewController.swift */,
 				B7F4926E23626252002DF7F6 /* EditInfoVC.swift */,
 				8772794A235E1D6800609D79 /* Info.plist */,
-				8772796E235E26E600609D79 /* DestinationViewController.swift */,
+				8772796E235E26E600609D79 /* AddFoods.swift */,
+				71FAE66E236C9BBD00A2F286 /* APIRequest.swift */,
 				71E7C9A5236C00A300FB8110 /* APIStructs.swift */,
 				87727944235E1D6800609D79 /* Preview Content */,
 			);
@@ -297,7 +300,8 @@
 				87501F5C235FDE4100BDE456 /* Startup.swift in Sources */,
 				87AB58772362588900F7659E /* User+CoreDataProperties.swift in Sources */,
 				B7F4926F23626253002DF7F6 /* EditInfoVC.swift in Sources */,
-				8772796F235E26E600609D79 /* DestinationViewController.swift in Sources */,
+				8772796F235E26E600609D79 /* AddFoods.swift in Sources */,
+				71FAE66F236C9BBD00A2F286 /* APIRequest.swift in Sources */,
 				71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */,
 				87727973235E277900609D79 /* ViewController.swift in Sources */,
 				87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */,
