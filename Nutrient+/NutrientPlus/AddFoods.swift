@@ -11,32 +11,28 @@
 //Tutorial for semaphores and dispatchGroup: youtube.com/watch?v=6rJN_ECd1XM
 import UIKit
 
-class FoodCards : UITableViewCell {
-    @IBOutlet weak var foodNameLabel: UILabel!
-    @IBOutlet weak var brandLabel: UILabel!
-}
-
 class AddFoods: UIViewController {
     @IBOutlet weak var foodTableView: UITableView!
-    @IBOutlet weak var editText: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var userInput : String = ""
     static var foodCards: [foodInfo] = []
     static var nutrientCards: [nutrientInfo] = []
     let requestObj = APIRequest()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTableView.delegate = self
         foodTableView.dataSource = self
-
+        searchBar.delegate = self
+        
+        clearTableView()
     }
-
-    @IBAction func enterButton(_ sender: UIButton) { //When user presses enter, do POST request with user input
-        userInput = String(editText.text!) //unwraps text
-        requestObj.getFoods(userInput:userInput)
-        displayFoods()
+    
+    func clearTableView(){
+        AddFoods.foodCards.removeAll()
+        foodTableView.reloadData()
     }
     
     func printNutrients(){
@@ -79,5 +75,27 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
         let foodID = card.foodID            //Get the foodID of the tapped cell.
         requestObj.getNutrients(foodID: foodID)        //Do GET Request with the foodID to get nutrients
         printNutrients()
+        performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //var mainViewController = segue.destination as! ViewController
+        //mainViewController.nutrients
+    }
+}
+
+//When user presses enter, do POST request with user input
+extension AddFoods: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        userInput = String(searchBar.text!) //unwraps text
+        requestObj.getFoods(userInput:userInput)
+        displayFoods()
+        
+    }
+}
+
+//Outlets that are within the tableview cell.
+class FoodCards : UITableViewCell {
+    @IBOutlet weak var foodNameLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
 }
