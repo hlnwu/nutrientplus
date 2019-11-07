@@ -372,7 +372,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h6z-nc-HAM"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6oT-E6-69M"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="YYa-BN-fVj" id="AjN-6R-GYL"/>
@@ -476,7 +475,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tN0-LW-7Oc"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cyO-pP-KvP"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="5tF-ek-EBJ" id="Ogz-GI-LgH"/>

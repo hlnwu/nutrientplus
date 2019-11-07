@@ -29,10 +29,11 @@ struct TargetCard {
 }
 
 
-class EditInfoVC: UIViewController {
+class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var targetCards: [TargetCard] = []
+    var CollectionOfCell = [NutrientTargetCell]()
     
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
@@ -98,6 +99,9 @@ class EditInfoVC: UIViewController {
     
     @IBAction func done(_ sender: Any) {
         self.calorieValue = updatedCalories.text!
+        CollectionOfCell.forEach { cell in
+            nutrientTargets[cell.NutrientName] = cell.NewNutrientValue
+        }
         performSegue(withIdentifier: "editToMain", sender: self)
     }
     
@@ -111,10 +115,22 @@ class EditInfoVC: UIViewController {
         vc.nutrientTargets = self.nutrientTargets
         vc.targetsEdited = true
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nutrientTargets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NutrientTargetCell") as! NutrientTargetCell
+        let tempTarget = targetCards[indexPath.row]
+        cell.NutrientName?.text = tempTarget.nutritionLabel
+        cell.configure(text: tempTarget.nutritionLabel, placeholder: "Enter some text!")
+        CollectionOfCell.append(cell)
+        return cell
+    }
 }
 
 
-extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
+/*extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nutrientTargets.count
     }
@@ -127,4 +143,4 @@ extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
-
+*/
