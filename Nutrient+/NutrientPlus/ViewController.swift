@@ -71,8 +71,8 @@ class ViewController: UIViewController {
             //print(user[length].weight!);
             weight=user[length].weight?.floatValue ?? 0
             height=Float(user[length].height);
-            gender=user[length].sex!
-            birthdate=user[length].birthday!
+            gender=user[length].sex ?? "male"
+            //birthdate=user[length].birthday!
         }catch{}
         
         //print("Printing targets in ViewController.swift")

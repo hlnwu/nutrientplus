@@ -99,9 +99,16 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func done(_ sender: Any) {
         self.calorieValue = updatedCalories.text!
+        print("CollectionCell has contents...")
         CollectionOfCell.forEach { cell in
-            nutrientTargets[cell.NutrientName] = cell.NewNutrientValue
+            print(cell.NutrientName.text!)
+            print(cell.NewNutrientValue.text!)
+            nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
         }
+        print()
+        print("PRINTING TARGETS AFTER PRESSING DONE")
+        print()
+        printTargets()
         performSegue(withIdentifier: "editToMain", sender: self)
     }
     
@@ -125,6 +132,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.NutrientName?.text = tempTarget.nutritionLabel
         cell.configure(text: tempTarget.nutritionLabel, placeholder: "Enter some text!")
         CollectionOfCell.append(cell)
+        print("Appending:", cell.NutrientName.text!)
         return cell
     }
 }
