@@ -130,25 +130,10 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutrientTargetCell") as! NutrientTargetCell
         let tempTarget = targetCards[indexPath.row]
         cell.NutrientName?.text = tempTarget.nutritionLabel
-        cell.configure(text: tempTarget.nutritionLabel, placeholder: "Enter some text!")
+        //if nutrient type; placeholder = g/mg/cups
+        cell.configure(text: "", placeholder: "(g)")
         CollectionOfCell.append(cell)
         print("Appending:", cell.NutrientName.text!)
         return cell
     }
 }
-
-
-/*extension EditInfoVC: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nutrientTargets.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NutrientTargetCell") as! NutrientTargetCell
-        let tempTarget = targetCards[indexPath.row]
-        cell.NutrientName?.text = tempTarget.nutritionLabel
-        cell.configure(text: "", placeholder: "Enter some text!")
-        return cell
-    }
-}
-*/

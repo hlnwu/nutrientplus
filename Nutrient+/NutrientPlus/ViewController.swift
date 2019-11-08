@@ -61,7 +61,6 @@ class ViewController: UIViewController {
             createTargets()
         }
         cards = populate()
-       
         let test: NSFetchRequest<User>  = User.fetchRequest()
         do{
             let  user=try PersistenceService.context.fetch(test)
