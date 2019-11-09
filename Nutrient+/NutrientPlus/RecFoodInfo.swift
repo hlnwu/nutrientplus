@@ -5,11 +5,15 @@
 //  Created by hoo on 11/5/19.
 //  Copyright © 2019 hoo. All rights reserved.
 //
+// https:// www.youtube.com/watch?v=DmWv-JtQH4Q&t=708s
 
 import UIKit
 
 class RecFoodInfo: UIViewController {
 
+    // used when user ate recommended food
+    @IBOutlet weak var ateRecFood: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
