@@ -23,10 +23,10 @@ class NutritionCards: UITableViewCell {
 class ViewController: UIViewController {	
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
-    var height: Float=0.0
-    var weight: Float=0.0
+    var height: Float = 0.0
+    var weight: Float = 0.0
     var calories = "2000"
-    var tester: String="did not change"
+    var tester: String = "did not change"
     var gender: String = ""
     
     // variable for displaying image; used in viewDidLoad()
@@ -57,7 +57,8 @@ class ViewController: UIViewController {
 //        print(ans)
         
         // grab an image from the Internet
-        let recFoodURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/202px-Apple_logo_black.svg.png")
+        let URLString: String = "https://images-na.ssl-images-amazon.com/images/I/91iX-arSDcL._SL1500_.jpg"
+        let recFoodURL = URL(string: URLString)
         // create session that opens browser in background
         let createWebSession = URLSession.shared.dataTask(with: recFoodURL!) { (data, response, error) in
             if (error != nil) {
@@ -68,10 +69,16 @@ class ViewController: UIViewController {
                 let availablePaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
                 
                 // found a place to save file
+                // saving file to given directory path
                 if availablePaths.count > 0 {
                     directory = availablePaths[0]
-                    // saving file to given directory path
-                    let savePath = directory! + "/Apple_logo_black.svg"
+                    // splits URL by '/' and save all strings in an array
+                    let fileNameArray = URLString.components(separatedBy: "/")
+                    // find the size of the array
+                    let fileNameArraySize = fileNameArray.count
+                    // the string after last '/' will be the file name
+                    let fileName = fileNameArray[fileNameArraySize]
+                    let savePath = directory! + fileName
                     // step where file is saved
                     FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
                     // loading in data from saved path
