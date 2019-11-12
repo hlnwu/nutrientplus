@@ -51,6 +51,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("***in ViewController.swift***")
         transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
@@ -60,6 +61,10 @@ class ViewController: UIViewController {
             resetNutrients()
             createTargets()
         }
+        print("Printing Nutrient Targets:")
+        print(nutrientTargets)
+        print("Printing Nutrients")
+        print(nutrients)
         cards = populate()
         let test: NSFetchRequest<User>  = User.fetchRequest()
         do{
@@ -74,19 +79,36 @@ class ViewController: UIViewController {
             //birthdate=user[length].birthday!
         }catch{}
         
-        //print("Printing targets in ViewController.swift")
-        //printTargets()
+        let recommendations1 = recommend1()
+        print("Recommendations1:")
+        print(recommendations1)
+        
+    }
+    
+    func recommend1() -> [String: Float] {
+        var missing_percentage = [String: Float]()
+        for item in macros {
+            missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+        }
+        for item in vitamins {
+            missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+        }
+        for item in minerals {
+            missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+        }
+        return missing_percentage
     }
     
     func resetNutrients() {
         for item in macros {
-            nutrients[item] = 0
+            //initializing to non zero value for testing
+            nutrients[item] = 100
         }
         for item in vitamins {
-            nutrients[item] = 0
+            nutrients[item] = 3
         }
         for item in minerals {
-            nutrients[item] = 0
+            nutrients[item] = 1
         }
     }
     
@@ -126,8 +148,8 @@ class ViewController: UIViewController {
         var card: Card
         print("Populate: Macros")
         for item in macros {
-            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
+//            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+//            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a macro, look up the value in nutrients dictionary, give random color
             //this is not the right calculation for progress
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrientTargets["Energy"] ?? 2000), color: .random())
@@ -135,16 +157,16 @@ class ViewController: UIViewController {
         }
         print("Populate: Vitamins")
         for item in vitamins {
-            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
+//            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+//            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a vitamin, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 10)), color: .random())
             tempCards.append(card)
         }
         print("Populate: Minerals")
         for item in minerals {
-            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
+//            print("nutrients[\(item)]: \(nutrients[item] ?? 0)")
+//            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? 0)")
             //set the card to a mineral, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 5)), color: .random())
             tempCards.append(card)
@@ -163,6 +185,7 @@ class ViewController: UIViewController {
     }
     
 }
+
 func calculate(weight : Float,gender : String,length : NSInteger  )->Dictionary<String,Float>{
     var dictionary: [String:Float]=[:]
     print(gender)

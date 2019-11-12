@@ -49,6 +49,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("***in EditInfoVC***")
         print("Printing nutrient targets")
         printTargets()
         tableView.delegate = self
@@ -103,7 +104,10 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         CollectionOfCell.forEach { cell in
             print(cell.NutrientName.text!)
             print(cell.NewNutrientValue.text!)
-            nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
+            if(cell.NewNutrientValue.text != "") {
+                nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
+                print("\(cell.NewNutrientValue.text!) entered so adding to nutrientTargets")
+            }
         }
         print()
         print("PRINTING TARGETS AFTER PRESSING DONE")
@@ -119,6 +123,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         print("")
         print("***setting nutrientTargets[Energy] = \(calorieValue)")
         nutrientTargets["Energy"] = (calorieValue as NSString).floatValue
+        //Error: some of these values are empty so it is being passed as empty back
         vc.nutrientTargets = self.nutrientTargets
         vc.targetsEdited = true
     }

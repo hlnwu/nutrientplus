@@ -464,9 +464,7 @@
                             <constraint firstAttribute="bottom" secondItem="5tF-ek-EBJ" secondAttribute="bottom" id="LNf-Aa-19W"/>
                             <constraint firstItem="tN0-LW-7Oc" firstAttribute="trailing" secondItem="Fip-HN-bjn" secondAttribute="trailing" constant="20" id="Ol5-Wp-s1S"/>
                             <constraint firstItem="gCb-ZB-ng0" firstAttribute="top" secondItem="qUT-cL-sZ8" secondAttribute="bottom" constant="7.5" id="Ru6-9q-c6J"/>
-                            <constraint firstAttribute="bottom" secondItem="5tF-ek-EBJ" secondAttribute="bottom" id="VgR-pS-ped"/>
                             <constraint firstItem="5tF-ek-EBJ" firstAttribute="top" secondItem="gCb-ZB-ng0" secondAttribute="bottom" constant="8" id="W78-s6-geR"/>
-                            <constraint firstItem="5tF-ek-EBJ" firstAttribute="leading" secondItem="tN0-LW-7Oc" secondAttribute="leading" id="co3-pa-li5"/>
                             <constraint firstItem="gCb-ZB-ng0" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="fue-8B-VLp"/>
                             <constraint firstItem="qUT-cL-sZ8" firstAttribute="top" secondItem="tN0-LW-7Oc" secondAttribute="top" constant="20" id="id0-KP-qGe"/>
                             <constraint firstItem="tN0-LW-7Oc" firstAttribute="trailing" secondItem="5tF-ek-EBJ" secondAttribute="trailing" id="kU2-Pr-3OG"/>
@@ -488,6 +486,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aJg-oG-4ag"/>
+        <segue reference="sUK-5B-u0u"/>
     </inferredMetricsTieBreakers>
 </document>
