@@ -61,10 +61,10 @@ class ViewController: UIViewController {
             resetNutrients()
             createTargets()
         }
-        print("Printing Nutrient Targets:")
-        print(nutrientTargets)
         print("Printing Nutrients")
         print(nutrients)
+        print("Printing Nutrient Targets:")
+        print(nutrientTargets)
         cards = populate()
         let test: NSFetchRequest<User>  = User.fetchRequest()
         do{
@@ -181,6 +181,7 @@ class ViewController: UIViewController {
         {
             let vc = segue.destination as? EditInfoVC
             vc?.nutrientTargets = self.nutrientTargets
+            vc?.nutrients = self.nutrients
         }
     }
     

@@ -42,6 +42,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
+    var nutrients = [String: Float]()
     var nutrientTargets = [String: Float]()
     
     @IBOutlet weak var updatedCalories: UITextField!
@@ -125,6 +126,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         nutrientTargets["Energy"] = (calorieValue as NSString).floatValue
         //Error: some of these values are empty so it is being passed as empty back
         vc.nutrientTargets = self.nutrientTargets
+        vc.nutrients = self.nutrients
         vc.targetsEdited = true
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
