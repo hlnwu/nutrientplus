@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
-            print("Reseting nutrients and creating targets;targetsEdited = false")
+            print("Reseting nutrients and creating targets; targetsEdited = false")
             //reset nutrient progress and create the target goals
             resetNutrients()
             createTargets()
@@ -70,8 +70,13 @@ class ViewController: UIViewController {
         do{
             let  user=try PersistenceService.context.fetch(test)
             self.user=user
-            length=user.count-1
-            print(length);
+            if (user.count == 0){
+                length = 0
+            }
+            else {
+                length=user.count-1
+            }
+            print(user.count);
             //print(user[length].weight!);
             weight=user[length].weight?.floatValue ?? 0
             height=Float(user[length].height);

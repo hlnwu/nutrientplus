@@ -396,13 +396,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Update Calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-ZB-ng0">
-                                <rect key="frame" x="141" y="136" width="132" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-ek-EBJ">
-                                <rect key="frame" x="0.0" y="178" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="146" width="414" height="750"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NutrientTargetCell" id="Vcq-hR-rPN" userLabel="NutrientTargetCell" customClass="NutrientTargetCell" customModule="NutrientPlus" customModuleProvider="target">
@@ -463,9 +458,7 @@
                             <constraint firstItem="5tF-ek-EBJ" firstAttribute="leading" secondItem="tN0-LW-7Oc" secondAttribute="leading" id="Gnx-kP-bO3"/>
                             <constraint firstAttribute="bottom" secondItem="5tF-ek-EBJ" secondAttribute="bottom" id="LNf-Aa-19W"/>
                             <constraint firstItem="tN0-LW-7Oc" firstAttribute="trailing" secondItem="Fip-HN-bjn" secondAttribute="trailing" constant="20" id="Ol5-Wp-s1S"/>
-                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="top" secondItem="qUT-cL-sZ8" secondAttribute="bottom" constant="7.5" id="Ru6-9q-c6J"/>
-                            <constraint firstItem="5tF-ek-EBJ" firstAttribute="top" secondItem="gCb-ZB-ng0" secondAttribute="bottom" constant="8" id="W78-s6-geR"/>
-                            <constraint firstItem="gCb-ZB-ng0" firstAttribute="centerX" secondItem="u1Y-sQ-ma1" secondAttribute="centerX" id="fue-8B-VLp"/>
+                            <constraint firstItem="5tF-ek-EBJ" firstAttribute="top" secondItem="Fip-HN-bjn" secondAttribute="bottom" constant="8" id="dov-xY-qKS"/>
                             <constraint firstItem="qUT-cL-sZ8" firstAttribute="top" secondItem="tN0-LW-7Oc" secondAttribute="top" constant="20" id="id0-KP-qGe"/>
                             <constraint firstItem="tN0-LW-7Oc" firstAttribute="trailing" secondItem="5tF-ek-EBJ" secondAttribute="trailing" id="kU2-Pr-3OG"/>
                             <constraint firstItem="5tF-ek-EBJ" firstAttribute="trailing" secondItem="tN0-LW-7Oc" secondAttribute="trailing" id="pZL-p6-Y9e"/>
@@ -476,13 +469,12 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="5tF-ek-EBJ" id="Ogz-GI-LgH"/>
-                        <outlet property="updatedCalories" destination="gCb-ZB-ng0" id="jlT-x3-V2g"/>
                         <segue destination="Rym-Pa-Msl" kind="show" identifier="editToMain" id="sUK-5B-u0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7Y-6O-dxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2875" y="-711"/>
+            <point key="canvasLocation" x="2873.913043478261" y="-711.16071428571422"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

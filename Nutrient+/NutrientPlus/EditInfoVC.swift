@@ -46,7 +46,6 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var nutrientTargets = [String: Float]()
     
     @IBOutlet weak var updatedCalories: UITextField!
-    var calorieValue = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +99,6 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     @IBAction func done(_ sender: Any) {
-        self.calorieValue = updatedCalories.text!
         print("CollectionCell has contents...")
         CollectionOfCell.forEach { cell in
             print(cell.NutrientName.text!)
@@ -119,11 +117,6 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ViewController
-        vc.calories = self.calorieValue
-        print("")
-        print("")
-        print("***setting nutrientTargets[Energy] = \(calorieValue)")
-        nutrientTargets["Energy"] = (calorieValue as NSString).floatValue
         //Error: some of these values are empty so it is being passed as empty back
         vc.nutrientTargets = self.nutrientTargets
         vc.nutrients = self.nutrients
