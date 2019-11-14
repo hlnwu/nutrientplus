@@ -9,6 +9,8 @@
 //import Foundation
 
 //Tutorial for semaphores and dispatchGroup: youtube.com/watch?v=6rJN_ECd1XM
+//forums.developer.apple.com/thread/110319
+
 import UIKit
 
 class AddFoods: UIViewController {
@@ -75,12 +77,25 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
         let foodID = card.foodID            //Get the foodID of the tapped cell.
         requestObj.getNutrients(foodID: foodID)        //Do GET Request with the foodID to get nutrients
         printNutrients()
-        performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
+        
+        //when food gets
+        APIRequest.dispatchGroup.notify(queue: .main){
+            self.performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //var mainViewController = segue.destination as! ViewController
-        //mainViewController.nutrients
+        let mainViewController = segue.destination as! ViewController
+        print(AddFoods.nutrientCards)
+
+        for items in AddFoods.nutrientCards{
+            //if (mainViewController.nutrients[items.nutrientName] != nil){
+            mainViewController.nutrients.updateValue(Float(items.amount), forKey: items.nutrientName)
+                //mainViewController.nutrients[items.nutrientName]! = Float(items.amount)
+            //}
+        }
+        print(mainViewController.nutrients)
+        
     }
 }
 

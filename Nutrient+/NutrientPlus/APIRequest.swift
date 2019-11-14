@@ -14,20 +14,20 @@ struct APIRequest{
                                 "Protein":                              "Protein",      //1003
                                 "Carbohydrate, by difference":          "Carbs",        //1005
                                 "Total lipid (fat)":                    "Fat",          //1004
-                                "Thiamine":                             "B1",           //1165
+                                "Thiamine":                             "B1",           //1165      //Dont have
                                 "Riboflavin":                           "B2",           //1166
                                 "Niacin":                               "B3",           //1167
                                 "Pantothenic acid":                     "B5",           //1170
                                 "Vitamin B-6":                          "B6",           //1175
                                 "Vitamin B-12":                         "B12",          //1178
                                 "Folate, total":                        "Folate",       //1187
-                                "Vitamin A, IU":                        "Vitamin A",    //1104
+                                "Vitamin A, IU":                        "Vitamin A",    //1104      //Dont have
                                 "Vitamin C, total ascorbic acid":       "Vitamin C",    //1162
                                 "Vitamin D":                            "Vitamin D",    //1110
                                 "Vitamin E (label entry primarily)":    "Vitamin E",    //1124
                                 "Vitamin K (phylloquinone)":            "Vitamin K",    //1185
                                 "Calcium, Ca":                          "Calcium",      //1087
-                                "Copper, Cu":                           "Copper",       //1098
+                                "Copper, Cu":                           "Copper",       //1098      //Dont have
                                 "Iron, Fe":                             "Iron",         //1089
                                 "Magnesium, Mg":                        "Magnesium",    //1090
                                 "Manganese, Mn":                        "Manganese",    //1101
