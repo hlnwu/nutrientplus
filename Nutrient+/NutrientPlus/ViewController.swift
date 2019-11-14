@@ -47,12 +47,17 @@ class ViewController: UIViewController {
         transferDataLabel.text = calories
         tableView.delegate = self
         tableView.dataSource = self
+        APIRequest.dispatchGroup.notify(queue: .main){ //BLOCK until mutex is freed.
+            print (self.nutrients)
+
+        }
         cards = populate()
         print("height is equal to ----------> ", height)
         print("weight is equal to ----------> ", weight)
          print("gender is equal to ----------> ", gender)
         let ans=calculate(weight: weight, gender: gender)
         print(ans)
+        tableView.reloadData()
         
         // Do any additional setup after loading the view.
     }
@@ -62,7 +67,7 @@ class ViewController: UIViewController {
         //create an array of Card
         var tempCards: [Card] = []
         //create a dictionary of nutrient name to value
-        var nutrients = [String: Float]()
+        //var nutrients = [String: Float]()
         //initial settings
         nutrients["Energy"] = (calories as NSString).floatValue
         nutrients["Protein"] = 200
