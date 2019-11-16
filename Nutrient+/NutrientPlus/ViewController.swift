@@ -55,6 +55,46 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
+        self.displayRecFoodImg()
+        
+        print("***in ViewController.swift***")
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
+            print("Reseting nutrients and creating targets;targetsEdited = false")
+            //reset nutrient progress and create the target goals
+            resetNutrients()
+            createTargets()
+        }
+        print("Printing Nutrients")
+        print(nutrients)
+        print("Printing Nutrient Targets:")
+        print(nutrientTargets)
+        cards = populate()
+        let test: NSFetchRequest<User>  = User.fetchRequest()
+        do{
+            let  user=try PersistenceService.context.fetch(test)
+            self.user=user
+            length=user.count-1
+            print(length);
+            //print(user[length].weight!);
+            weight=user[length].weight?.floatValue ?? 0
+            height=Float(user[length].height);
+            gender=user[length].sex ?? "male"
+            //birthdate=user[length].birthday!
+        }catch{}
+
+        let recommendations1 = recommend1()
+        print("Recommendations1:")
+        print(recommendations1)
+        
+    }
+    
+    func displayRecFoodImg() {
         // grab an image from the Internet
         let URLString: String = "https://images-na.ssl-images-amazon.com/images/I/91iX-arSDcL._SL1500_.jpg"
         let recFoodURL = URL(string: URLString)
@@ -89,41 +129,6 @@ class ViewController: UIViewController {
         }
         
         createWebSession.resume()
-        
-        // Do any additional setup after loading the view.
-        
-        print("***in ViewController.swift***")
-
-        tableView.delegate = self
-        tableView.dataSource = self
-        if !targetsEdited {//if nutrient targets werent edited in EditInfoVC
-            print("Reseting nutrients and creating targets;targetsEdited = false")
-            //reset nutrient progress and create the target goals
-            resetNutrients()
-            createTargets()
-        }
-        print("Printing Nutrients")
-        print(nutrients)
-        print("Printing Nutrient Targets:")
-        print(nutrientTargets)
-        cards = populate()
-        let test: NSFetchRequest<User>  = User.fetchRequest()
-        do{
-            let  user=try PersistenceService.context.fetch(test)
-            self.user=user
-            length=user.count-1
-            print(length);
-            //print(user[length].weight!);
-            weight=user[length].weight?.floatValue ?? 0
-            height=Float(user[length].height);
-            gender=user[length].sex ?? "male"
-            //birthdate=user[length].birthday!
-        }catch{}
-
-        let recommendations1 = recommend1()
-        print("Recommendations1:")
-        print(recommendations1)
-        
     }
     
     func recommend1() -> [String: Float] {
