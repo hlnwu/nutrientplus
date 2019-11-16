@@ -50,27 +50,10 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("***in EditInfoVC***")
-        print("Printing nutrient targets")
-        printTargets()
+//        print("***in EditInfoVC***")
         tableView.delegate = self
         tableView.dataSource = self
         targetCards = createNutrientCells()
-    }
-    
-    func printTargets() {
-        print("Macros")
-        for item in macros {
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
-        }
-        print("Vitamins")
-        for item in vitamins {
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
-        }
-        print("Minerals")
-        for item in minerals {
-            print("nutrientTargets[\(item)]: \(nutrientTargets[item] ?? -1)")
-        }
     }
     
     func createNutrientCells() -> [TargetCard] {
@@ -78,21 +61,21 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         var tempTargets: [TargetCard] = []
         var card: TargetCard
         //initial settings
-        print("createNutrientCells: Macros")
+//        print("createNutrientCells: Macros")
         for item in macros {
-            print("\(item): \(nutrientTargets[item] ?? 0)")
+//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
-        print("createNutrientCells: Vitamins")
+//        print("createNutrientCells: Vitamins")
         for item in vitamins {
-            print("\(item): \(nutrientTargets[item] ?? 0)")
+//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
-        print("createNutrientCells: Minerals")
+//        print("createNutrientCells: Minerals")
         for item in minerals {
-            print("\(item): \(nutrientTargets[item] ?? 0)")
+//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
@@ -101,28 +84,21 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func done(_ sender: Any) {
         self.calorieValue = updatedCalories.text!
-        print("CollectionCell has contents...")
+//        print("CollectionCell has contents...")
         CollectionOfCell.forEach { cell in
-            print(cell.NutrientName.text!)
-            print(cell.NewNutrientValue.text!)
+//            print(cell.NutrientName.text!)
+//            print(cell.NewNutrientValue.text!)
             if(cell.NewNutrientValue.text != "") {
                 nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
-                print("\(cell.NewNutrientValue.text!) entered so adding to nutrientTargets")
+//                print("\(cell.NewNutrientValue.text!) entered so adding to nutrientTargets")
             }
         }
-        print()
-        print("PRINTING TARGETS AFTER PRESSING DONE")
-        print()
-        printTargets()
         performSegue(withIdentifier: "editToMain", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ViewController
         vc.calories = self.calorieValue
-        print("")
-        print("")
-        print("***setting nutrientTargets[Energy] = \(calorieValue)")
         nutrientTargets["Energy"] = (calorieValue as NSString).floatValue
         //Error: some of these values are empty so it is being passed as empty back
         vc.nutrientTargets = self.nutrientTargets
@@ -140,7 +116,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //if nutrient type; placeholder = g/mg/cups
         cell.configure(text: "", placeholder: "(g)")
         CollectionOfCell.append(cell)
-        print("Appending:", cell.NutrientName.text!)
+//        print("Appending:", cell.NutrientName.text!)
         return cell
     }
 }
