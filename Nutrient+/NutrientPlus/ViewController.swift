@@ -9,6 +9,8 @@
 
 import UIKit
 import CoreData
+import SQLite
+
 struct Card {
     var nutritionLabel : String
     var progressPercent : Float
@@ -20,7 +22,7 @@ class NutritionCards: UITableViewCell {
     @IBOutlet weak var nutritionTitleLabel: UILabel!
 }
 
-class ViewController: UIViewController {	
+class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
     var height: Float = 0.0
@@ -51,10 +53,10 @@ class ViewController: UIViewController {
     var nutrientTargets = [String: Float]()
     var targetsEdited = false
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // Do any additional setup after loading the view.
         
         self.displayRecFoodImg()
