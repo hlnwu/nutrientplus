@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:NutrientPlus.xcodeproj">
+      location = "group:/Users/DSCommons/Documents/nutrientplus/Nutrient+/NutrientPlus/AddFoods.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
