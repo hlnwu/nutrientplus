@@ -259,7 +259,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutritionCards", for: indexPath) as! NutritionCards
-        let card = cards[indexPath.row]
+let card = cards[indexPath.row]
         cell.nutritionTitleLabel?.text = card.nutritionLabel
         cell.nutritionProgressView?.progress = card.progressPercent
         cell.nutritionProgressView?.progressTintColor = card.color

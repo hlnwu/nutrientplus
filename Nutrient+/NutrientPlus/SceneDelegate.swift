@@ -53,13 +53,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
-//        print("scenewillresignactive")
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-//        print("scenewillenterforeground")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -68,6 +61,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
+        
+        // startup page displays once
+        func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
+
+            if !UserDefaults.standard.bool(forKey: "didSee") {
+                 UserDefaults.standard.set(true, forKey: "didSee")
+
+                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                 let viewController = storyboard.instantiateViewController(withIdentifier: "Startup")
+                 self.window?.rootViewController = viewController
+                 self.window?.makeKeyAndVisible()
+            }
+
+            return true
+        }
+        
+        //PersistenceService.saveContext()
 //        print("scenedidenterbackground")
         PersistenceService.saveContext()
     }
