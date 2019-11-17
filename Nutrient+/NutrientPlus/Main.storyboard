@@ -449,17 +449,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcr-Tj-nmg" customClass="DesignableView" customModule="NutrientPlus" customModuleProvider="target">
                                     <rect key="frame" x="50" y="200" width="275" height="412"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n4o-mm-b9E">
-                                            <rect key="frame" x="30" y="30" width="254" height="262"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <string key="text">Recommended food data will be displayed here. This is just a placeholder.  Anyways, how is your day? I hope you're doing fine! You've got this! Keep it up!</string>
-                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHB-H8-FPy">
-                                            <rect key="frame" x="30" y="362" width="25" height="30"/>
+                                            <rect key="frame" x="30" y="362" width="65" height="30"/>
                                             <state key="normal" title="Refresh"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Zd-Lb-jxn">
@@ -477,16 +468,28 @@
                                             <rect key="frame" x="205" y="362" width="40" height="30"/>
                                             <state key="normal" title="Ate it!"/>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n4o-mm-b9E">
+                                            <rect key="frame" x="10" y="40" width="254" height="272"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <string key="text">Recommended food data will be displayed here. This is just a placeholder.  Anyways, how is your day? I hope you're doing fine! You've got this! Keep it up!</string>
+                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="eHB-H8-FPy" secondAttribute="bottom" constant="20" id="4rI-jV-fGZ"/>
                                         <constraint firstItem="4Zd-Lb-jxn" firstAttribute="top" secondItem="Wcr-Tj-nmg" secondAttribute="top" constant="10" id="DWW-q6-CY9"/>
                                         <constraint firstAttribute="trailing" secondItem="fed-Ff-mrC" secondAttribute="trailing" constant="30" id="Dqx-51-xpD"/>
+                                        <constraint firstAttribute="bottom" secondItem="n4o-mm-b9E" secondAttribute="bottom" constant="100" id="Dsx-fS-jWG"/>
                                         <constraint firstAttribute="bottom" secondItem="fed-Ff-mrC" secondAttribute="bottom" constant="20" id="Otc-d2-RNq"/>
                                         <constraint firstAttribute="trailing" secondItem="4Zd-Lb-jxn" secondAttribute="trailing" constant="10" id="T0b-hH-fQN"/>
-                                        <constraint firstAttribute="trailing" secondItem="eHB-H8-FPy" secondAttribute="trailing" constant="220" id="Ycv-8j-XZd"/>
+                                        <constraint firstAttribute="trailing" secondItem="eHB-H8-FPy" secondAttribute="trailing" constant="180" id="Ycv-8j-XZd"/>
+                                        <constraint firstItem="n4o-mm-b9E" firstAttribute="top" secondItem="Wcr-Tj-nmg" secondAttribute="top" constant="40" id="YxZ-5O-5gc"/>
+                                        <constraint firstItem="n4o-mm-b9E" firstAttribute="leading" secondItem="Wcr-Tj-nmg" secondAttribute="leading" constant="10" id="cKe-5p-KxO"/>
                                         <constraint firstItem="eHB-H8-FPy" firstAttribute="leading" secondItem="Wcr-Tj-nmg" secondAttribute="leading" constant="30" id="fDb-hX-ZRs"/>
+                                        <constraint firstAttribute="trailing" secondItem="n4o-mm-b9E" secondAttribute="trailing" constant="11" id="rUt-d7-7KP"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
