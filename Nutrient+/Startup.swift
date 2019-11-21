@@ -111,6 +111,10 @@ class Startup: UIViewController {
                 user.weight = rawWeight
                 print("weight is dnv : ",user.weight!)
             }
+            
+            // storing the height and weight unit
+            user.heightUnit = heightUnitString
+            user.weightUnit = weightUnitString
 
             user.bodyFat = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
             user.sex = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
