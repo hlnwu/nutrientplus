@@ -796,6 +796,15 @@
                         <viewLayoutGuide key="safeArea" id="tBv-Z3-tnI"/>
                     </view>
                     <navigationItem key="navigationItem" id="jkb-rB-FNi"/>
+                    <connections>
+                        <outlet property="birthdayField" destination="Etv-mY-dPu" id="d19-eH-S5l"/>
+                        <outlet property="bodyFatField" destination="Ewt-VB-nat" id="MGg-8e-LCT"/>
+                        <outlet property="heightField" destination="ACi-md-VNW" id="vBl-0x-f5J"/>
+                        <outlet property="heightUnit" destination="1Z9-MA-AEH" id="B1H-TH-P70"/>
+                        <outlet property="sex" destination="7Kh-aG-mac" id="Vkg-55-pTS"/>
+                        <outlet property="weightFIeld" destination="xFJ-O2-1ET" id="uGF-3r-rqL"/>
+                        <outlet property="weightUnit" destination="dK4-9G-UZ9" id="OAW-PJ-8jE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8S-bg-auI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
