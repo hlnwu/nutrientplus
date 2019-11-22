@@ -21,7 +21,7 @@ class SQLiteDatabase {
   
   private init() {
     let path = NSSearchPathForDirectoriesInDomains(
-        .DocumentDirectory, .UserDomainMask, true
+        .documentDirectory, .userDomainMask, true
         ).first!
 
     do {
@@ -46,4 +46,106 @@ class SQLiteDatabase {
         print("Unable to create table")
     }
   }
+    
+    //INSERT INTO "nutrTable" ("nutrName", "nutrWeight", "nutrTarget", "nutrProgress") VALUES (nutrProgress, iWeight, iWeight, iProgress)
+    func addNutr(iName: String, iWeight: Int64, iTarget: Int64, iProgress: Int64) -> Int64? {
+        do {
+            let insert = nutrTable.insert(nutrName <- iName, nutrWeight <- iWeight, nutrTarget <- iTarget, nutrProgress <- iProgress)
+            let id = try db!.run(insert)
+            return id
+        } catch {
+            print("Insert failed")
+            return -1
+        }
+    }
+    
+    //SELECT * FROM "nutrTable"
+    func getNutr() -> [NutrientStruct] {
+        var nutrientArray = [NutrientStruct]()
+        do {
+            for nutrient in try db!.prepare(self.nutrTable) {
+                nutrientArray.append(NutrientStruct(
+                nutrName: nutrient[nutrName],
+                nutrWeight: nutrient[nutrWeight],
+                nutrTarget: nutrient[nutrTarget],
+                nutrProgress: nutrient[nutrProgress]))
+            }
+        } catch {
+            print("Select failed")
+        }
+
+        return nutrientArray
+    }
+
+    //function for printing the contents of the nutrTable
+    func printNutrTable() {
+        var storedNutrientData = [NutrientStruct]()
+        storedNutrientData = getNutr()
+        for nutrient in storedNutrientData {
+            print("Name: \(nutrient.nutrName), Weight: \(nutrient.nutrWeight), Target: \(nutrient.nutrTarget), Progress: \(nutrient.nutrProgress)")
+        }
+    }
+    
+    func updateWeight(iName: String, iWeight: Int64) -> Bool {
+        let nutrient = nutrTable.filter(nutrName == iName)
+        do {
+            let update = nutrient.update([
+                nutrName <- iName,
+                nutrWeight <- iWeight
+                ])
+            if try db!.run(update) > 0 {
+                return true
+            }
+        } catch {
+            print("Update failed: \(error)")
+        }
+
+        return false
+    }
+    
+    func updateTarget(iName: String, iTarget: Int64) -> Bool {
+        let nutrient = nutrTable.filter(nutrName == iName)
+        do {
+            let update = nutrient.update([
+                nutrName <- iName,
+                nutrTarget <- iTarget
+                ])
+            if try db!.run(update) > 0 {
+                return true
+            }
+        } catch {
+            print("Update failed: \(error)")
+        }
+
+        return false
+    }
+    
+    func updateProgress(iName: String, iProgress: Int64) -> Bool {
+        let nutrient = nutrTable.filter(nutrName == iName)
+        do {
+            let update = nutrient.update([
+                nutrName <- iName,
+                nutrProgress <- iProgress
+                ])
+            if try db!.run(update) > 0 {
+                return true
+            }
+        } catch {
+            print("Update failed: \(error)")
+        }
+
+        return false
+    }
+    
+    
+    func deleteNutrient(iName: String) -> Bool {
+        do {
+            let nutrient = nutrTable.filter(nutrName == iName)
+            try db!.run(nutrient.delete())
+            return true
+        } catch {
+            print("Delete failed")
+        }
+        return false
+    }
 }
