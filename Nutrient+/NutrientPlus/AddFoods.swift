@@ -17,6 +17,7 @@ class AddFoods: UIViewController {
     @IBOutlet weak var foodTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var numberOfServings: UITextField?
     var userInput : String = ""
     static var foodCards: [foodInfo] = []
     static var nutrientCards: [nutrientInfo] = []
@@ -53,6 +54,9 @@ class AddFoods: UIViewController {
             self.foodTableView.reloadData() //Update tableview
         }
     }
+    
+    
+    
 }
 
 //Extension functions to make tableView recycle cells.
@@ -75,27 +79,46 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let card = AddFoods.foodCards[indexPath.row] //Retrieve card of cell that was tapped.
         let foodID = card.foodID            //Get the foodID of the tapped cell.
-        requestObj.getNutrients(foodID: foodID)        //Do GET Request with the foodID to get nutrients
-//        printNutrients()
+        displayServingSizeAlert(fdcID: foodID)
         
         //when food gets
-        APIRequest.dispatchGroup.notify(queue: .main){
-            self.performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
-        }
+  
     }
+    
+    func displayServingSizeAlert(fdcID: Int){
+        let displayAlertController = UIAlertController(title: "How many servings?", message: nil, preferredStyle: .alert)
+        displayAlertController.addTextField(configurationHandler: numberOfServingsHandler)
+        displayAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        displayAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:{ action in
+            let servings = (self.numberOfServings?.text)!
+            self.requestObj.getNutrient(foodID: fdcID, numberOfServings: Int(servings) ?? 1)
+            APIRequest.dispatchGroup.notify(queue: .main){
+                self.performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
+            }
+        }))
+        
+        self.present(displayAlertController, animated: true)
+    }
+    
+    func numberOfServingsHandler(servingsTextField: UITextField!){
+        numberOfServings = servingsTextField
+        numberOfServings?.placeholder = "Number of Servings"
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
-//        print(AddFoods.nutrientCards)
 
         for items in AddFoods.nutrientCards{
-            //if (mainViewController.nutrients[items.nutrientName] != nil){
-            mainViewController.nutrients.updateValue(Float(items.amount), forKey: items.nutrientName)
-                //mainViewController.nutrients[items.nutrientName]! = Float(items.amount)
-            //}
+            if (mainViewController.nutrients.keys.contains(items.nutrientName)){
+                mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + Float(items.amount)
+                print("WTFFFFFFFF?")
+            }
+            else {
+                mainViewController.nutrients.updateValue(Float(items.amount), forKey: items.nutrientName)
+            }
         }
-//        print("TESTTTTTTTTTTTTTTTTT: " ,mainViewController.nutrients)
-        
+        print (mainViewController.nutrients)
     }
 }
 

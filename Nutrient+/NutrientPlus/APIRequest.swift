@@ -81,7 +81,7 @@ struct APIRequest{
         }.resume()
     }
     
-    func getNutrients(foodID: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
+    func getNutrient(foodID: Int, numberOfServings: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
         APIRequest.dispatchGroup.enter()
         AddFoods.nutrientCards = []
         let foodIDString = String(foodID)
@@ -93,7 +93,7 @@ struct APIRequest{
             do {
                 let nutrientDescription = try JSONDecoder().decode(NutrientDescription.self, from: data)
                 for items in (nutrientDescription.foodNutrients){
-                    let amount = items.amount
+                    let amount = items.amount * Double(numberOfServings)
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
                     if (self.nutrientDictionary[nutrientName] != nil){
