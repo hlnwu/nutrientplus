@@ -32,20 +32,6 @@ class Startup: UIViewController {
     
     var birthdate: Date!
     
-    // transfering data between storyboards
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let Destvc = segue.destination as! ViewController
-//
-//
-//        let myFloat = (heightField.text! as NSString).floatValue
-//        let weightFloat = (weightField.text! as NSString).floatValue
-//        Destvc.height=myFloat
-//        Destvc.weight=weightFloat
-//        Destvc.tester="changed"
-//        let title = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
-//        Destvc.gender=title!
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,14 +59,6 @@ class Startup: UIViewController {
     }
     
     @IBAction func storeVar(_ sender: Any) {
-        // storing user input into local data temporarily
-//        let defaults = UserDefaults.standard
-//        defaults.set(heightField.text, forKey: defaultsKeys.heightKey)
-//        defaults.set(weightField.text, forKey: defaultsKeys.weightKey)
-//        defaults.set(bodyFatField.text, forKey: defaultsKeys.bodyFatKey)
-//
-//        defaults.synchronize()
-        
         // storing data into Core Data only when fields aren't empty
         if heightField.text!.count != 0 && weightField.text!.count != 0
             && bodyFatField.text!.count != 0 && birthdate != nil {
@@ -116,7 +94,7 @@ class Startup: UIViewController {
             user.heightUnit = heightUnitString
             user.weightUnit = weightUnitString
 
-            user.bodyFat = NumberFormatter().number(from: heightField.text!) as? NSDecimalNumber
+            user.bodyFat = formatter.number(from: bodyFatField.text!) as? NSDecimalNumber ?? 0
             user.sex = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
             user.birthday = birthdate
             
@@ -131,7 +109,6 @@ class Startup: UIViewController {
             let emptyAlertController = UIAlertController(title:"Detected one or more empty fields", message: "Please fill in all the fields.", preferredStyle: .alert)
             emptyAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
             present(emptyAlertController, animated: true)
-            
         }
         
     }

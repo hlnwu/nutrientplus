@@ -139,6 +139,7 @@
 				87AB58752362588900F7659E /* User+CoreDataProperties.swift */,
 				87057A0C23690B7300EDD916 /* UserInfo.swift */,
 				87501F5B235FDE4100BDE456 /* Startup.swift */,
+				8769E72223868210007F45D3 /* EditProfile.swift */,
 				87727942235E1D6800609D79 /* Assets.xcassets */,
 				87727947235E1D6800609D79 /* LaunchScreen.storyboard */,
 				87727972235E277900609D79 /* ViewController.swift */,
@@ -151,7 +152,6 @@
 				71E7C9A5236C00A300FB8110 /* APIStructs.swift */,
 				87727944235E1D6800609D79 /* Preview Content */,
 				8723272923727BD100E732D3 /* RecFoodInfo.swift */,
-				8769E72223868210007F45D3 /* EditProfile.swift */,
 			);
 			path = NutrientPlus;
 			sourceTree = "<group>";

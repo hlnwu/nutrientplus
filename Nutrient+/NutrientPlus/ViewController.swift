@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     }
     
     func displayRecFoodImg() {
-        self.recFoodImgScrape()
+        // self.recFoodImgScrape()
         // grab an image from the Internet
         let URLString: String = "https://images-na.ssl-images-amazon.com/images/I/91iX-arSDcL._SL1500_.jpg"
         let recFoodURL = URL(string: URLString)
