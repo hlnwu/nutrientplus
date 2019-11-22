@@ -20,8 +20,9 @@ class SQLiteDatabase {
   private let nutrProgress = Expression<Int64>("nutrProgress")
   
   private init() {
+    print("calling init on the database")
     let path = NSSearchPathForDirectoriesInDomains(
-        .DocumentDirectory, .UserDomainMask, true
+        .documentDirectory, .userDomainMask, true
         ).first!
 
     do {
@@ -35,6 +36,7 @@ class SQLiteDatabase {
   }
 
   func createTable() {
+    print("calling createTable")
     do {
         try db!.run(nutrTable.create(ifNotExists: true) { table in
         table.column(nutrName, primaryKey: true)
@@ -46,4 +48,19 @@ class SQLiteDatabase {
         print("Unable to create table")
     }
   }
+    func printStuff() {
+        print("Hi! I am a function in SQLiteDatabase.swift!")
+    }
+    
+    func addNutr(iName: String, iWeight: Int64, iTarget: Int64, iProgress: Int64) -> Int64? {
+        do {
+            let insert = nutrTable.insert(nutrName <- iName, nutrWeight <- iWeight, nutrTarget <- iTarget, nutrProgress <- iProgress)
+            let id = try db!.run(insert)
+
+            return id
+        } catch {
+            print("Insert failed")
+            return -1
+        }
+    }
 }

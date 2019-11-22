@@ -50,16 +50,12 @@ class ViewController: UIViewController {
     //nutrientTargets stores the daily targets
     var nutrientTargets = [String: Float]()
     var targetsEdited = false
-    
+    let nutrDB = SQLiteDatabase.instance
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
         self.displayRecFoodImg()
-        
-        //print("***in ViewController.swift***")
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,30 +66,26 @@ class ViewController: UIViewController {
             //resetNutrients()
             createTargets()
         }
-//        print("Printing Nutrients")
-//        print(nutrients)
-//        print("Printing Nutrient Targets:")
-//        print(nutrientTargets)
         self.cards = self.populate()
         let test: NSFetchRequest<User>  = User.fetchRequest()
         do{
             let  user=try PersistenceService.context.fetch(test)
             self.user=user
             length=user.count-1
-//            print(length);
-            //print(user[length].weight!);
             weight=user[length].weight?.floatValue ?? 0
             height=Float(user[length].height);
             gender=user[length].sex ?? "male"
-            //birthdate=user[length].birthday!
         }catch{}
-
-        //let recommendations1 = recommend1()
-//        print("Recommendations1:")
-        //print(recommendations1)
-        //not sure if this is necessary
-        //tableView.reloadData()
         
+        //testing calling functions in SQLiteDatabase.swift
+        nutrDB.printStuff()
+        let insertTest = nutrDB.addNutr(iName: "Protein", iWeight: 500, iTarget: 200, iProgress: 50)
+        if insertTest == -1 {
+            print("insert failed")
+        }
+        else {
+            print("insert succeeded!")
+        }
     }
     
     func displayRecFoodImg() {
