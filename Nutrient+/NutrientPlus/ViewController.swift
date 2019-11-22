@@ -6,9 +6,12 @@
 //  Copyright © 2019 Robert Sato. All rights reserved.
 //
 // image retrieval tutorial: https:// www.youtube.com/watch?v=bF9cEcte0-E&t=623s
+// URL retrieval through web scraping: https:// www.youtube.com/watch?v=gscuaUSkxnI
 
 import UIKit
+import WebKit
 import CoreData
+
 struct Card {
     var nutritionLabel : String
     var progressPercent : Float
@@ -97,6 +100,7 @@ class ViewController: UIViewController {
     }
     
     func displayRecFoodImg() {
+        // self.recFoodImgScrape()
         // grab an image from the Internet
         let URLString: String = "https://images-na.ssl-images-amazon.com/images/I/91iX-arSDcL._SL1500_.jpg"
         let recFoodURL = URL(string: URLString)
@@ -131,6 +135,29 @@ class ViewController: UIViewController {
         }
         
         createWebSession.resume()
+    }
+    
+    func recFoodImgScrape() {
+        let googImgBaseURL = "https://www.google.com/search?tbm=isch&q="
+        let recFood = "banana"
+
+        let recFoodURL = URL(string: googImgBaseURL + recFood)!
+
+        let task = URLSession.shared.dataTask(with: recFoodURL) { (data, resp, error) in
+            guard let data = data else {
+                print("data was nil")
+                return
+            }
+            
+            guard let htmlString = String(data: data, encoding: String.Encoding.utf8) else {
+                print("canot cast data into string")
+                return
+            }
+            
+            print("*****HTML STRING HERE*****", htmlString)
+        }
+        
+        task.resume()
     }
     
     func recommend1() -> [String: Float] {

@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // uncomment line 32 to see startup page again
         // you know you love the startup page and its unskippable features
         // don't deny it
-        //UserDefaults.standard.removeObject(forKey: "userInfoExists")
+        // UserDefaults.standard.removeObject(forKey: "userInfoExists")
         
         //print("scene")
         
