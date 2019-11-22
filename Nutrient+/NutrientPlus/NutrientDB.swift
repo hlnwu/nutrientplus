@@ -48,19 +48,18 @@ class NutrientDB{
     let Sugar = Expression<Float>("Sugar")
     let Fiber = Expression<Float>("Fiber")
     
-
-    do {
-        //let pathURL = Bundle.main.url(forResource: "NutrientDB", ofType: "sqlite3")!
-        //let dbPath = dbUrl.path
-        //let db = try! Connection(dbPath)
-        
-        let path = Bundle.main.path(forResource: "NutrientDB", ofType: "sqlite3")!
-        let database = try Connection(path, readonly: true)
-        self.database = database
-    } catch {
-        print(error)
-    }
+    let path = Bundle.main.path(forResource: "NutrientDB", ofType: "sqlite3")!
     
+    func test(){
+        do {
+            let database = try Connection(path, readonly: true)
+            self.database = database
+            //try db.key("")
+        } catch {
+            print(error)
+        }
+    }
+    /*
     func listNutrients(){
         print("LISTING NUTRIENTS")
         
@@ -72,8 +71,7 @@ class NutrientDB{
             print(test)
         } catch{
             print(error)
-        }
+        }*/
         */
-    }
 
 }

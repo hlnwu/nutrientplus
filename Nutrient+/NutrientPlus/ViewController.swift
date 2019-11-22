@@ -9,7 +9,6 @@
 
 import UIKit
 import CoreData
-import SQLite
 
 struct Card {
     var nutritionLabel : String
