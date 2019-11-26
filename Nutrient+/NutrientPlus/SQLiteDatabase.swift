@@ -105,7 +105,7 @@ class SQLiteDatabase {
         return false
     }
     
-    func updateTarget(iName: String, iTarget: Int64) -> Bool {
+    func updateTarget(iName: String, iTarget: Int64) {
         let nutrient = nutrTable.filter(nutrName == iName)
         do {
             let update = nutrient.update([
@@ -113,13 +113,13 @@ class SQLiteDatabase {
                 nutrTarget <- iTarget
                 ])
             if try db!.run(update) > 0 {
-                return true
+//                return true
             }
         } catch {
             print("Update failed: \(error)")
         }
 
-        return false
+//        return false
     }
     
     func updateProgress(iName: String, iProgress: Int64) -> Bool {
@@ -149,5 +149,21 @@ class SQLiteDatabase {
             print("Delete failed")
         }
         return false
+    }
+    
+    func initTargets(weight : Float,gender : String,length : NSInteger, birthdate : Date  ){
+        let calendar = Calendar.current
+                 let birthday = birthdate
+                 let now = Date()
+                 let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+                 let age = ageComponents.year!
+            let ans=0.9*weight*24
+            let intAns:Int = Int(ans)
+            let ans1=Float(intAns)
+        print("Energy = \(ans1)")
+        addNutr(iName: "Energy", iWeight: 0, iTarget: 0, iProgress: 0)
+        printNutrTable()
+        updateTarget(iName: "Energy", iTarget: Int64(ans1))
+        printNutrTable()
     }
 }

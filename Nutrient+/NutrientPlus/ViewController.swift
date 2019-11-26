@@ -80,38 +80,13 @@ class ViewController: UIViewController {
         }catch{}
 
         //SQL DB stuff
-        
         //delete before inserting
-        var deleteFlag = nutrDB.deleteNutrient(iName: "protein")
-        if deleteFlag {
-            print("deletion worked!")
-        }
-        else {
-            print("insertion failed :/")
-        }
-        deleteFlag = nutrDB.deleteNutrient(iName: "calories")
-        if deleteFlag {
-            print("deletion worked!")
-        }
-        else {
-            print("insertion failed :/")
-        }
+        nutrDB.deleteNutrient(iName: "protein")
+        nutrDB.deleteNutrient(iName: "calories")
 
         //testing insertion
-        var addTrue = nutrDB.addNutr(iName: "protein", iWeight: 500, iTarget: 200, iProgress: 40)
-        if addTrue != -1 {
-            print("insertion worked!")
-        }
-        else {
-            print("insertion failed :/")
-        }
-        addTrue = nutrDB.addNutr(iName: "calories", iWeight: 300, iTarget: 100, iProgress: 20)
-        if addTrue != -1 {
-            print("insertion worked!")
-        }
-        else {
-            print("insertion failed :/")
-        }
+        nutrDB.addNutr(iName: "protein", iWeight: 500, iTarget: 200, iProgress: 40)
+        nutrDB.addNutr(iName: "calories", iWeight: 300, iTarget: 100, iProgress: 20)
 
         //testing retrieval
         storedNutrientData = nutrDB.getNutr()
@@ -119,37 +94,25 @@ class ViewController: UIViewController {
         nutrDB.printNutrTable()
         
         //testing updateWeight
-        var updateflag = nutrDB.updateWeight(iName: "calories", iWeight: 420)
-        if updateflag {
-            print("update worked!")
-        }
-        else {
-            print("update failed :/")
-        }
+        nutrDB.updateWeight(iName: "calories", iWeight: 420)
         print("after updating weight")
         nutrDB.printNutrTable()
         
         //testing updateTarget
-        updateflag = nutrDB.updateTarget(iName: "calories", iTarget: 419)
-        if updateflag {
-            print("update worked!")
-        }
-        else {
-            print("update failed :/")
-        }
+        nutrDB.updateTarget(iName: "calories", iTarget: 419)
         print("after updating target")
         nutrDB.printNutrTable()
         
         //testing updateProgress
-        updateflag = nutrDB.updateProgress(iName: "calories", iProgress: 418)
-        if updateflag {
-            print("update worked!")
-        }
-        else {
-            print("update failed :/")
-        }
+        nutrDB.updateProgress(iName: "calories", iProgress: 418)
         print("after updating progress")
         nutrDB.printNutrTable()
+        //end of SQL DB stuff
+        
+        //testing calculate function
+        nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
+        print("Target for B12 = \(nutrientTargets["B12"])")
+        nutrDB.initTargets(weight: weight, gender: gender, length: length, birthdate: birthdate)
     }
     
     func displayRecFoodImg() {
@@ -189,18 +152,31 @@ class ViewController: UIViewController {
         createWebSession.resume()
     }
     
-    func recommend1() -> [String: Float] {
+    //recommendation that returns lowest % missing
+    func recommend1() -> String {
         var missing_percentage = [String: Float]()
+        var highest_missing_tracker = Float()
+        highest_missing_tracker = 1.0
+        var highest_missing_nutrient = ""
         for item in macros {
             missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+            if missing_percentage[item]! < highest_missing_tracker {
+                highest_missing_nutrient = item
+            }
         }
         for item in vitamins {
             missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+            if missing_percentage[item]! < highest_missing_tracker {
+                highest_missing_nutrient = item
+            }
         }
         for item in minerals {
             missing_percentage[item] = nutrients[item]!/nutrientTargets[item]!
+            if missing_percentage[item]! < highest_missing_tracker {
+                highest_missing_nutrient = item
+            }
         }
-        return missing_percentage
+        return highest_missing_nutrient
     }
     
     func resetNutrients() {
@@ -234,21 +210,17 @@ class ViewController: UIViewController {
         var tempCards: [Card] = []
         
         var card: Card
-//        print("Populate: Macros")
-//        print("HEEERRREEE: ", nutrients)
         for item in macros {
             //set the card to a macro, look up the value in nutrients dictionary, give random color
             //this is not the right calculation for progress
             card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrientTargets[item] ?? 200), color: .random())
             tempCards.append(card)
         }
-//        print("Populate: Vitamins")
         for item in vitamins {
             //set the card to a vitamin, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 10)), color: .random())
             tempCards.append(card)
         }
-//        print("Populate: Minerals")
         for item in minerals {
             //set the card to a mineral, look up the value in nutrients dictionary, give random color
             card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 5)), color: .random())
@@ -269,6 +241,7 @@ class ViewController: UIViewController {
     }
     
 }
+
 func calculate(weight : Float,gender : String,length : NSInteger, birthdate : Date  )->Dictionary<String,Float>{
     var dictionary: [String:Float]=[:]
     print(gender)
