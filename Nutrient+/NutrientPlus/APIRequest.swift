@@ -10,40 +10,41 @@ import Foundation
 struct APIRequest{
     
     //Dictionary to simplify nutrient name
-    let nutrientDictionary = [  "Energy":                               "Energy",       //1008
-                                "Protein":                              "Protein",      //1003
-                                "Carbohydrate, by difference":          "Carbs",        //1005
-                                "Total lipid (fat)":                    "Fat",          //1004
-                                "Thiamine":                             "B1",           //1165      //Dont have
-                                "Riboflavin":                           "B2",           //1166
-                                "Niacin":                               "B3",           //1167
-                                "Pantothenic acid":                     "B5",           //1170
-                                "Vitamin B-6":                          "B6",           //1175
-                                "Vitamin B-12":                         "B12",          //1178
-                                "Folate, total":                        "Folate",       //1187
-                                "Vitamin A, IU":                        "Vitamin A",    //1104      //Dont have
-                                "Vitamin C, total ascorbic acid":       "Vitamin C",    //1162
-                                "Vitamin D":                            "Vitamin D",    //1110
-                                "Vitamin E (label entry primarily)":    "Vitamin E",    //1124
-                                "Vitamin K (phylloquinone)":            "Vitamin K",    //1185
-                                "Calcium, Ca":                          "Calcium",      //1087
-                                "Copper, Cu":                           "Copper",       //1098      //Dont have
-                                "Iron, Fe":                             "Iron",         //1089
-                                "Magnesium, Mg":                        "Magnesium",    //1090
-                                "Manganese, Mn":                        "Manganese",    //1101
-                                "Phosphorus, P":                        "Phosphorus",   //1091
-                                "Potassium, K":                         "Potassium",    //1092
-                                "Selenium, Se":                         "Selenium",     //1103
-                                "Sodium, Na":                           "Sodium",       //1093
-                                "Zinc, Zn":                             "Zinc",         //1095
-                                "Sugars, total including NLEA":         "Sugar",        //2000
-                                "Fiber, total dietary":                 "Fiber",        //1079
-    
+    let nutrientDictionary = [
+        "Energy":                               "Energy",       //1008
+        "Protein":                              "Protein",      //1003
+        "Carbohydrate, by difference":          "Carbs",        //1005
+        "Total lipid (fat)":                    "Fat",          //1004
+        "Thiamine":                             "B1",           //1165      //Dont have
+        "Riboflavin":                           "B2",           //1166
+        "Niacin":                               "B3",           //1167
+        "Pantothenic acid":                     "B5",           //1170
+        "Vitamin B-6":                          "B6",           //1175
+        "Vitamin B-12":                         "B12",          //1178
+        "Folate, total":                        "Folate",       //1187
+        "Vitamin A, IU":                        "Vitamin A",    //1104      //Dont have
+        "Vitamin C, total ascorbic acid":       "Vitamin C",    //1162
+        "Vitamin D":                            "Vitamin D",    //1110
+        "Vitamin E (label entry primarily)":    "Vitamin E",    //1124
+        "Vitamin K (phylloquinone)":            "Vitamin K",    //1185
+        "Calcium, Ca":                          "Calcium",      //1087
+        "Copper, Cu":                           "Copper",       //1098      //Dont have
+        "Iron, Fe":                             "Iron",         //1089
+        "Magnesium, Mg":                        "Magnesium",    //1090
+        "Manganese, Mn":                        "Manganese",    //1101
+        "Phosphorus, P":                        "Phosphorus",   //1091
+        "Potassium, K":                         "Potassium",    //1092
+        "Selenium, Se":                         "Selenium",     //1103
+        "Sodium, Na":                           "Sodium",       //1093
+        "Zinc, Zn":                             "Zinc",         //1095
+        "Sugars, total including NLEA":         "Sugar",        //2000
+        "Fiber, total dietary":                 "Fiber",        //1079
+        
     ]
     
     let API_KEY = "LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L"
     static let dispatchGroup = DispatchGroup() //Works sort of like a semaphore
-
+    
     func getFoods(userInput: String) -> (Void){ //POST request to retrieve json of foods following APIStructs structure.
         APIRequest.dispatchGroup.enter() //mutex.lock
         //The following are the specifications for the POST request.
@@ -72,16 +73,16 @@ struct APIRequest{
                     let foodID = items.fdcId
                     let card = foodInfo(foodName: foodName, brandName: brandName ?? "N/A", foodID: foodID)
                     AddFoods.foodCards.append(card)
-                
+                    
                 }
                 APIRequest.dispatchGroup.leave() //mutex.unlock
             } catch let jsonErr {
                 print ("Error Serializing Json: ", jsonErr)
             }
-        }.resume()
+            }.resume()
     }
     
-    func getNutrients(foodID: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
+    func getNutrient(foodID: Int, numberOfServings: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
         APIRequest.dispatchGroup.enter()
         AddFoods.nutrientCards = []
         let foodIDString = String(foodID)
@@ -93,7 +94,7 @@ struct APIRequest{
             do {
                 let nutrientDescription = try JSONDecoder().decode(NutrientDescription.self, from: data)
                 for items in (nutrientDescription.foodNutrients){
-                    let amount = items.amount
+                    let amount = items.amount * Double(numberOfServings)
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
                     if (self.nutrientDictionary[nutrientName] != nil){
@@ -107,6 +108,6 @@ struct APIRequest{
             } catch let jsonErr {
                 print ("Error Serializing Json: ", jsonErr)
             }
-        }.resume()
+            }.resume()
     }
 }
