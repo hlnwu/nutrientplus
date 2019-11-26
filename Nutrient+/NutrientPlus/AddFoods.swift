@@ -77,14 +77,14 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     
     //The following function checks if a cell has been tapped.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = AddFoods.foodCards[indexPath.row] //Retrieve card of cell that was tapped.
-        let foodID = card.foodID            //Get the foodID of the tapped cell.
+        let card = AddFoods.foodCards[indexPath.row]
+        let foodID = card.foodID
         displayServingSizeAlert(fdcID: foodID)
         
-        //when food gets
-  
+        tableView.deselectRow(at: indexPath, animated: true);
     }
     
+    //The following function displays an alert prompting for user to enter number of servings
     func displayServingSizeAlert(fdcID: Int){
         let displayAlertController = UIAlertController(title: "How many servings?", message: nil, preferredStyle: .alert)
         displayAlertController.addTextField(configurationHandler: numberOfServingsHandler)
@@ -100,15 +100,15 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
         self.present(displayAlertController, animated: true)
     }
     
+    //Handler function to retrieve data when OK is pressed
     func numberOfServingsHandler(servingsTextField: UITextField!){
         numberOfServings = servingsTextField
         numberOfServings?.placeholder = "Number of Servings"
     }
     
-    
+    //Prepare function updates nutrient progress in main VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
-
         for items in AddFoods.nutrientCards{
             if (mainViewController.nutrients.keys.contains(items.nutrientName)){
                 mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + Float(items.amount)
@@ -122,13 +122,12 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-//When user presses enter, do POST request with user input
+//When user presses enter, do POST request with user input to get list of Foods
 extension AddFoods: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         userInput = String(searchBar.text!) //unwraps text
         requestObj.getFoods(userInput:userInput)
         displayFoods()
-        
     }
 }
 

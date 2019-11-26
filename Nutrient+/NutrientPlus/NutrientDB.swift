@@ -12,10 +12,11 @@ import UIKit
 import SQLite
 
 class NutrientDB{
+    static let instance = NutrientDB()
     
     var database: Connection!
     
-    let table = Table("Nutrients")
+    let table = Table("NutrientsDB")
     
     let Description = Expression<String>("Description")
     let fdcId = Expression<Int>("fdcId")
@@ -52,26 +53,29 @@ class NutrientDB{
     
     func test(){
         do {
-            let database = try Connection(path, readonly: true)
-            self.database = database
+            database = try Connection(path, readonly: true)
+            print("Worked")
             //try db.key("")
         } catch {
             print(error)
         }
     }
-    /*
-    func listNutrients(){
-        print("LISTING NUTRIENTS")
-        
-        for item in try database.prepare("Nutrients"){
-            print("Description: \(item)[Description], fdcId: \(item)[fdcId]")
-        }
-        /*do {
-            let test = try self.database.prepare(self.table)
-            print(test)
-        } catch{
-            print(error)
-        }*/
-        */
 
+    //MVP function
+    func printRemainingNutrients(nutrientNeeded: String, amountNeeded: Float){
+        print("PRINTING REMAINING NUTRIENTS")
+        //loop through SQLiteDB.getNutr() and then
+        do{
+            //let query = table.select(Description).filter(Protein > 10.0).limit(5, offset: 1)
+            let query = "SELECT * FROM Nutrients WHERE " + nutrientNeeded + " >= " + String(amountNeeded) + " LIMIT 5"
+            let ans = try database.prepare(query)
+            for row in ans{
+                print(row)
+            }
+            print(ans)
+            print("worked")
+        } catch{
+            print("FAILED")
+        }
+    }
 }
