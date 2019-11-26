@@ -50,7 +50,9 @@ class ViewController: UIViewController {
     //nutrientTargets stores the daily targets
     var nutrientTargets = [String: Float]()
     var targetsEdited = false
+    //Database local data
     let nutrDB = SQLiteDatabase.instance
+    var storedNutrientData = [NutrientStruct]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,16 +78,78 @@ class ViewController: UIViewController {
             height=Float(user[length].height);
             gender=user[length].sex ?? "male"
         }catch{}
+
+        //SQL DB stuff
         
-        //testing calling functions in SQLiteDatabase.swift
-        nutrDB.printStuff()
-        let insertTest = nutrDB.addNutr(iName: "Protein", iWeight: 500, iTarget: 200, iProgress: 50)
-        if insertTest == -1 {
-            print("insert failed")
+        //delete before inserting
+        var deleteFlag = nutrDB.deleteNutrient(iName: "protein")
+        if deleteFlag {
+            print("deletion worked!")
         }
         else {
-            print("insert succeeded!")
+            print("insertion failed :/")
         }
+        deleteFlag = nutrDB.deleteNutrient(iName: "calories")
+        if deleteFlag {
+            print("deletion worked!")
+        }
+        else {
+            print("insertion failed :/")
+        }
+
+        //testing insertion
+        var addTrue = nutrDB.addNutr(iName: "protein", iWeight: 500, iTarget: 200, iProgress: 40)
+        if addTrue != -1 {
+            print("insertion worked!")
+        }
+        else {
+            print("insertion failed :/")
+        }
+        addTrue = nutrDB.addNutr(iName: "calories", iWeight: 300, iTarget: 100, iProgress: 20)
+        if addTrue != -1 {
+            print("insertion worked!")
+        }
+        else {
+            print("insertion failed :/")
+        }
+
+        //testing retrieval
+        storedNutrientData = nutrDB.getNutr()
+        print("Printing stored nutrient data from ViewController.VC")
+        nutrDB.printNutrTable()
+        
+        //testing updateWeight
+        var updateflag = nutrDB.updateWeight(iName: "calories", iWeight: 420)
+        if updateflag {
+            print("update worked!")
+        }
+        else {
+            print("update failed :/")
+        }
+        print("after updating weight")
+        nutrDB.printNutrTable()
+        
+        //testing updateTarget
+        updateflag = nutrDB.updateTarget(iName: "calories", iTarget: 419)
+        if updateflag {
+            print("update worked!")
+        }
+        else {
+            print("update failed :/")
+        }
+        print("after updating target")
+        nutrDB.printNutrTable()
+        
+        //testing updateProgress
+        updateflag = nutrDB.updateProgress(iName: "calories", iProgress: 418)
+        if updateflag {
+            print("update worked!")
+        }
+        else {
+            print("update failed :/")
+        }
+        print("after updating progress")
+        nutrDB.printNutrTable()
     }
     
     func displayRecFoodImg() {

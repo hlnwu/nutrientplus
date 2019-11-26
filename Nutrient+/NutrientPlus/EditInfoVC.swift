@@ -47,12 +47,25 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var updatedCalories: UITextField!
     
+    //Database local data
+    let nutrDB = SQLiteDatabase.instance
+    var storedNutrientData = [NutrientStruct]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print("***in EditInfoVC***")
         tableView.delegate = self
         tableView.dataSource = self
         targetCards = createNutrientCells()
+        //testing retrieval
+//        storedNutrientData = nutrDB.getNutr()
+//        print("Printing stored nutrient data from EditInfo.VC")
+//        for nutrient in storedNutrientData {
+//            print(nutrient.nutrName)
+//            print(nutrient.nutrWeight)
+//            print(nutrient.nutrTarget)
+//            print(nutrient.nutrProgress)
+//        }
     }
     
     func createNutrientCells() -> [TargetCard] {
