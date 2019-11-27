@@ -77,4 +77,3 @@ struct nutrientInfo{
     var nutrientName: String
     
 }
-

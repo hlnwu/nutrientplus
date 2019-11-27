@@ -48,15 +48,9 @@ class AddFoods: UIViewController {
     
     func displayFoods(){
         APIRequest.dispatchGroup.notify(queue: .main){
-            //            for i in AddFoods.foodCards{
-            //                print (i.foodName, i.brandName)
-            //            }
             self.foodTableView.reloadData() //Update tableview
         }
     }
-    
-    
-    
 }
 
 //Extension functions to make tableView recycle cells.
@@ -112,7 +106,6 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
         for items in AddFoods.nutrientCards{
             if (mainViewController.nutrients.keys.contains(items.nutrientName)){
                 mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + Float(items.amount)
-                print("WTFFFFFFFF?")
             }
             else {
                 mainViewController.nutrients.updateValue(Float(items.amount), forKey: items.nutrientName)

@@ -28,7 +28,6 @@ struct TargetCard {
     var targetValue : Float
 }
 
-
 class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -49,51 +48,47 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("***in EditInfoVC***")
         tableView.delegate = self
         tableView.dataSource = self
         targetCards = createNutrientCells()
     }
     
+    // creates the table view for user to input custom target values
     func createNutrientCells() -> [TargetCard] {
         //create an array of TargetCards
         var tempTargets: [TargetCard] = []
         var card: TargetCard
-        //initial settings
-//        print("createNutrientCells: Macros")
+        
+        //initial settings provided by user's inputted info
         for item in macros {
-//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
-//        print("createNutrientCells: Vitamins")
+
         for item in vitamins {
-//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
-//        print("createNutrientCells: Minerals")
+
         for item in minerals {
-//            print("\(item): \(nutrientTargets[item] ?? 0)")
             card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
             tempTargets.append(card)
         }
         return tempTargets
     }
     
+    // user is finished with inputting custom target values
     @IBAction func done(_ sender: Any) {
-//        print("CollectionCell has contents...")
         CollectionOfCell.forEach { cell in
-//            print(cell.NutrientName.text!)
-//            print(cell.NewNutrientValue.text!)
+            // if no custom value inputted by user, return the original target value
             if(cell.NewNutrientValue.text != "") {
                 nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
-//                print("\(cell.NewNutrientValue.text!) entered so adding to nutrientTargets")
             }
         }
         performSegue(withIdentifier: "editToMain", sender: self)
     }
     
+    // passing the data between this view controller and MainPage
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ViewController
         //Error: some of these values are empty so it is being passed as empty back
@@ -101,6 +96,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         vc.nutrients = self.nutrients
         vc.targetsEdited = true
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nutrientTargets.count
     }
@@ -112,7 +108,6 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //if nutrient type; placeholder = g/mg/cups
         cell.configure(text: "", placeholder: "(g)")
         CollectionOfCell.append(cell)
-//        print("Appending:", cell.NutrientName.text!)
         return cell
     }
 }

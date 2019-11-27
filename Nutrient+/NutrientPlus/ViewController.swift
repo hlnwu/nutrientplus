@@ -96,34 +96,7 @@ class ViewController: UIViewController {
         } catch {}
         
     }
-//
-//    func recommend1() -> [String: Float] {
-//        var missing_percentage = [String: Float]()
-//        for item in macros {
-//            missing_percentage[item] = nutrients[item]! / nutrientTargets[item]!
-//        }
-//        for item in vitamins {
-//            missing_percentage[item] = nutrients[item]! / nutrientTargets[item]!
-//        }
-//        for item in minerals {
-//            missing_percentage[item] = nutrients[item]! / nutrientTargets[item]!
-//        }
-//        return missing_percentage
-//    }
-//
-//    func resetNutrients() {
-//        for item in macros {
-//            //initializing to non zero value for testing
-//            nutrients[item] = 100
-//        }
-//        for item in vitamins {
-//            nutrients[item] = 3
-//        }
-//        for item in minerals {
-//            nutrients[item] = 1
-//        }
-//    }
-//
+
     // this may be DELETED later since it's hard-coded
     // hard-coded in targets
     func createTargets() {

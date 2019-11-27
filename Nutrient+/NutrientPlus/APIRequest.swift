@@ -73,13 +73,12 @@ struct APIRequest{
                     let foodID = items.fdcId
                     let card = foodInfo(foodName: foodName, brandName: brandName ?? "N/A", foodID: foodID)
                     AddFoods.foodCards.append(card)
-                    
                 }
                 APIRequest.dispatchGroup.leave() //mutex.unlock
             } catch let jsonErr {
                 print ("Error Serializing Json: ", jsonErr)
             }
-            }.resume()
+        }.resume()
     }
     
     func getNutrient(foodID: Int, numberOfServings: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
@@ -87,7 +86,6 @@ struct APIRequest{
         AddFoods.nutrientCards = []
         let foodIDString = String(foodID)
         guard let urlGet = URL(string: "https://api.nal.usda.gov/fdc/v1/" + foodIDString + "?api_key=LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L") else{ return }
-        print (urlGet)
         let session = URLSession.shared
         session.dataTask(with: urlGet) {(data, response, error) in
             guard let data = data else { return }
@@ -101,13 +99,12 @@ struct APIRequest{
                         nutrientName = self.nutrientDictionary[nutrientName]!
                     }
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
-                    //print(card)
                     AddFoods.nutrientCards.append(card)
                 }
                 APIRequest.dispatchGroup.leave()
             } catch let jsonErr {
                 print ("Error Serializing Json: ", jsonErr)
             }
-            }.resume()
+        }.resume()
     }
 }

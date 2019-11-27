@@ -23,11 +23,6 @@ class EditProfile: UIViewController {
     var birthdateRevised: Date!
     var user = [User]()
     
-    // populate fields with previous user info
-//    override func viewWillAppear() {
-//        super.viewWillAppear(animated)
-//    }
-    
     // update user info with (newly?) inputted info
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +46,6 @@ class EditProfile: UIViewController {
         
         // show changed date in text field
         birthdayField.inputView = datePicker
-        
-        // store birthday to save in Core Data later
-        //birthdate = datePicker.date
         
         // Do any additional setup after loading the view, typically from a nib
     }
