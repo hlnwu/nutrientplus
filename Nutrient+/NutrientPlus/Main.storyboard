@@ -372,18 +372,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LtK-dT-p6w"/>
                     </view>
-                    <navigationItem key="navigationItem" id="64H-zv-ryy">
-                        <barButtonItem key="rightBarButtonItem" style="done" id="1pe-Xg-B9h">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pSX-EZ-JN8">
-                                <rect key="frame" x="324" y="7" width="35" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Scan"/>
-                                <connections>
-                                    <segue destination="Csq-TP-5Hz" kind="show" id="tNc-vb-dxq"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="64H-zv-ryy"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="foodTableView" destination="9gf-eG-LN9" id="wzy-NE-Lfy"/>
@@ -394,35 +383,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmF-Gv-lBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4607.1999999999998" y="12.561576354679804"/>
-        </scene>
-        <!--Scan View Controller-->
-        <scene sceneID="b4E-59-L5F">
-            <objects>
-                <viewController storyboardIdentifier="ScanViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Csq-TP-5Hz" customClass="ScanViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ywT-VD-vzc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-eW-7Yt">
-                                <rect key="frame" x="136" y="168" width="103" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="3Og-eW-7Yt" firstAttribute="top" secondItem="BrL-TC-MKs" secondAttribute="top" constant="80" id="Sis-gg-jqL"/>
-                            <constraint firstItem="3Og-eW-7Yt" firstAttribute="centerX" secondItem="ywT-VD-vzc" secondAttribute="centerX" id="StI-L2-oHe"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="BrL-TC-MKs"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="zr1-ed-AKe"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5hg-jc-oZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5415.1999999999998" y="13.300492610837439"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8c1-KI-V0b">
@@ -931,6 +891,6 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aJg-oG-4ag"/>
+        <segue reference="7HU-58-u3x"/>
     </inferredMetricsTieBreakers>
 </document>
