@@ -59,58 +59,12 @@ class Startup: UIViewController {
     }
     
     @IBAction func storeVar(_ sender: Any) {
-        // storing data into Core Data only when fields aren't empty
-        if heightField.text!.count != 0 && weightField.text!.count != 0
-            && bodyFatField.text!.count != 0 && birthdate != nil {
-            // creating a user instance
-            let user = User(context: PersistenceService.context)
-            
-            // calculating height and storing it in centimeters
-            let rawHeight = Int16(heightField.text!)!
-            print("height is",rawHeight)
-            let heightUnitString = heightUnit.titleForSegment(at: heightUnit.selectedSegmentIndex)
-            if heightUnitString == "in" {
-                user.height = Int16(Double(rawHeight) * 2.54)
-            } else {
-                user.height = rawHeight
-            }
-                
-            // calculating weight and storing it in kg
-            let formatter = NumberFormatter()
-            formatter.generatesDecimalNumbers = true
-            let rawWeight = formatter.number(from: weightField.text!) as? NSDecimalNumber ?? 0
-            //print("weight is: ", rawWeight)
-            let weightUnitString = weightUnit.titleForSegment(at: weightUnit.selectedSegmentIndex)
-            if weightUnitString == "lbs" {
-                let divisor = NSDecimalNumber(0.453592)
-                user.weight = rawWeight.multiplying(by: divisor)
-                print("weight is : ",user.weight!)
-            } else {
-                user.weight = rawWeight
-                print("weight is dnv : ",user.weight!)
-            }
-            
-            // storing the height and weight unit
-            user.heightUnit = heightUnitString
-            user.weightUnit = weightUnitString
-
-            user.bodyFat = formatter.number(from: bodyFatField.text!) as? NSDecimalNumber ?? 0
-            user.sex = Gender.titleForSegment(at: Gender.selectedSegmentIndex)
-            user.birthday = birthdate
-            
-            // sets userInfoExists to true so startup page doesn't display again
-            UserDefaults.standard.set(true, forKey: "userInfoExists")
-            
-            PersistenceService.saveContext()
-            
-            performSegue(withIdentifier: "fieldsComplete", sender: self)
-        // alerts user if fields aren't all filled out
-        } else {
-            let emptyAlertController = UIAlertController(title:"Detected one or more empty fields", message: "Please fill in all the fields.", preferredStyle: .alert)
-            emptyAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
-            present(emptyAlertController, animated: true)
-        }
+        // creating a user instance
+        let user = User(context: PersistenceService.context)
         
+        let savingInfo = SaveUserInfo()
+        // storing data into Core Data only when fields aren't empty
+        savingInfo.saveUserInfo(heightField: heightField, weightField: weightField, bodyFatField: bodyFatField, sex: Gender, birthdayField: birthdayField, heightUnit: heightUnit, weightUnit: weightUnit, userInfo: user, birthdate: birthdate, vc: self, segueIdentifier: "fieldsComplete")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
