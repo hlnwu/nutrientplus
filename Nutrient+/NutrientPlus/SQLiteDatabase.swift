@@ -15,18 +15,17 @@ class SQLiteDatabase {
   
   private let nutrTable = Table("nutrTable")
   private let nutrName = Expression<String>("nutrName")
-  private let nutrWeight = Expression<Int64>("nutrWeight")
-  private let nutrTarget = Expression<Int64>("nutrTarget")
-  private let nutrProgress = Expression<Int64>("nutrProgress")
+  private let nutrWeight = Expression<Double>("nutrWeight")
+  private let nutrTarget = Expression<Double>("nutrTarget")
+  private let nutrProgress = Expression<Double>("nutrProgress")
   
   private init() {
-    print("calling init on the database")
     let path = NSSearchPathForDirectoriesInDomains(
         .documentDirectory, .userDomainMask, true
         ).first!
 
     do {
-        db = try Connection("\(path)/Nutrients.sqlite3")
+        db = try Connection("\(path)/NutrientPlus.sqlite3")
     } catch {
         db = nil
         print ("Unable to open database")
@@ -36,7 +35,6 @@ class SQLiteDatabase {
   }
 
   func createTable() {
-    print("calling createTable")
     do {
         try db!.run(nutrTable.create(ifNotExists: true) { table in
         table.column(nutrName, primaryKey: true)
@@ -50,13 +48,13 @@ class SQLiteDatabase {
   }
     
     //INSERT INTO "nutrTable" ("nutrName", "nutrWeight", "nutrTarget", "nutrProgress") VALUES (nutrProgress, iWeight, iWeight, iProgress)
-    func addNutr(iName: String, iWeight: Int64, iTarget: Int64, iProgress: Int64) -> Int64? {
+    func addNutr(iName: String, iWeight: Double, iTarget: Double, iProgress: Double) -> Int64? {
         do {
             let insert = nutrTable.insert(nutrName <- iName, nutrWeight <- iWeight, nutrTarget <- iTarget, nutrProgress <- iProgress)
             let id = try db!.run(insert)
             return id
         } catch {
-            print("Insert failed")
+            //print("Insert failed")
             return -1
         }
     }
@@ -88,7 +86,7 @@ class SQLiteDatabase {
         }
     }
     
-    func updateWeight(iName: String, iWeight: Int64) -> Bool {
+    func updateWeight(iName: String, iWeight: Double) -> Bool {
         let nutrient = nutrTable.filter(nutrName == iName)
         do {
             let update = nutrient.update([
@@ -105,7 +103,7 @@ class SQLiteDatabase {
         return false
     }
     
-    func updateTarget(iName: String, iTarget: Int64) {
+    func updateTarget(iName: String, iTarget: Double) {
         let nutrient = nutrTable.filter(nutrName == iName)
         do {
             let update = nutrient.update([
@@ -122,7 +120,7 @@ class SQLiteDatabase {
 //        return false
     }
     
-    func updateProgress(iName: String, iProgress: Int64) -> Bool {
+    func updateProgress(iName: String, iProgress: Double) -> Bool {
         let nutrient = nutrTable.filter(nutrName == iName)
         do {
             let update = nutrient.update([
@@ -139,6 +137,18 @@ class SQLiteDatabase {
         return false
     }
     
+    func deleteTable() {
+        do {
+            for nutrient in try db!.prepare(self.nutrTable) {
+                if !deleteNutrient(iName: nutrient[nutrName]) {//delete failed
+                    print("deleteNutrient\(nutrient[nutrName]) failed")
+                }
+            }
+        }
+        catch {
+            print("deleteTable() failed")
+        }
+    }
     
     func deleteNutrient(iName: String) -> Bool {
         do {
@@ -149,21 +159,5 @@ class SQLiteDatabase {
             print("Delete failed")
         }
         return false
-    }
-    
-    func initTargets(weight : Float,gender : String,length : NSInteger, birthdate : Date  ){
-        let calendar = Calendar.current
-                 let birthday = birthdate
-                 let now = Date()
-                 let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-                 let age = ageComponents.year!
-            let ans=0.9*weight*24
-            let intAns:Int = Int(ans)
-            let ans1=Float(intAns)
-        print("Energy = \(ans1)")
-        addNutr(iName: "Energy", iWeight: 0, iTarget: 0, iProgress: 0)
-        printNutrTable()
-        updateTarget(iName: "Energy", iTarget: Int64(ans1))
-        printNutrTable()
     }
 }

@@ -40,8 +40,8 @@ class ViewController: UIViewController {
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                     "B12", "Folate", "Vitamin A", "Vitamin C",
-                     "Vitamin D", "Vitamin E", "Vitamin K"]
+                    "Folate", "Vitamin A", "Vitamin C",
+                    "Vitamin D", "Vitamin E", "Vitamin K"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
@@ -80,39 +80,36 @@ class ViewController: UIViewController {
         }catch{}
 
         //SQL DB stuff
-        //delete before inserting
-        nutrDB.deleteNutrient(iName: "protein")
-        nutrDB.deleteNutrient(iName: "calories")
-
-        //testing insertion
-        nutrDB.addNutr(iName: "protein", iWeight: 500, iTarget: 200, iProgress: 40)
-        nutrDB.addNutr(iName: "calories", iWeight: 300, iTarget: 100, iProgress: 20)
-
-        //testing retrieval
-        storedNutrientData = nutrDB.getNutr()
-        print("Printing stored nutrient data from ViewController.VC")
-        nutrDB.printNutrTable()
-        
-        //testing updateWeight
-        nutrDB.updateWeight(iName: "calories", iWeight: 420)
-        print("after updating weight")
-        nutrDB.printNutrTable()
-        
-        //testing updateTarget
-        nutrDB.updateTarget(iName: "calories", iTarget: 419)
-        print("after updating target")
-        nutrDB.printNutrTable()
-        
-        //testing updateProgress
-        nutrDB.updateProgress(iName: "calories", iProgress: 418)
-        print("after updating progress")
-        nutrDB.printNutrTable()
-        //end of SQL DB stuff
-        
-        //testing calculate function
+        //calculate the targets and store in a dictionary
         nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
-        print("Target for B12 = \(nutrientTargets["B12"])")
-        nutrDB.initTargets(weight: weight, gender: gender, length: length, birthdate: birthdate)
+        //using the dictionary, initialize nutrients and targets
+        init_nutrients_and_targets()
+
+    }
+    
+    func init_nutrients_and_targets() {
+        var insertId: Int64 = 0
+        for item in macros {
+            insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {//insert failed/already exists
+                //update instead of inserting
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
+        }
+        for item in vitamins {
+            insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {//insert failed/already exists
+                //update instead of inserting
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
+        }
+        for item in minerals {
+            insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {//insert failed/already exists
+                //update instead of inserting
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
+        }
     }
     
     func displayRecFoodImg() {
@@ -244,7 +241,6 @@ class ViewController: UIViewController {
 
 func calculate(weight : Float,gender : String,length : NSInteger, birthdate : Date  )->Dictionary<String,Float>{
     var dictionary: [String:Float]=[:]
-    print(gender)
     let calendar = Calendar.current
              let birthday = birthdate
              let now = Date()
@@ -417,10 +413,10 @@ func calculate(weight : Float,gender : String,length : NSInteger, birthdate : Da
         
     }
     let proteinIntake : Float = 0.8*weight
-    dictionary["protein"] = proteinIntake
+    dictionary["Protein"] = proteinIntake
     let carbs : Float = 0.55*(dictionary["Energy"] ?? 0.0)
-    dictionary["carbs"] = carbs
-    dictionary["fats"] = 0.275*(dictionary["Energy"] ?? 0.0)
+    dictionary["Carbs"] = carbs
+    dictionary["Fat"] = 0.275*(dictionary["Energy"] ?? 0.0)
     dictionary["Vitamin D"] = 600
     dictionary["CoQ10"] = 100
     dictionary["Manganese"] = 5
