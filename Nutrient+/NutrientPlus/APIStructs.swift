@@ -54,6 +54,11 @@ struct NutrientDescription : Decodable{
     let foodClass: String
     let description: String
     let foodNutrients: [NutrientsArray]
+    
+    //These parameters are to grab the servingSize
+    let servingSize: Double?
+    let servingSizeUnit: String?
+    let householdServingFullText: String?
 }
 
 struct NutrientsArray: Decodable{
