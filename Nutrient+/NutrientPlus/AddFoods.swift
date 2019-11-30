@@ -118,18 +118,16 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
         let numberServings = (self.numberOfServings?.text)!
-        //print(mainViewController.nutrients)
         for items in AddFoods.nutrientCards{
             let currentNutrientAmount = Float(items.amount) * Float(numberServings)!
             if (mainViewController.nutrients.keys.contains(items.nutrientName)){
                 mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + currentNutrientAmount
-                print("WTFFFFFFFF?")
             }
             else {
                 mainViewController.nutrients.updateValue(currentNutrientAmount, forKey: items.nutrientName)
             }
         }
-        print ("Prepare: ", mainViewController.nutrients)
+        //print ("Prepare: ", mainViewController.nutrients)
     }
 }
 

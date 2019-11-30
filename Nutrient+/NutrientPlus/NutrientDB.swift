@@ -15,10 +15,58 @@ class NutrientDB{
     static let instance = NutrientDB()
     
     var database: Connection!
-    var weightedFoods = [String: Int]()
+    var foodToWeight = [String:Int]()
     
-    let table = Table("NutrientsDB")
     /*
+    let EnergyStruct = NutrientStruct(nutrName: "Energy", nutrWeight: 300, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: "Protein", nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    let ProteinStruct = NutrientStruct(nutrName: <#T##String#>, nutrWeight: <#T##Int#>, nutrTarget: <#T##Double#>, nutrProgress: <#T##Double#>)
+    */
+    let EnergyWeight = 300
+    let ProteinWeight = 600
+    let CarbsWeight = 1110
+    let FatWeight = 800
+    let B1Weight = 6400
+    let B2Weight = 6500
+    let B3Weight = 6600
+    let B5Weight = 6700
+    let B6Weight = 6800
+    let B12Weight = 7300
+    let FolateWeight = 6900
+    let Vitamin_AWeight = 7500
+    let Vitamin_CWeight = 6300
+    let Vitamin_DWeight = 8750
+    let Vitamin_EWeight = 7905
+    let Vitamin_KWeight = 8800
+    let CalciumWeight = 5300
+    let CopperWeight = 6000
+    let IronWeight = 5400
+    let MagnesiumWeight = 5500
+    let ManganeseWeight = 6100
+    let PhosphorusWeight = 5600
+    let PotassiumWeight = 5700
+    let SeleniumWeight = 6200
+    let SodiumWeight = 5800
+    let ZincWeight = 5900
+    let SugarWeight = 1510
+    let FiberWeight = 1200
+    //var weighted: [Int]
+    //let nutrientWeight = []
+/*
+    let table = Table("NutrientsDB")
     let Description = Expression<String>("Description")
     let fdcId = Expression<Int>("fdcId")
     let Energy = Expression<Double>("Energy")
@@ -49,7 +97,7 @@ class NutrientDB{
     let Zinc = Expression<Double>("Zinc")
     let Sugar = Expression<Double>("Sugar")
     let Fiber = Expression<Double>("Fiber")
-    */
+*/
     let path = Bundle.main.path(forResource: "NutrientDB", ofType: "sqlite3")!
     
     private init(){
@@ -73,45 +121,45 @@ class NutrientDB{
 
             let query = "SELECT DISTINCT * FROM Nutrients WHERE " + nutrientNeeded + " >= " + String(amountNeeded) + " ORDER BY " + nutrientNeeded + " DESC LIMIT 5"
             let ans = try database.prepare(query)
-            //let test = try ans.scalar() as! String
+            
+            //Is not going over more important or finishing goals?
             for row in ans{
                 let Description = row[0]!
-                let Energy = row[2]!
-                let Protein = row[3]!
-                let Carbs = row[4]!
-                let Fat = row[5]!
-                let B1 = row[6]!
-                let B2 = row[7]!
-                let B3 = row[8]!
-                let B5 = row[9]!
-                let B6 = row[10]!
-                let B12 = row[11]!
-                let Folate = row[12]!
-                let Vitamin_A = row[13]!
-                let Vitamin_C = row[14]!
-                let Vitamin_D = row[15]!
-                let Vitamin_E = row[16]!
-                let Vitamin_K = row[17]!
-                let Calcium = row[18]!
-                let Copper = row[19]!
-                let Iron = row[20]!
-                let Magnesium = row[21]!
-                let Manganese = row[22]!
-                let Phosphorus = row[23]!
-                let Potassium = row[24]!
-                let Selenium = row[25]!
-                let Sodium = row[26]!
-                let Zinc = row[27]!
-                let Sugar = row[28]!
-                let Fiber = row[29]!
+                let Energy = row[2]!        //300
+                let Protein = row[3]!       //600
+                let Carbs = row[4]!         //1110
+                let Fat = row[5]!           //800
+                let B1 = row[6]!            //6400
+                let B2 = row[7]!            //6500
+                let B3 = row[8]!            //6600
+                let B5 = row[9]!            //6700
+                let B6 = row[10]!           //6800
+                let B12 = row[11]!          //7300
+                let Folate = row[12]!       //6900
+                let Vitamin_A = row[13]!    //7500
+                let Vitamin_C = row[14]!    //6300
+                let Vitamin_D = row[15]!    //8750
+                let Vitamin_E = row[16]!    //7905
+                let Vitamin_K = row[17]!    //8800
+                let Calcium = row[18]!      //5300
+                let Copper = row[19]!       //6000
+                let Iron = row[20]!         //5400
+                let Magnesium = row[21]!    //5500
+                let Manganese = row[22]!    //6100
+                let Phosphorus = row[23]!   //5600
+                let Potassium = row[24]!    //5700
+                let Selenium = row[25]!     //6200
+                let Sodium = row[26]!       //5800
+                let Zinc = row[27]!         //5900
+                let Sugar = row[28]!        //1510
+                let Fiber = row[29]!        //1200
                 
                 print(Description, Energy, Protein, Carbs, Fat, B1, B2, B3, B5, B6, B12, Folate, Vitamin_A, Vitamin_C, Vitamin_D, Vitamin_E, Vitamin_K, Calcium, Copper, Iron, Magnesium, Manganese, Phosphorus, Potassium, Selenium, Sodium, Zinc, Sugar, Fiber)
                 
-                //nutrientDB
             }
             
             
-            print(ans)
+            //print(ans)
             //print("worked")
         } catch{
             print("FAILED")
