@@ -22,10 +22,10 @@ struct FoodDescription: Decodable{
 }
 
 /*struct Criteria: Decodable{
-    let generalSearchInput: String?
-    let pageNumber: Int?
-    let requireAllWords: Bool?
-}*/
+ let generalSearchInput: String?
+ let pageNumber: Int?
+ let requireAllWords: Bool?
+ }*/
 
 struct Foods: Decodable{
     let fdcId: Int
@@ -54,6 +54,11 @@ struct NutrientDescription : Decodable{
     let foodClass: String
     let description: String
     let foodNutrients: [NutrientsArray]
+    
+    //These parameters are to grab the servingSize
+    let servingSize: Double?
+    let servingSizeUnit: String?
+    let householdServingFullText: String?
 }
 
 struct NutrientsArray: Decodable{
@@ -77,3 +82,4 @@ struct nutrientInfo{
     var nutrientName: String
     
 }
+

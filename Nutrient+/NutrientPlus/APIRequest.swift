@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct APIRequest{
+class APIRequest{
     
     //Dictionary to simplify nutrient name
     let nutrientDictionary = [
@@ -73,6 +73,7 @@ struct APIRequest{
                     let foodID = items.fdcId
                     let card = foodInfo(foodName: foodName, brandName: brandName ?? "N/A", foodID: foodID)
                     AddFoods.foodCards.append(card)
+                    
                 }
                 APIRequest.dispatchGroup.leave() //mutex.unlock
             } catch let jsonErr {
@@ -81,24 +82,39 @@ struct APIRequest{
         }.resume()
     }
     
-    func getNutrient(foodID: Int, numberOfServings: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
+    func getNutrient(foodID: Int) -> (Void){ //GET request to retrieve json of nutrients following APIStructs structure
         APIRequest.dispatchGroup.enter()
         AddFoods.nutrientCards = []
         let foodIDString = String(foodID)
         guard let urlGet = URL(string: "https://api.nal.usda.gov/fdc/v1/" + foodIDString + "?api_key=LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L") else{ return }
+        print (urlGet)
         let session = URLSession.shared
         session.dataTask(with: urlGet) {(data, response, error) in
             guard let data = data else { return }
             do {
                 let nutrientDescription = try JSONDecoder().decode(NutrientDescription.self, from: data)
+                let servingSize = nutrientDescription.servingSize ?? 100.0
+                let servingSizeUnit = nutrientDescription.servingSizeUnit ?? ""
+                let householdServingFullText = nutrientDescription.householdServingFullText ?? ""
+                if (householdServingFullText == "" || servingSizeUnit == ""){
+                    AddFoods.currentFoodServing = "100g"
+                }
+                else {
+                    let FullText = householdServingFullText + " (" +  String(servingSize) + servingSizeUnit + ")"
+                    AddFoods.currentFoodServing = FullText
+                }
+                
+                let servingFraction = servingSize / 100.0
+                
                 for items in (nutrientDescription.foodNutrients){
-                    let amount = items.amount * Double(numberOfServings)
+                    let amount = items.amount * servingFraction
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
                     if (self.nutrientDictionary[nutrientName] != nil){
                         nutrientName = self.nutrientDictionary[nutrientName]!
                     }
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
+                    print(card)
                     AddFoods.nutrientCards.append(card)
                 }
                 APIRequest.dispatchGroup.leave()

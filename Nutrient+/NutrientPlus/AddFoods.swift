@@ -21,6 +21,7 @@ class AddFoods: UIViewController {
     var userInput : String = ""
     static var foodCards: [foodInfo] = []
     static var nutrientCards: [nutrientInfo] = []
+    static var currentFoodServing: String = ""
     let requestObj = APIRequest()
     
     
@@ -35,6 +36,7 @@ class AddFoods: UIViewController {
     
     func clearTableView(){
         AddFoods.foodCards.removeAll()
+        AddFoods.nutrientCards.removeAll()
         foodTableView.reloadData()
     }
     
@@ -52,7 +54,6 @@ class AddFoods: UIViewController {
         }
     }
 }
-
 //Extension functions to make tableView recycle cells.
 extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     //Number of rows in tableView
@@ -80,18 +81,24 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     
     //The following function displays an alert prompting for user to enter number of servings
     func displayServingSizeAlert(fdcID: Int){
-        let displayAlertController = UIAlertController(title: "How many servings?", message: nil, preferredStyle: .alert)
-        displayAlertController.addTextField(configurationHandler: numberOfServingsHandler)
-        displayAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        displayAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:{ action in
-            let servings = (self.numberOfServings?.text)!
-            self.requestObj.getNutrient(foodID: fdcID, numberOfServings: Int(servings) ?? 1)
-            APIRequest.dispatchGroup.notify(queue: .main){
+        self.requestObj.getNutrient(foodID: fdcID)
+        APIRequest.dispatchGroup.notify(queue: .main){
+            //Setup alert controller components.
+            let displayAlertController = UIAlertController(title: "How many servings?\nServing Size: " + AddFoods.currentFoodServing, message: nil, preferredStyle: .alert)
+            //Setup alert's textfield
+            displayAlertController.addTextField(configurationHandler: self.numberOfServingsHandler)
+            //Setup alert's cancel button
+            displayAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ action in
+                AddFoods.nutrientCards.removeAll()
+                AddFoods.currentFoodServing = ""
+            }))
+            //Alert's OK button takes the number of servings and performs segue.
+            displayAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler:{ action in
                 self.performSegue(withIdentifier: "segueToUpdateProgress", sender: self)
-            }
-        }))
-        
-        self.present(displayAlertController, animated: true)
+                
+            }))
+            self.present(displayAlertController, animated: true)
+        }
     }
     
     //Handler function to retrieve data when OK is pressed
@@ -103,21 +110,25 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     //Prepare function updates nutrient progress in main VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
+        let numberServings = (self.numberOfServings?.text)!
+        //print(mainViewController.nutrients)
         for items in AddFoods.nutrientCards{
+            let currentNutrientAmount = Float(items.amount) * Float(numberServings)!
             if (mainViewController.nutrients.keys.contains(items.nutrientName)){
-                mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + Float(items.amount)
+                mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + currentNutrientAmount
             }
             else {
-                mainViewController.nutrients.updateValue(Float(items.amount), forKey: items.nutrientName)
+                mainViewController.nutrients.updateValue(currentNutrientAmount, forKey: items.nutrientName)
             }
         }
-        print (mainViewController.nutrients)
+        print ("Prepare: ", mainViewController.nutrients)
     }
 }
 
 //When user presses enter, do POST request with user input to get list of Foods
 extension AddFoods: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        clearTableView()
         userInput = String(searchBar.text!) //unwraps text
         requestObj.getFoods(userInput:userInput)
         displayFoods()
