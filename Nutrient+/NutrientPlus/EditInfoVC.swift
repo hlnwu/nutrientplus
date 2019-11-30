@@ -25,7 +25,7 @@ class NutrientTargetCell: UITableViewCell {
 
 struct TargetCard {
     var nutritionLabel : String
-    var targetValue : Float
+    var targetValue : Double
 }
 
 class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -41,17 +41,31 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
-    var nutrients = [String: Float]()
-    var nutrientTargets = [String: Float]()
+    var nutrients = [String: Double]()
+    var nutrientTargets = [String: Double]()
     
     @IBOutlet weak var updatedCalories: UITextField!
     
+    //Database local data
+    let nutrDB = SQLiteDatabase.instance
+    var storedNutrientData = [NutrientStruct]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    //        print("***in EditInfoVC***")
         tableView.delegate = self
         tableView.dataSource = self
         targetCards = createNutrientCells()
-    }
+        //testing retrieval
+    //        storedNutrientData = nutrDB.getNutr()
+    //        print("Printing stored nutrient data from EditInfo.VC")
+    //        for nutrient in storedNutrientData {
+    //            print(nutrient.nutrName)
+    //            print(nutrient.nutrWeight)
+    //            print(nutrient.nutrTarget)
+    //            print(nutrient.nutrProgress)
+    //        }
+        }
     
     // creates the table view for user to input custom target values
     func createNutrientCells() -> [TargetCard] {
@@ -82,7 +96,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         CollectionOfCell.forEach { cell in
             // if no custom value inputted by user, return the original target value
             if(cell.NewNutrientValue.text != "") {
-                nutrientTargets[cell.NutrientName.text!] = Float(cell.NewNutrientValue.text!)
+                nutrientTargets[cell.NutrientName.text!] = Double(cell.NewNutrientValue.text!)
             }
         }
         performSegue(withIdentifier: "editToMain", sender: self)
