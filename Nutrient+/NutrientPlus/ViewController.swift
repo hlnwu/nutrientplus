@@ -57,6 +57,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        let database = NutrientDB.instance
+        database.printRemainingNutrients()
         // seems like this may be DELETED in the future
         // but this conditional replaces nutrient targets with a hard-coded in target value
         if !targetsEdited {
@@ -74,12 +76,20 @@ class ViewController: UIViewController {
             let user = try PersistenceService.context.fetch(test)
             self.user = user
             length = user.count - 1
-            let origWeight = String(describing: user[length].weight)
+            //let origWeight = String(describing: user[length].weight)
+            let origWeight = "200"
+
             var weight = formatter.number(from: origWeight) as? NSDecimalNumber ?? 0
-            height = user[length].height
-            gender = user[length].sex ?? "male"
-            let weightUnitString = user[length].weightUnit
-            let heightUnitString = user[length].heightUnit
+            height = 70
+            gender = "male"
+            let weightUnitString = "lbs"
+            let heightUnitString = "in"
+            //height = user[length].height
+            //gender = user[length].sex ?? "male"
+            //let weightUnitString = user[length].weightUnit
+            //let heightUnitString = user[length].heightUnit
+            
+            
             
             // convert height to cm
             if heightUnitString == "in" {

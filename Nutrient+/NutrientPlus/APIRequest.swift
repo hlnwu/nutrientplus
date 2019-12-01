@@ -92,8 +92,16 @@ class APIRequest{
             guard let data = data else { return }
             do {
                 let nutrientDescription = try JSONDecoder().decode(NutrientDescription.self, from: data)
+                
+                //Get serving size
+                //var servingSize = 100.0
+                //var servingSizeFullText = "n/a"
                 let servingSize = nutrientDescription.servingSize ?? 100.0
                 let servingSizeUnit = nutrientDescription.servingSizeUnit ?? ""
+                /*if (nutrientDescription.foodPortions.count != 0){
+                    servingSize = nutrientDescription.foodPortions[0].gramWeight
+                    
+                }*/
                 let householdServingFullText = nutrientDescription.householdServingFullText ?? ""
                 if (householdServingFullText == "" || servingSizeUnit == ""){
                     AddFoods.currentFoodServing = "100g"
@@ -102,7 +110,6 @@ class APIRequest{
                     let FullText = householdServingFullText + " (" +  String(servingSize) + servingSizeUnit + ")"
                     AddFoods.currentFoodServing = FullText
                 }
-                
                 let servingFraction = servingSize / 100.0
                 
                 for items in (nutrientDescription.foodNutrients){
