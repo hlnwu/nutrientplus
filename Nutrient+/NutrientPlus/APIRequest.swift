@@ -15,7 +15,7 @@ class APIRequest{
         "Protein":                              "Protein",      //1003
         "Carbohydrate, by difference":          "Carbs",        //1005
         "Total lipid (fat)":                    "Fat",          //1004
-        "Thiamine":                             "B1",           //1165      //Dont have
+        "Thiamin":                              "B1",           //1165      //Dont have
         "Riboflavin":                           "B2",           //1166
         "Niacin":                               "B3",           //1167
         "Pantothenic acid":                     "B5",           //1170
@@ -25,7 +25,7 @@ class APIRequest{
         "Vitamin A, IU":                        "Vitamin A",    //1104      //Dont have
         "Vitamin C, total ascorbic acid":       "Vitamin C",    //1162
         "Vitamin D":                            "Vitamin D",    //1110
-        "Vitamin E (label entry primarily)":    "Vitamin E",    //1124
+        "Vitamin E (alpha-tocopherol)":         "Vitamin E",    //1124
         "Vitamin K (phylloquinone)":            "Vitamin K",    //1185
         "Calcium, Ca":                          "Calcium",      //1087
         "Copper, Cu":                           "Copper",       //1098      //Dont have
@@ -75,6 +75,7 @@ class APIRequest{
                 }
                 APIRequest.dispatchGroup.leave() //mutex.unlock
             } catch let jsonErr {
+                APIRequest.dispatchGroup.leave()
                 print ("Error Serializing Json: ", jsonErr)
             }
         }.resume()
@@ -91,21 +92,49 @@ class APIRequest{
             guard let data = data else { return }
             do {
                 let nutrientDescription = try JSONDecoder().decode(NutrientDescription.self, from: data)
-                let servingSize = nutrientDescription.servingSize ?? 100.0
-                let servingSizeUnit = nutrientDescription.servingSizeUnit ?? ""
-                let householdServingFullText = nutrientDescription.householdServingFullText ?? ""
+                var servingSize = 100.0
+                var servingSizeFullText = ""
+                if nutrientDescription.foodPortions.count != 0{
+                    let firstFoodPortion = nutrientDescription.foodPortions[0]
+                    servingSize = firstFoodPortion.gramWeight!
+                    let foo = firstFoodPortion.portionDescription
+                    if foo != nil{
+                        servingSizeFullText = String(foo!)
+                    }
+                    else{
+                        let amt = firstFoodPortion.amount
+                        if amt != nil{
+                            servingSizeFullText = String(amt!) + " "
+                        }
+                        let modifier = firstFoodPortion.modifier
+                        if modifier != nil{
+                            servingSizeFullText = servingSizeFullText + String(modifier!) + " "
+                        }
+                        let measureName = firstFoodPortion.measureUnit.name
+                        if measureName != "undetermined"{
+                            servingSizeFullText = servingSizeFullText + measureName
+                        }
+                    }
+                    
+                }
+                if (nutrientDescription.servingSize != nil && nutrientDescription.householdServingFullText != nil){
+                    servingSize = nutrientDescription.servingSize!
+                    servingSizeFullText = nutrientDescription.householdServingFullText!
+                }
+                AddFoods.currentFoodServing = servingSizeFullText + " (" + String(servingSize) + "g)"
+                /*let householdServingFullText = nutrientDescription.householdServingFullText ?? ""
                 if (householdServingFullText == "" || servingSizeUnit == ""){
                     AddFoods.currentFoodServing = "100g"
                 }
                 else {
                     let FullText = householdServingFullText + " (" +  String(servingSize) + servingSizeUnit + ")"
                     AddFoods.currentFoodServing = FullText
-                }
+                }*/
                 
                 let servingFraction = servingSize / 100.0
                 
                 for items in (nutrientDescription.foodNutrients){
-                    let amount = items.amount * servingFraction
+                    let amount = items.amount ?? 0.0 * servingFraction
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
                     if (self.nutrientDictionary[nutrientName] != nil){
@@ -121,6 +150,7 @@ class APIRequest{
                 }
                 APIRequest.dispatchGroup.leave()
             } catch let jsonErr {
+                APIRequest.dispatchGroup.leave()
                 print ("Error Serializing Json: ", jsonErr)
             }
         }.resume()

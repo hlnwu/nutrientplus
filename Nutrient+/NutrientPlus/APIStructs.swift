@@ -51,7 +51,7 @@ struct foodInfo{
 //structure for json when doing getNutrients
 
 struct NutrientDescription : Decodable{
-    let foodClass: String
+    //let foodClass: String
     let description: String
     let foodNutrients: [NutrientsArray]
     
@@ -59,21 +59,35 @@ struct NutrientDescription : Decodable{
     let servingSize: Double?
     let servingSizeUnit: String?
     let householdServingFullText: String?
+    
+    let foodPortions: [FoodPortions]
 }
 
 struct NutrientsArray: Decodable{
-    let type: String
-    let id: Int
+    //let type: String
+    //let id: Int
     let nutrient: Nutrients
-    let amount: Double
+    let amount: Double?
 }
 
 struct Nutrients: Decodable{
-    let id: Int
-    let number: String
+    //let id: Int
+    //let number: String
     let name: String
-    let rank: Int
+    //let rank: Int
     let unitName: String
+}
+
+struct FoodPortions: Decodable{
+    let measureUnit: MeasureUnit
+    let gramWeight: Double?
+    let portionDescription: String?
+    let amount: Double?
+    let modifier: String?
+}
+
+struct MeasureUnit: Decodable{
+    let name: String
 }
 
 struct nutrientInfo{
