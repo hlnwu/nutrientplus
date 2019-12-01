@@ -76,7 +76,26 @@ class SQLiteDatabase {
 
         return nutrientArray
     }
-
+    
+    func getNutrDict() -> Dictionary<String, NutrientStruct> {
+        var nutrientArray = [String:NutrientStruct]()
+        do {
+            for nutrient in try db!.prepare(self.nutrTable) {
+                nutrientArray[nutrient[nutrName]] = NutrientStruct(
+                    nutrName: nutrient[nutrName],
+                    nutrWeight: nutrient[nutrWeight],
+                    nutrTarget: nutrient[nutrTarget],
+                    nutrProgress: nutrient[nutrProgress])
+            }
+        } catch {
+            print("Select failed")
+        }
+        
+        return nutrientArray
+    }
+    
+    
+    
     //function for printing the contents of the nutrTable
     func printNutrTable() {
         var storedNutrientData = [NutrientStruct]()
@@ -136,6 +155,7 @@ class SQLiteDatabase {
 
         return false
     }
+    
     
     func deleteTable() {
         do {

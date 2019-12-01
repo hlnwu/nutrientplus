@@ -37,11 +37,9 @@ class APIRequest{
         "Selenium, Se":                         "Selenium",     //1103
         "Sodium, Na":                           "Sodium",       //1093
         "Zinc, Zn":                             "Zinc",         //1095
-        "Sugars, total including NLEA":         "Sugar",        //2000
-        "Fiber, total dietary":                 "Fiber",        //1079
         
     ]
-    
+
     let API_KEY = "LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L"
     static let dispatchGroup = DispatchGroup() //Works sort of like a semaphore
     
@@ -113,8 +111,12 @@ class APIRequest{
                     if (self.nutrientDictionary[nutrientName] != nil){
                         nutrientName = self.nutrientDictionary[nutrientName]!
                     }
+                    else{
+                        print("NOT INSIDE: ", nutrientName)
+                        continue
+                    }
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
-                    print(card)
+                    //print("Nutrient is in dictiony: ", card)
                     AddFoods.nutrientCards.append(card)
                 }
                 APIRequest.dispatchGroup.leave()
