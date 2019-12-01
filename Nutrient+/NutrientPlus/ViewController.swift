@@ -95,8 +95,8 @@ class ViewController: UIViewController {
             
             // convert weight to kg
             if weightUnitString == "lbs" {
-                //let divisor = NSDecimalNumber(0.453592)
-                //weightDecimal = weightDecimal.multiplying(by: divisor)
+                let divisor =  0.453592
+                weight = weight*divisor
                 //weight = weight * 0.45
             }
         } catch {}
