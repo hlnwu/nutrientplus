@@ -96,8 +96,16 @@ class ViewController: UIViewController {
         } catch {}
         
         //SQL DB stuff
-        //calculate the targets and store in a dictionary
-        nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
+        if targetsEdited {
+            print("Leaving nutrient targets unedited")
+            //dont change the nutrientTargets
+        }
+        else {
+            print("Leaving nutrient targets unedited")
+            //calculate the targets and store in a dictionary
+            nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
+        }
+        
         //using the dictionary, initialize nutrients and targets
         init_nutrients_and_targets()
     }
@@ -117,27 +125,12 @@ class ViewController: UIViewController {
     
     // creates the table view on the main page
     func populate() -> [Card] {
-        
         //create an array of Card
         var tempCards: [Card] = []
         var card: Card
-        
-        for item in macros {
-            //set the card to a macro, look up the value in nutrients dictionary, give random color
-            //this is not the right calculation for progress
-            card = Card(nutritionLabel: item, progressPercent: (nutrients[item] ?? 0) / (nutrientTargets[item] ?? 200), color: .random())
-            tempCards.append(card)
-        }
-
-        for item in vitamins {
-            //set the card to a vitamin, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 10)), color: .random())
-            tempCards.append(card)
-        }
-
-        for item in minerals {
-            //set the card to a mineral, look up the value in nutrients dictionary, give random color
-            card = Card(nutritionLabel: item, progressPercent: ((nutrients[item] ?? 0) / (nutrientTargets[item] ?? 5)), color: .random())
+        storedNutrientData = nutrDB.getNutr()
+        for nutrient in storedNutrientData {
+            card = Card(nutritionLabel: nutrient.nutrName, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
             tempCards.append(card)
         }
         return tempCards
@@ -181,7 +174,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B12"] = 0.9
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
-            dictionary["calcium"] = 1200 //mg
+            dictionary["Calcium"] = 1200 //mg
             dictionary["Vitamin A"] = 300
             dictionary["Vitamin C"] = 15
             dictionary["Vitamin E"] = 6
@@ -195,7 +188,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B12"] = 1.2
             dictionary["Folate"] = 200
             dictionary["Iron"] = 15.1
-            dictionary["calcium"] = 1300
+            dictionary["Calcium"] = 1300
             dictionary["Vitamin A"] = 400
             dictionary["Vitamin C"] = 25
             dictionary["Votamin E"] = 7
@@ -209,7 +202,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B12"] = 1.3
             dictionary["Folate"] = 300
             dictionary["Vitamin A"] = 600
-            dictionary["calcium"] = 1300
+            dictionary["Calcium"] = 1300
             dictionary["Vitamin C"] = 45
             dictionary["Votamin E"] = 11
             dictionary["Vitamin K"] = 60
@@ -291,8 +284,8 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
               dictionary["Vitamin C"] = 45 //mg
               dictionary["Vitamin E"] = 11 //mg
               dictionary["Vitamin K"] = 60 //mg
-            dictionary["Iron"] = 16.3 //mg
-            dictionary["Calcium"] = 1300
+              dictionary["Iron"] = 16.3 //mg
+              dictionary["Calcium"] = 1300
               dictionary["Magnesium"] = 240 //mcg
             
         } else if (age <= 18){
@@ -303,7 +296,6 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Vitamin E"] = 15
             dictionary["Calcium"] = 1300
             dictionary["Iron"] = 16.3
-            dictionary["calcium"] = 1300
             dictionary["Magnesium"] = 410
         }  else {
             dictionary["B1"]=1.2

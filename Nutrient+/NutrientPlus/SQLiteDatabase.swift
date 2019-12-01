@@ -86,6 +86,31 @@ class SQLiteDatabase {
         }
     }
     
+    func getNutrStruct(iName: String) -> NutrientStruct {
+        var storedNutrientData = [NutrientStruct]()
+        storedNutrientData = getNutr()
+        var foundNutrient = NutrientStruct(nutrName: "nil")
+        for nutrient in storedNutrientData {
+            if iName == nutrient.nutrName {
+                print("\(iName) found!")
+                foundNutrient = nutrient
+            }
+        }
+        return foundNutrient
+    }
+    
+    func getProgress(iName: String) -> Double {
+        var storedNutrientData = [NutrientStruct]()
+        storedNutrientData = getNutr()
+        for nutrient in storedNutrientData {
+            if iName == nutrient.nutrName {
+                print("\(iName)'s progress = \(nutrient.nutrProgress)")
+                return nutrient.nutrProgress
+            }
+        }
+        return -1
+    }
+    
     func updateWeight(iName: String, iWeight: Double) -> Bool {
         let nutrient = nutrTable.filter(nutrName == iName)
         do {

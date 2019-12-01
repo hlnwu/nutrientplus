@@ -101,7 +101,7 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let tempTarget = targetCards[indexPath.row]
         cell.NutrientName?.text = tempTarget.nutritionLabel
         //if nutrient type; placeholder = g/mg/cups
-        cell.configure(text: "", placeholder: "(g)")
+        cell.configure(text: "", placeholder: "\(Int(tempTarget.targetValue))")
         CollectionOfCell.append(cell)
         return cell
     }
