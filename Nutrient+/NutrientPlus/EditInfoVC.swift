@@ -36,8 +36,8 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                     "B12", "Folate", "Vitamin A", "Vitamin C",
-                     "Vitamin D", "Vitamin E", "Vitamin K"]
+                    "Folate", "Vitamin A", "Vitamin C",
+                    "Vitamin D", "Vitamin E", "Vitamin K"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
@@ -52,40 +52,19 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    //        print("***in EditInfoVC***")
+        storedNutrientData = nutrDB.getNutr()
         tableView.delegate = self
         tableView.dataSource = self
         targetCards = createNutrientCells()
-        //testing retrieval
-    //        storedNutrientData = nutrDB.getNutr()
-    //        print("Printing stored nutrient data from EditInfo.VC")
-    //        for nutrient in storedNutrientData {
-    //            print(nutrient.nutrName)
-    //            print(nutrient.nutrWeight)
-    //            print(nutrient.nutrTarget)
-    //            print(nutrient.nutrProgress)
-    //        }
+        
         }
     
     // creates the table view for user to input custom target values
     func createNutrientCells() -> [TargetCard] {
-        //create an array of TargetCards
         var tempTargets: [TargetCard] = []
         var card: TargetCard
-        
-        //initial settings provided by user's inputted info
-        for item in macros {
-            card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
-            tempTargets.append(card)
-        }
-
-        for item in vitamins {
-            card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
-            tempTargets.append(card)
-        }
-
-        for item in minerals {
-            card = TargetCard(nutritionLabel: item, targetValue: nutrientTargets[item] ?? 0)
+        for nutrient in storedNutrientData {
+            card = TargetCard(nutritionLabel: nutrient.nutrName, targetValue: nutrient.nutrTarget)
             tempTargets.append(card)
         }
         return tempTargets
@@ -97,6 +76,8 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             // if no custom value inputted by user, return the original target value
             if(cell.NewNutrientValue.text != "") {
                 nutrientTargets[cell.NutrientName.text!] = Double(cell.NewNutrientValue.text!)
+                //add it to the db not the dictionary
+                nutrDB.updateTarget(iName: cell.NutrientName.text!, iTarget: Double(cell.NewNutrientValue.text!)!)
             }
         }
         performSegue(withIdentifier: "editToMain", sender: self)
