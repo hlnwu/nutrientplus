@@ -42,8 +42,8 @@ class ViewController: UIViewController {
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                     "B12", "Folate", "Vitamin A", "Vitamin C",
-                     "Vitamin D", "Vitamin E", "Vitamin K"]
+                    "Folate", "Vitamin A", "Vitamin C",
+                    "Vitamin D", "Vitamin E", "Vitamin K"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
@@ -63,11 +63,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // seems like this may be DELETED in the future
-        // but this conditional replaces nutrient targets with a hard-coded in target value
-        if !targetsEdited {
-            createTargets()
-        }
         
         // creates each of the nutrient cards in the table view
         self.cards = self.populate()
@@ -82,7 +77,6 @@ class ViewController: UIViewController {
             length = user.count - 1
             //let origWeight = String(describing: user[length].weight)
             weight = Double(user[length].weight!)
-            print("weight = \(weight)")
             height = user[length].height
             gender = user[length].sex ?? "male"
             let weightUnitString = user[length].weightUnit
@@ -103,50 +97,21 @@ class ViewController: UIViewController {
         
         //SQL DB stuff
         //calculate the targets and store in a dictionary
-        print("weight = \(weight)")
         nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
         //using the dictionary, initialize nutrients and targets
         init_nutrients_and_targets()
-        nutrDB.printNutrTable()
-        
     }
 
     func init_nutrients_and_targets() {
         var insertId: Int64 = 0
         for item in macros {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
-            if insertId == -1 {//insert failed/already exists
-                //update instead of inserting
-                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
-            }
         }
         for item in vitamins {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
-            if insertId == -1 {//insert failed/already exists
-                //update instead of inserting
-                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
-            }
         }
         for item in minerals {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
-            if insertId == -1 {//insert failed/already exists
-                //update instead of inserting
-                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
-            }
-        }
-    }
-    
-    // this may be DELETED later since it's hard-coded
-    // hard-coded in targets
-    func createTargets() {
-        for item in macros {
-            nutrientTargets[item] = 200
-        }
-        for item in vitamins {
-            nutrientTargets[item] = 10
-        }
-        for item in minerals {
-            nutrientTargets[item] = 5
         }
     }
     
@@ -359,7 +324,6 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
         dictionary["Zinc"] = 14
     }
     let proteinIntake: Double = Double(0.8 * weight)
-    print("proteinIntake = \(proteinIntake)")
     dictionary["Protein"] = proteinIntake
     let carbs: Double = 0.55 * (dictionary["Energy"] ?? 0.0) / 4
     dictionary["Carbs"] = carbs
