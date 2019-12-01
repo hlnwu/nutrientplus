@@ -78,7 +78,7 @@ class ViewController: UIViewController {
             //let origWeight = String(describing: user[length].weight)
             weight = Double(user[length].weight!)
             height = user[length].height
-            gender = user[length].sex ?? "male"
+            gender = user[length].sex ?? "Male"
             let weightUnitString = user[length].weightUnit
             let heightUnitString = user[length].heightUnit
             
@@ -97,11 +97,9 @@ class ViewController: UIViewController {
         
         //SQL DB stuff
         if targetsEdited {
-            print("Leaving nutrient targets unedited")
             //dont change the nutrientTargets
         }
         else {
-            print("Leaving nutrient targets unedited")
             //calculate the targets and store in a dictionary
             nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
         }
@@ -120,6 +118,9 @@ class ViewController: UIViewController {
         }
         for item in minerals {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+        }
+        if insertId == -1 {
+            print("Did not insert some nutrients and targets")
         }
     }
     
