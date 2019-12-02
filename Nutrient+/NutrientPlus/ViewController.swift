@@ -176,7 +176,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1200 //mg
-            dictionary["Vitamin A"] = 300
+            dictionary["Vitamin A"] = 300/0.3
             dictionary["Vitamin C"] = 15
             dictionary["Vitamin E"] = 6
             dictionary["Vitamin K"] = 30
@@ -190,7 +190,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 200
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1300
-            dictionary["Vitamin A"] = 400
+            dictionary["Vitamin A"] = 400/0.3
             dictionary["Vitamin C"] = 25
             dictionary["Votamin E"] = 7
             dictionary["Vitamin K"] = 55
@@ -202,7 +202,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.0
             dictionary["B12"] = 1.3
             dictionary["Folate"] = 300
-            dictionary["Vitamin A"] = 600
+            dictionary["Vitamin A"] = 600/0.3
             dictionary["Calcium"] = 1300
             dictionary["Vitamin C"] = 45
             dictionary["Votamin E"] = 11
@@ -214,7 +214,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B2"] = 1.0
             dictionary["B6"] = 1.3
             dictionary["Folate"] = 400
-            dictionary["Vitamin A"] = 700
+            dictionary["Vitamin A"] = 700/0.3
             dictionary["Vitamin C"] = 65
             dictionary["Vitamin K"] = 75
             dictionary["Calcium"] = 1300
@@ -227,7 +227,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.7
             dictionary["B12"] = 2.4
             dictionary["Folate"] = 150
-            dictionary["Vitamin A"] = 700
+            dictionary["Vitamin A"] = 700/0.3
             dictionary["Vitamin C"] = 75
             dictionary["Vitamin K"] = 120
             dictionary["Calcium"] = 1200
@@ -255,7 +255,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1200
-            dictionary["Vitamin A"] = 300
+            dictionary["Vitamin A"] = 300/0.3
             dictionary["Vitamin C"] = 15
             dictionary["Vitamin E"] = 6
             dictionary["Vitamin K"] = 30
@@ -269,7 +269,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Calcium"] = 1200
             dictionary["Iron"] = 15.1
             dictionary["Folate"] = 200
-            dictionary["Vitamin A"] = 400
+            dictionary["Vitamin A"] = 400/0.3
             dictionary["Vitamin C"] = 25
             dictionary["Vitamin E"] = 7
             dictionary["Vitamin K"] = 55
@@ -281,7 +281,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
               dictionary["B6"] = 1.0 //mg
               dictionary["B12"] = 1.8 //mg
               dictionary["Folate"] = 300 //mcg
-              dictionary["Vitamin A"] = 600//mcg
+            dictionary["Vitamin A"] = 600/0.3
               dictionary["Vitamin C"] = 45 //mg
               dictionary["Vitamin E"] = 11 //mg
               dictionary["Vitamin K"] = 60 //mg
@@ -304,7 +304,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"]=1.5
             dictionary["B12"]=2.4
             dictionary["Folate"] = 400
-            dictionary["Vitamin A"]=900
+            dictionary["Vitamin A"]=900/0.3
             dictionary["Vitamin C"] = 90
             dictionary["Vitamin E"] = 15
             dictionary["Vitamin K"] = 120
