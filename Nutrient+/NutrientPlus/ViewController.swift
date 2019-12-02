@@ -321,9 +321,9 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     dictionary["Carbs"] = carbs
     dictionary["Fat"] = 0.275 * (dictionary["Energy"] ?? 0.0) / 7
     dictionary["Vitamin D"] = 600
-    dictionary["Copper"] = 100
-    dictionary["Manganese"] = 5
-    dictionary["Potassium"] = 3.5
+    dictionary["Copper"] = 0.9 //mcg
+    dictionary["Manganese"] = 3.4
+    dictionary["Potassium"] = 4700
     dictionary["Phosphorus"] = 700
     //Se in mcg
     dictionary["Selenium"] = 55
