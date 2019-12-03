@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F5136B02395E8130078119E /* NutrientDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5136AF2395E8130078119E /* NutrientDB.swift */; };
+		6F5136B22395E8850078119E /* allNutrientsDB.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */; };
 		6F866D51238DF8A200DA48F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F866D50238DF8A200DA48F4 /* SceneDelegate.swift */; };
 		6F866D53238DFCA500DA48F4 /* SaveUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */; };
 		71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C9A5236C00A300FB8110 /* APIStructs.swift */; };
@@ -116,6 +118,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F5136AF2395E8130078119E /* NutrientDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutrientDB.swift; sourceTree = "<group>"; };
+		6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = allNutrientsDB.sqlite3; sourceTree = "<group>"; };
 		6F866D50238DF8A200DA48F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfo.swift; sourceTree = "<group>"; };
 		71E7C9A5236C00A300FB8110 /* APIStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStructs.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		8772792D235E1D6500609D79 = {
 			isa = PBXGroup;
 			children = (
+				6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */,
 				B7564E9C23933D35008C2E43 /* SQLite.xcodeproj */,
 				87727938235E1D6500609D79 /* NutrientPlus */,
 				87727952235E1D6800609D79 /* NutrientPlusTests */,
@@ -214,6 +219,7 @@
 				6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */,
 				8723272923727BD100E732D3 /* RecFoodInfo.swift */,
 				87727972235E277900609D79 /* ViewController.swift */,
+				6F5136AF2395E8130078119E /* NutrientDB.swift */,
 				B7F4926E23626252002DF7F6 /* EditInfoVC.swift */,
 				8772794A235E1D6800609D79 /* Info.plist */,
 				8772796E235E26E600609D79 /* AddFoods.swift */,
@@ -442,6 +448,7 @@
 				87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */,
 				87727943235E1D6800609D79 /* Assets.xcassets in Resources */,
 				87727971235E275300609D79 /* Main.storyboard in Resources */,
+				6F5136B22395E8850078119E /* allNutrientsDB.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +485,7 @@
 				6F866D51238DF8A200DA48F4 /* SceneDelegate.swift in Sources */,
 				71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */,
 				87727973235E277900609D79 /* ViewController.swift in Sources */,
+				6F5136B02395E8130078119E /* NutrientDB.swift in Sources */,
 				87AB5873236254DE00F7659E /* NutrientPlus.xcdatamodeld in Sources */,
 				872327282372794600E732D3 /* DesignableView.swift in Sources */,
 				8723272A23727BD100E732D3 /* RecFoodInfo.swift in Sources */,
