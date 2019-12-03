@@ -25,7 +25,7 @@ class SQLiteDatabase {
             ).first!
 
         do {
-            db = try Connection("\(path)/NutrientPlusasd.sqlite3")
+            db = try Connection("\(path)/NutrientPlus.sqlite3")
         } catch {
             db = nil
             print ("Unable to open database")
