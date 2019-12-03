@@ -116,7 +116,7 @@ class ViewController: UIViewController {
         self.cards = self.populate()
         
         nutrDB.printNutrTable()
-        staticDB.printRemainingNutrients()
+        //staticDB.printRemainingNutrients()
     }
 
     func init_nutrients_and_targets() {
@@ -139,9 +139,6 @@ class ViewController: UIViewController {
                 nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
             }
         }
-        if insertId == -1 {
-            //print("Did not insert some nutrients and targets")
-        }
     }
     
     // creates the table view on the main page
@@ -151,7 +148,7 @@ class ViewController: UIViewController {
         var card: Card
         storedNutrientData = nutrDB.getNutr()
         for nutrient in storedNutrientData {
-            let cardText = nutrient.nutrName + " " + String(nutrient.nutrProgress) + "/" + String(nutrient.nutrTarget)
+            let cardText = nutrient.nutrName + " " + String(round(nutrient.nutrProgress)) + "/" + String(round(nutrient.nutrTarget))
             card = Card(nutritionLabel: cardText, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
             tempCards.append(card)
         }
@@ -179,11 +176,8 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     let now = Date()
     let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
     let age = ageComponents.year!
-    print("AGE: ", age)
-    print("Gender: ", gender)
     
     if (gender == "Female") {
-        print("in Female")
         let ans = 0.9 * weight * 24 * 1.55
         //let intAns: Int = Int(ans)
         
@@ -192,7 +186,6 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.3
         }
         if(age < 3){
-            print("age < 3 in female")
             dictionary["B1"] = 0.5
             dictionary["B2"] = 0.5
             dictionary["B5"] = 2
@@ -260,11 +253,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Magnesium"] = 320
         }
         dictionary["B3"] = 14
-        dictionary["VItaminE"] = 15
+        dictionary["VitaminE"] = 15
     }
     
     if (gender == "Male") {
-        print("in Male")
         let ans = 1 * weight * 24 * 1.55
         let intAns: Int = Int(ans)
         let ans1 = Double(intAns)
@@ -326,7 +318,6 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Iron"] = 16.3
             dictionary["Magnesium"] = 410
         }  else {
-            print("age > 18 in male")
             dictionary["B1"]=1.2
             dictionary["B2"]=1.3
             dictionary["B6"]=1.5
