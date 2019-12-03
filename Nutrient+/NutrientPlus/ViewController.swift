@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     
     // variable for displaying image; used in viewDidLoad()
     @IBOutlet weak var recFoodImg: UIImageView!
+    @IBOutlet weak var recFoodLabel: UILabel!
+    var recFoodArrayInfo: [String] = []
     
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
@@ -61,44 +63,42 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         
-        // assigns the user's info to the class variable to be used to calculate target goals
-        let test: NSFetchRequest<User> = User.fetchRequest()
-        do {
-            let formatter = NumberFormatter()
-            formatter.generatesDecimalNumbers = true
-            let user = try PersistenceService.context.fetch(test)
-            self.user = user
-            length = user.count - 1
-            //let origWeight = String(describing: user[length].weight)
-            weight = Double(truncating: user[length].weight!)
-            height = user[length].height
-            gender = user[length].sex ?? "Male"
-            birthdate = user[length].birthday!
-            
-            let weightUnitString = user[length].weightUnit
-            let heightUnitString = user[length].heightUnit
-            
-            // convert height to cm
-            if heightUnitString == "in" {
-                height = Int16(Double(height) * 2.54)
-            }
-            
-            // convert weight to kg
-            if weightUnitString == "lbs" {
-                let divisor =  0.453592
-                weight = weight*divisor
-                //weight = weight * 0.45
-            }
-        } catch {}
+        recFoodArrayInfo = staticDB.printRemainingNutrients()
+        print(recFoodArrayInfo)
+        recFoodLabel.text = recFoodArrayInfo[0]
         
         //SQL DB stuff
-        if targetsEdited {
-            //dont change the nutrientTargets
-        }
-        else {
+        if !targetsEdited {
+            // assigns the user's info to the class variable to be used to calculate target goals
+            let test: NSFetchRequest<User> = User.fetchRequest()
+            do {
+                let formatter = NumberFormatter()
+                formatter.generatesDecimalNumbers = true
+                let user = try PersistenceService.context.fetch(test)
+                self.user = user
+                length = user.count - 1
+                //let origWeight = String(describing: user[length].weight)
+                weight = Double(truncating: user[length].weight!)
+                height = user[length].height
+                gender = user[length].sex ?? "Male"
+                birthdate = user[length].birthday!
+                
+                let weightUnitString = user[length].weightUnit
+                let heightUnitString = user[length].heightUnit
+                
+                // convert height to cm
+                if heightUnitString == "in" {
+                    height = Int16(Double(height) * 2.54)
+                }
+                
+                // convert weight to kg
+                if weightUnitString == "lbs" {
+                    let divisor =  0.453592
+                    weight = weight * divisor
+                    //weight = weight * 0.45
+                }
+            } catch {}
             //calculate the targets and store in a dictionary
             nutrientTargets = calculate(weight: weight, gender: gender, length: length, birthdate: birthdate)
         }
@@ -115,8 +115,7 @@ class ViewController: UIViewController {
         // creates each of the nutrient cards in the table view
         self.cards = self.populate()
         
-        nutrDB.printNutrTable()
-        staticDB.printRemainingNutrients()
+        //nutrDB.printNutrTable()
     }
 
     func init_nutrients_and_targets() {
@@ -165,6 +164,14 @@ class ViewController: UIViewController {
             let vc = segue.destination as? EditInfoVC
             vc?.nutrientTargets = self.nutrientTargets
             vc?.nutrients = self.nutrients
+        }
+        if segue.destination is RecFoodInfo {
+            let vc = segue.destination as? RecFoodInfo
+            vc?.recFoodArrayInfo = self.recFoodArrayInfo
+            var macroMicroInfo: [String] = macros
+            macroMicroInfo += vitamins
+            macroMicroInfo += minerals
+            vc?.nutrientNames = macroMicroInfo
         }
     }
     

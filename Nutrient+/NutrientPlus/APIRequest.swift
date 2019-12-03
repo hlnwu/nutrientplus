@@ -122,14 +122,7 @@ class APIRequest{
                     servingSizeFullText = nutrientDescription.householdServingFullText!
                 }
                 AddFoods.currentFoodServing = servingSizeFullText + " (" + String(servingSize) + "g)"
-                /*let householdServingFullText = nutrientDescription.householdServingFullText ?? ""
-                if (householdServingFullText == "" || servingSizeUnit == ""){
-                    AddFoods.currentFoodServing = "100g"
-                }
-                else {
-                    let FullText = householdServingFullText + " (" +  String(servingSize) + servingSizeUnit + ")"
-                    AddFoods.currentFoodServing = FullText
-                }*/
+            
                 
                 let servingFraction = servingSize / 100.0
                 print (servingFraction)
@@ -140,7 +133,10 @@ class APIRequest{
                         nutrientName = self.nutrientDictionary[nutrientName]!
                     }
                     else{
-                        //print("NOT INSIDE: ", nutrientName)
+                        continue
+                    }
+                    
+                    if (nutrientName == "Energy" && unitName == "kJ"){
                         continue
                     }
                     let amount = items.amount! * servingFraction
@@ -148,7 +144,6 @@ class APIRequest{
                     print ("OLD AMOUNT: ", nutrientName, items.amount!, "NEW AMOUNT: ", amount)
 
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
-                    //print("Nutrient is in dictiony: ", card)
                     AddFoods.nutrientCards.append(card)
                 }
                 APIRequest.dispatchGroup.leave()

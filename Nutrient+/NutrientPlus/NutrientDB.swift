@@ -77,15 +77,15 @@ class NutrientDB{
                         }
                         
                         //If nutrient progress is more than 110%, ignore nutrient
-                        if percentCompleted > 1.0{
+                        if percentCompleted > 1.0 {
                             percentCompleted = 1.0
                         }
                         //Algorithm to compute totalPower
-                        totalPower = totalPower + (percentCompleted * (1.0/Double(weightArray[columnNutrientInDB-5])))
+                        totalPower = totalPower + (percentCompleted * (1.0 / Double(weightArray[columnNutrientInDB - 5])))
                     }
                     
                     //Keeps track of new maxes throughout loop and saves its data in a String array.
-                    if (totalPower > maxPower){
+                    if (totalPower > maxPower) {
                         maxPower = totalPower
                         maxFdcID = row[1]! as! Int64
                         print ("New Max: ", row[0]! as! String, maxPower, "FDCID: ", maxFdcID)
@@ -104,7 +104,7 @@ class NutrientDB{
                 print("FAILED")
             }
         }
-        print(returnArray)
+        print("RETURN ARRAY: ", returnArray)
         return returnArray
 
     }
