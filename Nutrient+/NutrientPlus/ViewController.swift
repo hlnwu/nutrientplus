@@ -42,8 +42,8 @@ class ViewController: UIViewController {
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                    "Folate", "Vitamin A", "Vitamin C",
-                    "Vitamin D", "Vitamin E", "Vitamin K"]
+                    "Folate", "VitaminA", "VitaminC",
+                    "VitaminD", "VitaminE", "VitaminK"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
@@ -55,17 +55,14 @@ class ViewController: UIViewController {
     
     //Database local data
     let nutrDB = SQLiteDatabase.instance
+    let staticDB = NutrientDB.instance
+    
     var storedNutrientData = [NutrientStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        
-        // creates each of the nutrient cards in the table view
-        self.cards = self.populate()
+
         
         // assigns the user's info to the class variable to be used to calculate target goals
         let test: NSFetchRequest<User> = User.fetchRequest()
@@ -79,6 +76,8 @@ class ViewController: UIViewController {
             weight = Double(truncating: user[length].weight!)
             height = user[length].height
             gender = user[length].sex ?? "Male"
+            birthdate = user[length].birthday!
+            
             let weightUnitString = user[length].weightUnit
             let heightUnitString = user[length].heightUnit
             
@@ -105,22 +104,43 @@ class ViewController: UIViewController {
         }
         
         //using the dictionary, initialize nutrients and targets
+        //nutrDB.deleteTable()
         init_nutrients_and_targets()
+        
+        //tableView.reloadData()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
+        // creates each of the nutrient cards in the table view
+        self.cards = self.populate()
+        
+        nutrDB.printNutrTable()
+        staticDB.printRemainingNutrients()
     }
 
     func init_nutrients_and_targets() {
         var insertId: Int64 = 0
         for item in macros {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
         }
         for item in vitamins {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
         }
         for item in minerals {
             insertId = nutrDB.addNutr(iName: item, iWeight: 0, iTarget: Double(nutrientTargets[item] ?? 0), iProgress: 0)!
+            if insertId == -1 {
+                nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
+            }
         }
         if insertId == -1 {
-            print("Did not insert some nutrients and targets")
+            //print("Did not insert some nutrients and targets")
         }
     }
     
@@ -158,8 +178,11 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     let now = Date()
     let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
     let age = ageComponents.year!
+    print("AGE: ", age)
+    print("Gender: ", gender)
     
     if (gender == "Female") {
+        print("in Female")
         let ans = 0.9 * weight * 24 * 1.55
         //let intAns: Int = Int(ans)
         
@@ -168,6 +191,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.3
         }
         if(age < 3){
+            print("age < 3 in female")
             dictionary["B1"] = 0.5
             dictionary["B2"] = 0.5
             dictionary["B5"] = 2
@@ -176,10 +200,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1200 //mg
-            dictionary["Vitamin A"] = 300/0.3
-            dictionary["Vitamin C"] = 15
-            dictionary["Vitamin E"] = 6
-            dictionary["Vitamin K"] = 30
+            dictionary["VitaminA"] = 300/0.3
+            dictionary["VitaminC"] = 15
+            dictionary["VitaminE"] = 6
+            dictionary["VitaminK"] = 30
             dictionary["Magnesium"] = 80
         } else if (age <= 8){
             dictionary["B1"] = 0.6
@@ -239,6 +263,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     }
     
     if (gender == "Male") {
+        print("in Male")
         let ans = 1 * weight * 24 * 1.55
         let intAns: Int = Int(ans)
         let ans1 = Double(intAns)
@@ -300,6 +325,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Iron"] = 16.3
             dictionary["Magnesium"] = 410
         }  else {
+            print("age > 18 in male")
             dictionary["B1"]=1.2
             dictionary["B2"]=1.3
             dictionary["B6"]=1.5

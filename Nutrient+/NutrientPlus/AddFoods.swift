@@ -23,7 +23,8 @@ class AddFoods: UIViewController {
     static var nutrientCards: [nutrientInfo] = []
     static var currentFoodServing: String = ""
     let requestObj = APIRequest()
-    
+    let nutrDB = SQLiteDatabase.instance
+    lazy var nutrDict = nutrDB.getNutrDict()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,17 +112,14 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
         let numberServings = (self.numberOfServings?.text)!
-        //print(mainViewController.nutrients)
+        print("NumberServings: ", numberServings)
+
         for items in AddFoods.nutrientCards{
             let currentNutrientAmount = Double(items.amount) * Double(numberServings)!
-            if (mainViewController.nutrients.keys.contains(items.nutrientName)){
-                mainViewController.nutrients[items.nutrientName] = mainViewController.nutrients[items.nutrientName]! + currentNutrientAmount
-            }
-            else {
-                mainViewController.nutrients.updateValue(currentNutrientAmount, forKey: items.nutrientName)
-            }
+            let updatedValue = nutrDict[items.nutrientName]!.nutrProgress + currentNutrientAmount
+            nutrDB.updateProgress(iName: items.nutrientName, iProgress: updatedValue)
+            //print(items.nutrientName, " HAS UPDATED: ", updatedValue)
         }
-        print ("Prepare: ", mainViewController.nutrients)
     }
 }
 
@@ -131,7 +129,9 @@ extension AddFoods: UISearchBarDelegate{
         clearTableView()
         userInput = String(searchBar.text!) //unwraps text
         requestObj.getFoods(userInput:userInput)
-        displayFoods()
+        APIRequest.dispatchGroup.notify(queue: .main){
+            self.displayFoods()
+        }
     }
 }
 

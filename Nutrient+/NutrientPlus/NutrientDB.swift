@@ -104,6 +104,7 @@ class NutrientDB{
                 print("FAILED")
             }
         }
+        print(returnArray)
         return returnArray
 
     }
