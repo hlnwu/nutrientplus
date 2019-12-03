@@ -72,11 +72,12 @@ class NutrientDB{
                         //Theorectical fraction of nutrient progress
                         var percentCompleted = (row[columnNutrientInDB]! as? Double ?? Double(row[columnNutrientInDB]! as! Int64) + nutrDict[nutrientArray[columnNutrientInDB-5]]!.nutrProgress)/nutrDict[nutrientArray[columnNutrientInDB-5]]!.nutrTarget
                         
+                        //If nutrient progress is more than 100%, ignore food
                         if percentCompleted > 1.25{
                             continue outer
                         }
                         
-                        //If nutrient progress is more than 110%, ignore nutrient
+                        //If nutrient progress is more than 100%, less than 125%, ignore nutrient
                         if percentCompleted > 1.0{
                             percentCompleted = 1.0
                         }

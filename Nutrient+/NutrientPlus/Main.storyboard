@@ -407,26 +407,42 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Fnr-YX-lov">
-                                                    <rect key="frame" x="8" y="33.666666666666664" width="359" height="2"/>
+                                                    <rect key="frame" x="8" y="31" width="359" height="5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="2" id="tNn-co-6bw"/>
+                                                        <constraint firstAttribute="height" constant="5" id="aP0-rd-0pG"/>
                                                     </constraints>
                                                 </progressView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-SJ-RvZ">
-                                                    <rect key="frame" x="10" y="4" width="355" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-SJ-RvZ">
+                                                    <rect key="frame" x="8" y="4" width="170" height="20.333333333333332"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="170" id="UGE-Ak-mEf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2um-zm-ds0">
+                                                    <rect key="frame" x="197" y="4" width="170" height="20.333333333333332"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="170" id="87Z-6O-4ZW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Fnr-YX-lov" secondAttribute="bottom" constant="8" id="HIO-nB-sqG"/>
-                                                <constraint firstAttribute="trailing" secondItem="Fnr-YX-lov" secondAttribute="trailing" constant="8" id="mH1-3A-OKa"/>
-                                                <constraint firstItem="Fnr-YX-lov" firstAttribute="leading" secondItem="LJT-Nn-Jtd" secondAttribute="leading" constant="8" id="v91-jm-GLi"/>
+                                                <constraint firstAttribute="bottom" secondItem="Fnr-YX-lov" secondAttribute="bottom" constant="7.6699999999999999" id="1Qu-nl-ith"/>
+                                                <constraint firstItem="qIs-SJ-RvZ" firstAttribute="leading" secondItem="LJT-Nn-Jtd" secondAttribute="leading" constant="8" id="2ZE-eN-P9V"/>
+                                                <constraint firstItem="Fnr-YX-lov" firstAttribute="leading" secondItem="LJT-Nn-Jtd" secondAttribute="leading" constant="8" id="GpG-98-dVz"/>
+                                                <constraint firstItem="qIs-SJ-RvZ" firstAttribute="top" secondItem="LJT-Nn-Jtd" secondAttribute="top" constant="4" id="J3I-Zf-vfN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fnr-YX-lov" secondAttribute="trailing" constant="8" id="L2S-R0-46c"/>
+                                                <constraint firstAttribute="trailing" secondItem="2um-zm-ds0" secondAttribute="trailing" constant="8" id="VMO-Jt-q5e"/>
+                                                <constraint firstItem="2um-zm-ds0" firstAttribute="top" secondItem="LJT-Nn-Jtd" secondAttribute="top" constant="4" id="m05-al-21v"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="nutritionProgressLabel" destination="2um-zm-ds0" id="pIv-a1-PFD"/>
                                             <outlet property="nutritionProgressView" destination="Fnr-YX-lov" id="pSE-eN-zyY"/>
                                             <outlet property="nutritionTitleLabel" destination="qIs-SJ-RvZ" id="YLq-nj-czx"/>
                                         </connections>

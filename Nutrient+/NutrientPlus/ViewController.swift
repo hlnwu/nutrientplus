@@ -22,6 +22,7 @@ struct Card {
 class NutritionCards: UITableViewCell {
     @IBOutlet weak var nutritionProgressView: UIProgressView!
     @IBOutlet weak var nutritionTitleLabel: UILabel!
+    @IBOutlet weak var nutritionProgressLabel: UILabel!
 }
 
 class ViewController: UIViewController {	
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
     let staticDB = NutrientDB.instance
     
     var storedNutrientData = [NutrientStruct]()
+    var storedNutrientDataDict = [String:NutrientStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,9 +152,11 @@ class ViewController: UIViewController {
         var tempCards: [Card] = []
         var card: Card
         storedNutrientData = nutrDB.getNutr()
+        storedNutrientDataDict = nutrDB.getNutrDict()
         for nutrient in storedNutrientData {
-            let cardText = nutrient.nutrName + " " + String(nutrient.nutrProgress) + "/" + String(nutrient.nutrTarget)
-            card = Card(nutritionLabel: cardText, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
+            let cardText = String(nutrient.nutrProgress) + "/" + String(nutrient.nutrTarget)
+            
+            card = Card(nutritionLabel: nutrient.nutrName, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
             tempCards.append(card)
         }
         return tempCards
@@ -370,6 +374,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutritionCards", for: indexPath) as! NutritionCards
         let card = cards[indexPath.row]
+        let currentProgress = round(storedNutrientDataDict[card.nutritionLabel]!.nutrProgress * 10)/10
+        let currentTarget = round(nutrientTargets[card.nutritionLabel]! * 10)/10
+        cell.nutritionProgressLabel.text = String(currentProgress) + "/" + String(currentTarget)
         cell.nutritionTitleLabel?.text = card.nutritionLabel
         cell.nutritionProgressView?.progress = Float(card.progressPercent)
         cell.nutritionProgressView?.progressTintColor = card.color
