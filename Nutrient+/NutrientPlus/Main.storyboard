@@ -491,7 +491,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uN-Gu-hTW">
-                                <rect key="frame" x="154.66666666666666" y="684" width="66" height="34"/>
+                                <rect key="frame" x="154.66666666666666" y="688" width="66" height="30"/>
                                 <state key="normal" title="Add Food"/>
                                 <connections>
                                     <segue destination="9Lc-mL-kBB" kind="show" id="oSq-TS-TZP"/>
@@ -526,13 +526,13 @@
                             <constraint firstItem="ZEg-Nb-JTw" firstAttribute="centerX" secondItem="COr-dQ-Qrl" secondAttribute="centerX" id="YWb-sA-dxa"/>
                             <constraint firstItem="h6z-nc-HAM" firstAttribute="trailing" secondItem="zNW-lW-sgb" secondAttribute="trailing" constant="195" id="YeS-J4-Y4u"/>
                             <constraint firstItem="S1j-A0-OWv" firstAttribute="top" secondItem="0uN-Gu-hTW" secondAttribute="bottom" constant="11" id="a4Q-C1-it8"/>
+                            <constraint firstAttribute="bottom" secondItem="YYa-BN-fVj" secondAttribute="bottom" constant="138" id="aqe-d5-tGP"/>
                             <constraint firstItem="YYa-BN-fVj" firstAttribute="trailing" secondItem="h6z-nc-HAM" secondAttribute="trailing" id="awu-SK-dIj"/>
                             <constraint firstItem="ZEg-Nb-JTw" firstAttribute="top" secondItem="h6z-nc-HAM" secondAttribute="top" id="dJZ-0z-L0J"/>
                             <constraint firstItem="YYa-BN-fVj" firstAttribute="centerX" secondItem="COr-dQ-Qrl" secondAttribute="centerX" id="eJb-KL-f49"/>
                             <constraint firstItem="ZEg-Nb-JTw" firstAttribute="trailing" secondItem="h6z-nc-HAM" secondAttribute="trailing" id="gkJ-fx-Cu3"/>
                             <constraint firstItem="zNW-lW-sgb" firstAttribute="leading" secondItem="h6z-nc-HAM" secondAttribute="leading" id="rwd-yd-KxM"/>
                             <constraint firstItem="zNW-lW-sgb" firstAttribute="top" secondItem="0uN-Gu-hTW" secondAttribute="bottom" constant="11" id="uPy-Xw-vfL"/>
-                            <constraint firstItem="0uN-Gu-hTW" firstAttribute="top" secondItem="YYa-BN-fVj" secondAttribute="bottom" constant="10" id="ubM-Ej-gkM"/>
                             <constraint firstItem="YYa-BN-fVj" firstAttribute="top" secondItem="ZEg-Nb-JTw" secondAttribute="bottom" id="vOt-Eg-C4L"/>
                             <constraint firstItem="ZEg-Nb-JTw" firstAttribute="leading" secondItem="h6z-nc-HAM" secondAttribute="leading" id="y7D-5i-oaH"/>
                         </constraints>
