@@ -64,7 +64,10 @@ class Startup: UIViewController {
         
         let savingInfo = SaveUserInfo()
         // storing data into Core Data only when fields aren't empty
+        print("OVEr HERE", birthdate as Any)
         savingInfo.saveUserInfo(heightField: heightField, weightField: weightField, bodyFatField: bodyFatField, sex: Gender, birthdayField: birthdayField, heightUnit: heightUnit, weightUnit: weightUnit, userInfo: user, birthdate: birthdate, vc: self, segueIdentifier: "fieldsComplete")
+        // sets userInfoExists to true so startup page doesn't display again
+        UserDefaults.standard.set(true, forKey: "userInfoExists")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,6 +89,8 @@ class Startup: UIViewController {
         formatter.timeStyle = DateFormatter.Style.none
         
         birthdayField.text = formatter.string(from: sender.date)
+        
+        birthdate = sender.date
     }
     
 }
