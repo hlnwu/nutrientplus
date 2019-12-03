@@ -22,6 +22,7 @@ class EditProfile: UIViewController {
     
     var birthdateRevised: Date!
     var user = [User]()
+    let nutrDB = SQLiteDatabase.instance
     
     // update user info with (newly?) inputted info
     override func viewDidLoad() {
@@ -119,6 +120,10 @@ class EditProfile: UIViewController {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
+    }
+    
+    @IBAction func resetProgressTapped(_ sender: Any) {
+        nutrDB.deleteTable()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
