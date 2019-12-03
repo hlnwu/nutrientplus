@@ -191,7 +191,7 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     let age = ageComponents.year!
     
     if (gender == "Female") {
-        let ans = 0.9 * weight * 24 * 1.55
+        let ans = 0.9 * weight * 24 
         //let intAns: Int = Int(ans)
         
         dictionary["Energy"] = Double(ans)
