@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F866D53238DFCA500DA48F4 /* SaveUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */; };
 		71140DFB2393545F00EDDFE2 /* NutrientDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71140DFA2393545F00EDDFE2 /* NutrientDB.swift */; };
-		71140DFD2393547400EDDFE2 /* proteinDB.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71140DFC2393547400EDDFE2 /* proteinDB.sqlite3 */; };
+		71A6DC8B2395D60D000DA917 /* allNutrientsDB.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A6DC832395D60D000DA917 /* allNutrientsDB.sqlite3 */; };
 		71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C9A5236C00A300FB8110 /* APIStructs.swift */; };
 		71FAE66F236C9BBD00A2F286 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FAE66E236C9BBD00A2F286 /* APIRequest.swift */; };
 		872327282372794600E732D3 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872327272372794600E732D3 /* DesignableView.swift */; };
@@ -119,7 +119,7 @@
 /* Begin PBXFileReference section */
 		6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfo.swift; sourceTree = "<group>"; };
 		71140DFA2393545F00EDDFE2 /* NutrientDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NutrientDB.swift; path = "/Users/victorye/Documents/PersistentDB/nutrientplus/Nutrient+/NutrientPlus/NutrientDB.swift"; sourceTree = "<absolute>"; };
-		71140DFC2393547400EDDFE2 /* proteinDB.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = proteinDB.sqlite3; sourceTree = "<group>"; };
+		71A6DC832395D60D000DA917 /* allNutrientsDB.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = allNutrientsDB.sqlite3; path = NutrientPlus/allNutrientsDB.sqlite3; sourceTree = "<group>"; };
 		71E7C9A5236C00A300FB8110 /* APIStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStructs.swift; sourceTree = "<group>"; };
 		71FAE66E236C9BBD00A2F286 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		872327272372794600E732D3 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
@@ -181,12 +181,12 @@
 		8772792D235E1D6500609D79 = {
 			isa = PBXGroup;
 			children = (
-				71140DFC2393547400EDDFE2 /* proteinDB.sqlite3 */,
-				B7564E9C23933D35008C2E43 /* SQLite.xcodeproj */,
+				71A6DC832395D60D000DA917 /* allNutrientsDB.sqlite3 */,
 				87727938235E1D6500609D79 /* NutrientPlus */,
 				87727952235E1D6800609D79 /* NutrientPlusTests */,
 				8772795D235E1D6800609D79 /* NutrientPlusUITests */,
 				87727937235E1D6500609D79 /* Products */,
+				B7564E9C23933D35008C2E43 /* SQLite.xcodeproj */,
 				B7E3CFCE239320440081BE2F /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -444,8 +444,8 @@
 				87727949235E1D6800609D79 /* LaunchScreen.storyboard in Resources */,
 				87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */,
 				87727943235E1D6800609D79 /* Assets.xcassets in Resources */,
-				71140DFD2393547400EDDFE2 /* proteinDB.sqlite3 in Resources */,
 				87727971235E275300609D79 /* Main.storyboard in Resources */,
+				71A6DC8B2395D60D000DA917 /* allNutrientsDB.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -112,7 +112,7 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let mainViewController = segue.destination as! ViewController
         let numberServings = (self.numberOfServings?.text)!
-        //print(mainViewController.nutrients)
+        print("NumberServings: ", numberServings)
 
         for items in AddFoods.nutrientCards{
             let currentNutrientAmount = Double(items.amount) * Double(numberServings)!

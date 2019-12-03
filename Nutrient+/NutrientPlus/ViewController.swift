@@ -7,7 +7,6 @@
 //
 // image retrieval tutorial: https:// www.youtube.com/watch?v=bF9cEcte0-E&t=623s
 // URL retrieval through web scraping: https:// www.youtube.com/watch?v=gscuaUSkxnI
-
 import UIKit
 import WebKit
 import CoreData
@@ -24,7 +23,7 @@ class NutritionCards: UITableViewCell {
     @IBOutlet weak var nutritionTitleLabel: UILabel!
 }
 
-class ViewController: UIViewController {	
+class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var cards: [Card] = []
     var height: Int16 = 0
@@ -34,7 +33,7 @@ class ViewController: UIViewController {
     var gender: String = ""
     var user = [User]()
     var length: NSInteger = 0
-
+    
     
     // variable for displaying image; used in viewDidLoad()
     @IBOutlet weak var recFoodImg: UIImageView!
@@ -42,8 +41,8 @@ class ViewController: UIViewController {
     //for initializing nutrients
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                    "Folate", "Vitamin A", "Vitamin C",
-                    "Vitamin D", "Vitamin E", "Vitamin K"]
+                    "Folate", "VitaminA", "VitaminC",
+                    "VitaminD", "VitaminE", "VitaminK"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]
@@ -55,13 +54,13 @@ class ViewController: UIViewController {
     
     //Database local data
     let nutrDB = SQLiteDatabase.instance
-    var storedNutrientData = [NutrientStruct]()
-    
     let database = NutrientDB.instance
+    
+    var storedNutrientData = [NutrientStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -78,11 +77,12 @@ class ViewController: UIViewController {
             self.user = user
             length = user.count - 1
             //let origWeight = String(describing: user[length].weight)
-            //weight = Double(user[length].weight!)
-            //height = user[length].height
-            //gender = user[length].sex ?? "Male"
-            //let weightUnitString = user[length].weightUnit
-            //let heightUnitString = user[length].heightUnit
+            /*weight = Double(truncating: user[length].weight!)
+            height = user[length].height
+            gender = user[length].sex ?? "Male"
+            let weightUnitString = user[length].weightUnit
+            let heightUnitString = user[length].heightUnit*/
+            
             weight = 200.0
             height = 70
             gender = "Male"
@@ -113,10 +113,11 @@ class ViewController: UIViewController {
         
         //using the dictionary, initialize nutrients and targets
         init_nutrients_and_targets()
-        database.printRemainingNutrients()
         nutrDB.printNutrTable()
+        print(database.printRemainingNutrients())
+        //nutrDB.deleteTable()
     }
-
+    
     func init_nutrients_and_targets() {
         var insertId: Int64 = 0
         for item in macros {
@@ -186,10 +187,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1200 //mg
-            dictionary["Vitamin A"] = 300
-            dictionary["Vitamin C"] = 15
-            dictionary["Vitamin E"] = 6
-            dictionary["Vitamin K"] = 30
+            dictionary["VitaminA"] = 300/0.3
+            dictionary["VitaminC"] = 15
+            dictionary["VitaminE"] = 6
+            dictionary["VitaminK"] = 30
             dictionary["Magnesium"] = 80
         } else if (age <= 8){
             dictionary["B1"] = 0.6
@@ -200,10 +201,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 200
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1300
-            dictionary["Vitamin A"] = 400
-            dictionary["Vitamin C"] = 25
-            dictionary["Votamin E"] = 7
-            dictionary["Vitamin K"] = 55
+            dictionary["VitaminA"] = 400/0.3
+            dictionary["VitaminC"] = 25
+            dictionary["VotaminE"] = 7
+            dictionary["VitaminK"] = 55
             dictionary["Magnesium"] = 130
         } else if (age <= 13){
             dictionary["B1"] = 0.9
@@ -212,11 +213,11 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.0
             dictionary["B12"] = 1.3
             dictionary["Folate"] = 300
-            dictionary["Vitamin A"] = 600
+            dictionary["VitaminA"] = 600/0.3
             dictionary["Calcium"] = 1300
-            dictionary["Vitamin C"] = 45
-            dictionary["Votamin E"] = 11
-            dictionary["Vitamin K"] = 60
+            dictionary["VitaminC"] = 45
+            dictionary["VotaminE"] = 11
+            dictionary["VitaminK"] = 60
             dictionary["Iron"] = 15.1
             dictionary["Magnesium"] = 240
         } else if (age <= 18){
@@ -224,9 +225,9 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B2"] = 1.0
             dictionary["B6"] = 1.3
             dictionary["Folate"] = 400
-            dictionary["Vitamin A"] = 700
-            dictionary["Vitamin C"] = 65
-            dictionary["Vitamin K"] = 75
+            dictionary["VitaminA"] = 700/0.3
+            dictionary["VitaminC"] = 65
+            dictionary["VitaminK"] = 75
             dictionary["Calcium"] = 1300
             dictionary["Iron"] = 16.3
             dictionary["Magnesium"] = 360
@@ -237,15 +238,15 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"] = 1.7
             dictionary["B12"] = 2.4
             dictionary["Folate"] = 150
-            dictionary["Vitamin A"] = 700
-            dictionary["Vitamin C"] = 75
-            dictionary["Vitamin K"] = 120
+            dictionary["VitaminA"] = 700/0.3
+            dictionary["VitaminC"] = 75
+            dictionary["VitaminK"] = 120
             dictionary["Calcium"] = 1200
             dictionary["Iron"] = 20.5
             dictionary["Magnesium"] = 320
         }
         dictionary["B3"] = 14
-        dictionary["VItamin E"] = 15
+        dictionary["VItaminE"] = 15
     }
     
     if (gender == "Male") {
@@ -265,10 +266,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Folate"] = 150
             dictionary["Iron"] = 15.1
             dictionary["Calcium"] = 1200
-            dictionary["Vitamin A"] = 300
-            dictionary["Vitamin C"] = 15
-            dictionary["Vitamin E"] = 6
-            dictionary["Vitamin K"] = 30
+            dictionary["VitaminA"] = 300/0.3
+            dictionary["VitaminC"] = 15
+            dictionary["VitaminE"] = 6
+            dictionary["VitaminK"] = 30
             dictionary["Magnesium"] = 80
         } else if (age <= 8) {
             dictionary["B1"] = 0.6
@@ -279,32 +280,33 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["Calcium"] = 1200
             dictionary["Iron"] = 15.1
             dictionary["Folate"] = 200
-            dictionary["Vitamin A"] = 400
-            dictionary["Vitamin C"] = 25
-            dictionary["Vitamin E"] = 7
-            dictionary["Vitamin K"] = 55
+            dictionary["VitaminA"] = 400/0.3
+            dictionary["VitaminC"] = 25
+            dictionary["VitaminE"] = 7
+            dictionary["VitaminK"] = 55
             dictionary["Magnesium"] = 130
         } else if (age<=13){
-              dictionary["B1"] = 0.9 //mg
-              dictionary["B2"] = 0.9 //mg
-              dictionary["B5"] = 4   //mg
-              dictionary["B6"] = 1.0 //mg
-              dictionary["B12"] = 1.8 //mg
-              dictionary["Folate"] = 300 //mcg
-              dictionary["Vitamin A"] = 600//mcg
-              dictionary["Vitamin C"] = 45 //mg
-              dictionary["Vitamin E"] = 11 //mg
-              dictionary["Vitamin K"] = 60 //mg
-              dictionary["Iron"] = 16.3 //mg
-              dictionary["Calcium"] = 1300
-              dictionary["Magnesium"] = 240 //mcg
+            dictionary["B1"] = 0.9 //mg
+            dictionary["B2"] = 0.9 //mg
+            dictionary["B5"] = 4   //mg
+            dictionary["B6"] = 1.0 //mg
+            dictionary["B12"] = 1.8 //mg
+            dictionary["Folate"] = 300 //mcg
+            dictionary["VitaminA"] = 600/0.3
+            dictionary["VitaminC"] = 45 //mg
+            dictionary["VitaminE"] = 11 //mg
+            dictionary["VitaminK"] = 60 //mg
+            dictionary["Iron"] = 16.3 //mg
+            dictionary["Calcium"] = 1300
+            dictionary["Magnesium"] = 240 //mcg
             
         } else if (age <= 18){
             dictionary["B6"] = 1.3
             dictionary["Folate"] = 400
-            dictionary["Vitamin C"] = 75
-            dictionary["Vitamin K"] = 75
-            dictionary["Vitamin E"] = 15
+            dictionary["VitaminA"] = 600/0.3
+            dictionary["VitaminC"] = 75
+            dictionary["VitaminK"] = 75
+            dictionary["VitaminE"] = 15
             dictionary["Calcium"] = 1300
             dictionary["Iron"] = 16.3
             dictionary["Magnesium"] = 410
@@ -314,10 +316,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
             dictionary["B6"]=1.5
             dictionary["B12"]=2.4
             dictionary["Folate"] = 400
-            dictionary["Vitamin A"]=900
-            dictionary["Vitamin C"] = 90
-            dictionary["Vitamin E"] = 15
-            dictionary["Vitamin K"] = 120
+            dictionary["VitaminA"]=900/0.3
+            dictionary["VitaminC"] = 90
+            dictionary["VitaminE"] = 15
+            dictionary["VitaminK"] = 120
             dictionary["Calcium"] = 1200
             dictionary["Iron"] = 20.5
             dictionary["Magnesium"] = 420
@@ -331,10 +333,10 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     let carbs: Double = 0.55 * (dictionary["Energy"] ?? 0.0) / 4
     dictionary["Carbs"] = carbs
     dictionary["Fat"] = 0.275 * (dictionary["Energy"] ?? 0.0) / 7
-    dictionary["Vitamin D"] = 600
-    dictionary["Copper"] = 100
-    dictionary["Manganese"] = 5
-    dictionary["Potassium"] = 3.5
+    dictionary["VitaminD"] = 600
+    dictionary["Copper"] = 0.9 //mcg
+    dictionary["Manganese"] = 3.4
+    dictionary["Potassium"] = 4700
     dictionary["Phosphorus"] = 700
     //Se in mcg
     dictionary["Selenium"] = 55

@@ -36,8 +36,8 @@ class EditInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let macros = ["Energy", "Protein", "Carbs", "Fat"]
     let vitamins = ["B1", "B2", "B3", "B5", "B6", "B12",
-                     "B12", "Folate", "Vitamin A", "Vitamin C",
-                     "Vitamin D", "Vitamin E", "Vitamin K"]
+                     "B12", "Folate", "VitaminA", "VitaminC",
+                     "VitaminD", "VitaminE", "VitaminK"]
     let minerals = ["Calcium", "Copper", "Iron", "Magnesium",
                     "Manganese", "Phosphorus", "Potassium",
                     "Selenium", "Sodium", "Zinc"]

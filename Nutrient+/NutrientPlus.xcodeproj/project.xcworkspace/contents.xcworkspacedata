@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/victorye/Documents/PersistentDB/nutrientplus/Nutrient+/NutrientPlus/NutrientDB.swift">
-   </FileRef>
-   <FileRef
-      location = "group:proteinDB.sqlite3">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

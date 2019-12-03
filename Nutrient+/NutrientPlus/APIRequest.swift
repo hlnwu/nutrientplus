@@ -22,11 +22,11 @@ class APIRequest{
         "Vitamin B-6":                          "B6",           //1175
         "Vitamin B-12":                         "B12",          //1178
         "Folate, total":                        "Folate",       //1187
-        "Vitamin A, IU":                        "Vitamin A",    //1104      //Dont have
-        "Vitamin C, total ascorbic acid":       "Vitamin C",    //1162
-        "Vitamin D":                            "Vitamin D",    //1110
-        "Vitamin E (alpha-tocopherol)":         "Vitamin E",    //1124
-        "Vitamin K (phylloquinone)":            "Vitamin K",    //1185
+        "Vitamin A, IU":                        "VitaminA",    //1104      //Dont have
+        "Vitamin C, total ascorbic acid":       "VitaminC",    //1162
+        "Vitamin D":                            "VitaminD",    //1110
+        "Vitamin E (alpha-tocopherol)":         "VitaminE",    //1124
+        "Vitamin K (phylloquinone)":            "VitaminK",    //1185
         "Calcium, Ca":                          "Calcium",      //1087
         "Copper, Cu":                           "Copper",       //1098      //Dont have
         "Iron, Fe":                             "Iron",         //1089
@@ -132,18 +132,21 @@ class APIRequest{
                 }*/
                 
                 let servingFraction = servingSize / 100.0
-                
+                print (servingFraction)
                 for items in (nutrientDescription.foodNutrients){
-                    let amount = items.amount ?? 0.0 * servingFraction
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
                     if (self.nutrientDictionary[nutrientName] != nil){
                         nutrientName = self.nutrientDictionary[nutrientName]!
                     }
                     else{
-                        print("NOT INSIDE: ", nutrientName)
+                        //print("NOT INSIDE: ", nutrientName)
                         continue
                     }
+                    let amount = items.amount! * servingFraction
+
+                    print ("OLD AMOUNT: ", nutrientName, items.amount!, "NEW AMOUNT: ", amount)
+
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
                     //print("Nutrient is in dictiony: ", card)
                     AddFoods.nutrientCards.append(card)
