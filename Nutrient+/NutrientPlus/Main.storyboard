@@ -395,19 +395,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YYa-BN-fVj">
                                 <rect key="frame" x="0.0" y="124" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="550" id="S73-am-9z5"/>
-                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NutritionCards" id="ngw-Dz-Irj" customClass="NutritionCards" customModule="NutrientPlus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NutritionCards" rowHeight="50" id="ngw-Dz-Irj" customClass="NutritionCards" customModule="NutrientPlus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ngw-Dz-Irj" id="LJT-Nn-Jtd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Fnr-YX-lov">
-                                                    <rect key="frame" x="8" y="33.666666666666664" width="359" height="2"/>
+                                                    <rect key="frame" x="8" y="40" width="359" height="2"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="tNn-co-6bw"/>
                                                     </constraints>
@@ -480,7 +477,6 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="vtj-ys-61g" firstAttribute="leading" secondItem="rmq-HB-V8H" secondAttribute="trailing" constant="30" id="9BS-hb-zOk"/>
-                                    <constraint firstAttribute="width" constant="375" id="MtQ-dO-RYv"/>
                                     <constraint firstItem="rbv-Bh-Pkh" firstAttribute="leading" secondItem="rmq-HB-V8H" secondAttribute="trailing" constant="50" id="SnD-hW-LtS"/>
                                     <constraint firstAttribute="trailing" secondItem="rbv-Bh-Pkh" secondAttribute="trailing" constant="20" id="YWc-bR-4ab"/>
                                     <constraint firstItem="rmq-HB-V8H" firstAttribute="centerY" secondItem="ZEg-Nb-JTw" secondAttribute="centerY" id="hNe-0y-azs"/>
@@ -903,6 +899,6 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aJg-oG-4ag"/>
+        <segue reference="7HU-58-u3x"/>
     </inferredMetricsTieBreakers>
 </document>

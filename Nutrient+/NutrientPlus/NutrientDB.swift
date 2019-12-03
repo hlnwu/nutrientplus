@@ -29,8 +29,6 @@ class NutrientDB{
     private init(){
         do {
             database = try Connection(path, readonly: true)
-
-            print("Worked")
         } catch {
             print(error)
         }
@@ -42,9 +40,7 @@ class NutrientDB{
     //MVP function
     func printRemainingNutrients() -> [String]{
         var maxPower:Double = 0.0
-        var maxFdcID:Int64 = 0
         var returnArray:[String] = []
-        print("PRINTING REMAINING NUTRIENTS")
         nutrDict = nutrDB.getNutrDict()
         outer: for nutrientName in nutrientArray{
             do{
@@ -87,8 +83,6 @@ class NutrientDB{
                     //Keeps track of new maxes throughout loop and saves its data in a String array.
                     if (totalPower > maxPower) {
                         maxPower = totalPower
-                        maxFdcID = row[1]! as! Int64
-                        print ("New Max: ", row[0]! as! String, maxPower, "FDCID: ", maxFdcID)
                         
                         returnArray.removeAll()
                         returnArray.append(row[0]! as! String)
@@ -104,7 +98,6 @@ class NutrientDB{
                 print("FAILED")
             }
         }
-        print("RETURN ARRAY: ", returnArray)
         return returnArray
 
     }

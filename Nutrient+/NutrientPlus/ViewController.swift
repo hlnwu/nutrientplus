@@ -64,10 +64,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recFoodArrayInfo = staticDB.printRemainingNutrients()
-        print(recFoodArrayInfo)
-        recFoodLabel.text = recFoodArrayInfo[0]
-        
         //SQL DB stuff
         if !targetsEdited {
             // assigns the user's info to the class variable to be used to calculate target goals
@@ -115,7 +111,14 @@ class ViewController: UIViewController {
         // creates each of the nutrient cards in the table view
         self.cards = self.populate()
         
-        //nutrDB.printNutrTable()
+        // displays recommended food at top tab
+        self.recFoodArrayInfo = self.staticDB.printRemainingNutrients()
+        if recFoodArrayInfo.count != 0 {
+            self.recFoodLabel.text = self.recFoodArrayInfo[0]
+        } else {
+            self.recFoodLabel.text = "N/A"
+        }
+
     }
 
     func init_nutrients_and_targets() {
@@ -137,9 +140,6 @@ class ViewController: UIViewController {
             if insertId == -1 {
                 nutrDB.updateTarget(iName: item, iTarget: Double(nutrientTargets[item] ?? 0))
             }
-        }
-        if insertId == -1 {
-            //print("Did not insert some nutrients and targets")
         }
     }
     
@@ -185,11 +185,8 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     let now = Date()
     let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
     let age = ageComponents.year!
-    print("AGE: ", age)
-    print("Gender: ", gender)
     
     if (gender == "Female") {
-        print("in Female")
         let ans = 0.9 * weight * 24 * 1.55
         //let intAns: Int = Int(ans)
         
@@ -270,7 +267,6 @@ func calculate(weight: Double, gender: String, length: NSInteger, birthdate: Dat
     }
     
     if (gender == "Male") {
-        print("in Male")
         let ans = 1 * weight * 24 * 1.55
         let intAns: Int = Int(ans)
         let ans1 = Double(intAns)

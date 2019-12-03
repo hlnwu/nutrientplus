@@ -10,51 +10,49 @@ import Foundation
 import SQLite
 
 class SQLiteDatabase {
-  static let instance = SQLiteDatabase()
-  private let db: Connection?
-  
-  private let nutrTable = Table("nutrTable")
-  private let nutrName = Expression<String>("nutrName")
-  private let nutrWeight = Expression<Double>("nutrWeight")
-  private let nutrTarget = Expression<Double>("nutrTarget")
-  private let nutrProgress = Expression<Double>("nutrProgress")
-  
-  private init() {
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-        ).first!
+    static let instance = SQLiteDatabase()
+    private let db: Connection?
 
-    do {
-        db = try Connection("\(path)/NutrientPlufsss.sqlite3")
-    } catch {
-        db = nil
-        print ("Unable to open database")
+    private let nutrTable = Table("nutrTable")
+    private let nutrName = Expression<String>("nutrName")
+    private let nutrWeight = Expression<Double>("nutrWeight")
+    private let nutrTarget = Expression<Double>("nutrTarget")
+    private let nutrProgress = Expression<Double>("nutrProgress")
+
+    private init() {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+            ).first!
+
+        do {
+            db = try Connection("\(path)/NutrientPlus.sqlite3")
+        } catch {
+            db = nil
+            print ("Unable to open database")
+        }
+
+        createTable()
     }
 
-    createTable()
-  }
-
-  func createTable() {
-    do {
-        try db!.run(nutrTable.create(ifNotExists: true) { table in
-        table.column(nutrName, primaryKey: true)
-        table.column(nutrWeight)
-        table.column(nutrTarget)
-        table.column(nutrProgress)
-        })
-    } catch {
-        print("Unable to create table")
+    func createTable() {
+        do {
+            try db!.run(nutrTable.create(ifNotExists: true) { table in
+            table.column(nutrName, primaryKey: true)
+            table.column(nutrWeight)
+            table.column(nutrTarget)
+            table.column(nutrProgress)
+            })
+        } catch {
+            print("Unable to create table")
+        }
     }
-  }
-    
-    //INSERT INTO "nutrTable" ("nutrName", "nutrWeight", "nutrTarget", "nutrProgress") VALUES (nutrProgress, iWeight, iWeight, iProgress)
+
     func addNutr(iName: String, iWeight: Double, iTarget: Double, iProgress: Double) -> Int64? {
         do {
             let insert = nutrTable.insert(nutrName <- iName, nutrWeight <- iWeight, nutrTarget <- iTarget, nutrProgress <- iProgress)
             let id = try db!.run(insert)
             return id
         } catch {
-            //print("Insert failed")
             return -1
         }
     }
@@ -109,7 +107,6 @@ class SQLiteDatabase {
         var foundNutrient = NutrientStruct(nutrName: "nil")
         for nutrient in storedNutrientData {
             if iName == nutrient.nutrName {
-                print("\(iName) found!")
                 foundNutrient = nutrient
             }
         }
@@ -121,7 +118,6 @@ class SQLiteDatabase {
         storedNutrientData = getNutr()
         for nutrient in storedNutrientData {
             if iName == nutrient.nutrName {
-                print("\(iName)'s progress = \(nutrient.nutrProgress)")
                 return nutrient.nutrProgress
             }
         }

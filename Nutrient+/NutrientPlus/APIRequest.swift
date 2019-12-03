@@ -86,7 +86,6 @@ class APIRequest{
         AddFoods.nutrientCards = []
         let foodIDString = String(foodID)
         guard let urlGet = URL(string: "https://api.nal.usda.gov/fdc/v1/" + foodIDString + "?api_key=LbcbTPKWh9DPSB2aMJnlOyABZKdtFAC9J2iheb0L") else{ return }
-        print (urlGet)
         let session = URLSession.shared
         session.dataTask(with: urlGet) {(data, response, error) in
             guard let data = data else { return }
@@ -125,7 +124,6 @@ class APIRequest{
             
                 
                 let servingFraction = servingSize / 100.0
-                print (servingFraction)
                 for items in (nutrientDescription.foodNutrients){
                     let unitName = items.nutrient.unitName
                     var nutrientName = items.nutrient.name
@@ -140,8 +138,6 @@ class APIRequest{
                         continue
                     }
                     let amount = items.amount! * servingFraction
-
-                    print ("OLD AMOUNT: ", nutrientName, items.amount!, "NEW AMOUNT: ", amount)
 
                     let card = nutrientInfo(amount: amount, unitName: unitName, nutrientName: nutrientName)
                     AddFoods.nutrientCards.append(card)
