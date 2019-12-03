@@ -1,5 +1,5 @@
 # nutrientplus
-An app that provides its user with the optimal food choices to reach daily nutrient goals
+An app that provides its user with the optimal food choices to reach daily nutrient goals.
 
 ## Description
 Due to the constant stresses of school, work, and everyday life, most do not have the time or wherewithal to track and maintain their daily baseline of nutrients. Without these key nutrients, most do not perform at their best, and this persistent lack of daily nutrient intake results in long term health side effects.
