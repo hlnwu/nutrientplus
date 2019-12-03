@@ -125,7 +125,7 @@ extension AddFoods: UITableViewDataSource, UITableViewDelegate{
 extension AddFoods: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         clearTableView()
-        userInput = String(searchBar.text!) //unwraps text
+        userInput = String(searchBar.text!)
         requestObj.getFoods(userInput:userInput)
         APIRequest.dispatchGroup.notify(queue: .main){
             self.displayFoods()

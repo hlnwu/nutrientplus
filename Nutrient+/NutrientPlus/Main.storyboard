@@ -409,11 +409,9 @@
                                                         <constraint firstAttribute="height" constant="2" id="tNn-co-6bw"/>
                                                     </constraints>
                                                 </progressView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-SJ-RvZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-SJ-RvZ">
                                                     <rect key="frame" x="10" y="4" width="355" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="IFE-bp-7Hr"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -421,11 +419,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Fnr-YX-lov" secondAttribute="bottom" constant="8" id="HIO-nB-sqG"/>
-                                                <constraint firstAttribute="trailing" secondItem="qIs-SJ-RvZ" secondAttribute="trailing" constant="10" id="Obt-gX-kbW"/>
-                                                <constraint firstItem="qIs-SJ-RvZ" firstAttribute="leading" secondItem="LJT-Nn-Jtd" secondAttribute="leading" constant="10" id="fL0-cy-pyM"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fnr-YX-lov" secondAttribute="trailing" constant="8" id="mH1-3A-OKa"/>
                                                 <constraint firstItem="Fnr-YX-lov" firstAttribute="leading" secondItem="LJT-Nn-Jtd" secondAttribute="leading" constant="8" id="v91-jm-GLi"/>
-                                                <constraint firstItem="qIs-SJ-RvZ" firstAttribute="top" secondItem="LJT-Nn-Jtd" secondAttribute="top" constant="4" id="zPv-8D-6Fb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

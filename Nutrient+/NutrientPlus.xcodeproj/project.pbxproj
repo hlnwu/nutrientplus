@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F1E22D723960345000BFA12 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1E22D623960345000BFA12 /* Startup.swift */; };
 		6F5136B02395E8130078119E /* NutrientDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5136AF2395E8130078119E /* NutrientDB.swift */; };
-		6F5136B22395E8850078119E /* allNutrientsDB.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */; };
+		6F5F589F2396000A00EFD712 /* Startup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F589E2396000A00EFD712 /* Startup.swift */; };
 		6F866D51238DF8A200DA48F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F866D50238DF8A200DA48F4 /* SceneDelegate.swift */; };
 		6F866D53238DFCA500DA48F4 /* SaveUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */; };
+		6FF90CB32396043B0069B09B /* allNutrientsDB.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF90CAB2396043B0069B09B /* allNutrientsDB.sqlite3 */; };
 		71E7C9A6236C00A300FB8110 /* APIStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C9A5236C00A300FB8110 /* APIStructs.swift */; };
 		71FAE66F236C9BBD00A2F286 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FAE66E236C9BBD00A2F286 /* APIRequest.swift */; };
 		872327282372794600E732D3 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872327272372794600E732D3 /* DesignableView.swift */; };
@@ -118,11 +118,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F1E22D623960345000BFA12 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startup.swift; sourceTree = "<group>"; };
 		6F5136AF2395E8130078119E /* NutrientDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutrientDB.swift; sourceTree = "<group>"; };
-		6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = allNutrientsDB.sqlite3; sourceTree = "<group>"; };
+		6F5F589E2396000A00EFD712 /* Startup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Startup.swift; path = NutrientPlus.xcodeproj/../Startup.swift; sourceTree = SOURCE_ROOT; };
 		6F866D50238DF8A200DA48F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfo.swift; sourceTree = "<group>"; };
+		6FF90CAB2396043B0069B09B /* allNutrientsDB.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = allNutrientsDB.sqlite3; sourceTree = "<group>"; };
 		71E7C9A5236C00A300FB8110 /* APIStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStructs.swift; sourceTree = "<group>"; };
 		71FAE66E236C9BBD00A2F286 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		872327272372794600E732D3 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		8772792D235E1D6500609D79 = {
 			isa = PBXGroup;
 			children = (
-				6F5136B12395E8850078119E /* allNutrientsDB.sqlite3 */,
+				6FF90CAB2396043B0069B09B /* allNutrientsDB.sqlite3 */,
 				B7564E9C23933D35008C2E43 /* SQLite.xcodeproj */,
 				87727938235E1D6500609D79 /* NutrientPlus */,
 				87727952235E1D6800609D79 /* NutrientPlusTests */,
@@ -216,6 +216,7 @@
 				87AB58752362588900F7659E /* User+CoreDataProperties.swift */,
 				8769E72223868210007F45D3 /* EditProfile.swift */,
 				6F866D52238DFCA500DA48F4 /* SaveUserInfo.swift */,
+				6F5F589E2396000A00EFD712 /* Startup.swift */,
 				8723272923727BD100E732D3 /* RecFoodInfo.swift */,
 				87727972235E277900609D79 /* ViewController.swift */,
 				6F5136AF2395E8130078119E /* NutrientDB.swift */,
@@ -228,7 +229,6 @@
 				B7E3CFD2239321100081BE2F /* SQLiteDatabase.swift */,
 				B7E3CFD4239321220081BE2F /* NutrientStruct.swift */,
 				87727942235E1D6800609D79 /* Assets.xcassets */,
-				6F1E22D623960345000BFA12 /* Startup.swift */,
 				87727944235E1D6800609D79 /* Preview Content */,
 			);
 			path = NutrientPlus;
@@ -448,7 +448,7 @@
 				87727946235E1D6800609D79 /* Preview Assets.xcassets in Resources */,
 				87727943235E1D6800609D79 /* Assets.xcassets in Resources */,
 				87727971235E275300609D79 /* Main.storyboard in Resources */,
-				6F5136B22395E8850078119E /* allNutrientsDB.sqlite3 in Resources */,
+				6FF90CB32396043B0069B09B /* allNutrientsDB.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,9 +489,9 @@
 				872327282372794600E732D3 /* DesignableView.swift in Sources */,
 				8723272A23727BD100E732D3 /* RecFoodInfo.swift in Sources */,
 				8750C72D236276150098B855 /* PersistenceService.swift in Sources */,
-				6F1E22D723960345000BFA12 /* Startup.swift in Sources */,
 				87AB58762362588900F7659E /* User+CoreDataClass.swift in Sources */,
 				B7E3CFD5239321220081BE2F /* NutrientStruct.swift in Sources */,
+				6F5F589F2396000A00EFD712 /* Startup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
