@@ -151,7 +151,8 @@ class ViewController: UIViewController {
         var card: Card
         storedNutrientData = nutrDB.getNutr()
         for nutrient in storedNutrientData {
-            card = Card(nutritionLabel: nutrient.nutrName, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
+            let cardText = nutrient.nutrName + " " + String(nutrient.nutrProgress) + "/" + String(nutrient.nutrTarget)
+            card = Card(nutritionLabel: cardText, progressPercent: (nutrient.nutrProgress) / (nutrient.nutrTarget), color: .random())
             tempCards.append(card)
         }
         return tempCards
